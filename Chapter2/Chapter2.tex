@@ -1,6 +1,70 @@
 \chapter{Theoretical Background}
+\section{A macroscopic description}
+The motion of fluids may be described macroscopically using the  Navier--Stokes equation,\cite{simpleLiquids} modelling a liquid as a continuous medium and combining the conservation of mass and momentum with the relation between the force on a volume element and the local fluid flow.
+In the low Reynolds-number regime the flow velocity is small and thus for a system at equilibrium, the Navier--Stokes equation reduces to
+\begin{equation}
+\label{NavierStokes}
+\eta \nabla^{2}\mathbf{\nu}(r,t) = \nabla P(r,t) - \mathbf{f}(r).
+\end{equation}
+Crucially Eqn. \ref{NavierStokes} shows that motion in fluids \textit{can only} occur under the presence of a pressure gradient or external forces.
+In the case of Marangoni flows, motion due to the temperature gradient can only occur via an induced local pressure gradienti, which may be derived from thermodynamics.
 
-\section{The macroscopic picture}
+Consider a binary mixture with an interface at $z=0$.
+The Gibbs--Duhem equation gives
+\begin{equation}
+V dP = \sum_{i=0}^{n} N_{i} d\mu_{i} + S dT.
+\end{equation}
+In the bulk, the fluid pressure is constant and isotropic, giving
+\begin{equation}
+\label{GibbsDuhem}
+\bigg(\frac{\partial P}{\partial x}\bigg) = \sum_{i=0}^{n} \rho_{i}^{B} \bigg(\frac{\partial \mu_{i}}{\partial x}\bigg) + \frac{S}{V} \bigg(\frac{\partial T}{\partial x}\bigg).
+\end{equation}
+The Maxwell equations allow the entropy to be related to the partial differential of chemical potential with respect to temperature through
+\begin{equation}
+\bigg( \frac{\partial\mu_{i}}{\partial T} \bigg)_{P,N_{i}} = - \bigg(\frac{\partial S}{\partial N_{i}}\bigg)_{P,T}.
+\end{equation}
+Now the total entropy is the weighted sum of the partial entropy of the species in the system, 
+\begin{equation}
+S = \sum_{i=0}^{n}s_{i}N_{i},
+\end{equation}
+thus
+\begin{equation}
+\bigg( \frac{\partial\mu_{i}}{\partial T} \bigg)_{P,N_{i}} = - s_{i}.
+\end{equation}
+\\
+Overall, this allows us to rewrite Eqn. \ref{GibbsDuhem} as
+\begin{equation}
+\bigg( - \sum_{i=1}^{n}\rho_{i}^{B}s_{i}^{B}+\frac{S^{B}}{V}\bigg)\bigg(\frac{\partial T}{\partial x}\bigg)
+\end{equation}
+for which the solution is trivially 
+\begin{equation}
+\frac{S^{B}}{V} = \sum_{i=1}^{n}\rho_{i}^{B}s_{i}^{B}.
+\end{equation}
+\\
+Consider the case close to an interface or surface where the pressure will deviate from its bulk value.
+Assume that $\mu_{i}$ and $T$ such that
+\begin{equation}
+\bigg(\frac{\partial \mu_{i}}{\partial T}\bigg) = - s_{i}^{B}
+\end{equation}
+remains true, then the pressure gradient reduces to
+\begin{equation}
+\bigg(\frac{\partial P(z,x)}{\partial x}\bigg) = \Bigg(\sum_{i=1}^{n}\rho_{i}(z)\Big(s_{i}(z)-s_{i}^{B}\Big)\Bigg)\bigg(\frac{\partial T}{\partial x}\bigg).
+\end{equation}
+
+Now in the case of an ideal mixture the partial entropy is given by $s_{i}=\frac{\mu_{i}-h_{i}}{T}$, and since $\mu_{i}$ and $T$ are independent of $z$, the pressure gradient can be expressed in terms of the excess enthalpy ($\Delta h(z)$).
+\begin{equation}
+\label{ExcessEnthalpy}
+\bigg(\frac{\partial P(z,x)}{\partial x}\bigg)= - \Delta h(z)\frac{1}{T} \bigg( \frac{\partial T}{\partial x} \bigg) 
+= - \Delta h(z) \bigg( \frac{\partial \ln T}{\partial x} \bigg).
+\end{equation}
+
+Substituting Eqn. \label{ExcessEnthalpy} into Eqn. \ref{NavierStokes} and assuming there is no pressure gradient in either the $z$ or $y$ direction allows the velocity at the interface to be computed as
+\begin{equation}
+\label{DoubleIntegral}
+\nu (z=0) = - \frac{1}{\eta}\int_{0}^{\infty} dz z \Delta h(z) \frac{\partial T}{\partial x}
+\end{equation}
+where it has been assumed that the fluid in the bulk is at rest ($\nu_{x}(z)=\infty$) is at rest.
+This expression is almost equivalent to that derived by Derjaguin et. al. except for a factor of two, suggesting that Derjaguin's expression may well be wrong\cite{SurfaceForces, Anderson}.
 
 \section{The microscopic picture}
 

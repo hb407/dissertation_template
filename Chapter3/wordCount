@@ -1,0 +1,45 @@
+
+With all experiments it is important to have a method of quantifying the statistical error in data, and computer simulations are not exempt.
+The measurements made in a molecular dynamics simulation are time-averages of observable and are evaluated over some finite simulation time as
+
+Frenkel and Smit show us that the variance in this average may be calculated as 
+
+where the integrand is simply the time-correlation function of fluctations in AFrenkelSmit.
+In the limit of a simulation time longer than the characteristic decay time  of the correlation function, this error reduces to 
+
+
+This equation demonstrates to us the importance of accounting for correlation between data points in a molecular dynamics simulation. 
+The ratio of  gives the number of uncorrelated measurements, and thus it is clear that the variance is inversely proportional to this number.
+To estimate the statistical error, one needs only knowledge of the time correlation function of the measured observable.
+However, calculating these functions induces significant computational cost.
+
+Despite this, there exist methods for obtaining an estimate of the statistical error and an example of these is block-averaging.
+One particular method developed by Flybjerg and Peterson involves applying a blocking transformation to a data set to generate a new uncorrelated data setFlybjerg.
+They show that the variance of an observable can be estimated as
+
+where  is the value of the time-correlation function at  and is given by
+
+The key to the analysis is to determine the value of this error by finding the block size at which this estimate reaches a plateau, thus providing a lower bound on the value of . 
+
+Their method proceeds as follows:
+enumerate
+ Take a set of data .
+ Compute  and use as an estimator for .
+ Apply the block transformation using
+	
+	This halves the size of the data set.
+ Compute new estimate of error.
+ Repeat process until .
+
+Using these data, it is then possible to plot the estimates for  against the size of the individual blocks.
+In doing so, one can obtain a good estimate of the error from the value to which the data plateau.
+Their paper also provides an equation for estimating the error in  which is independent of any assumptions; this is given as
+
+They note that this method gives the same statistical error as the more theoretically rigorous time-correlation method but with a dramatic decrease in computational cost.
+
+Using a standard binary mixture simulation identical to those used to calculate the Marangoni forces at the interface, a blocking analysis was carried out for a simulation time of  timesteps and  timesteps as shown in Fig blocking.
+These data show a clear plateau at a block size of 10,000 timesteps for the longer simulation time and 5,000 timesteps for the shorter run, with little increase in the error of  until a much larger block size.
+This information can be used to infer a suitable size for block averaging data within a LAMMPS simulation in order to yield sufficient decorrelation of individual samples and a good estimate of the statistical error. 
+
+
+

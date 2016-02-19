@@ -6,7 +6,7 @@ In the low Reynolds-number regime the flow velocity is small and thus for a syst
 \label{NavierStokes}
 \eta \nabla^{2}\mathbf{\nu}(r,t) = \nabla P(r,t) - \mathbf{f}(r).
 \end{equation}
-Crucially Eqn. \ref{SimpleLiquids} shows that motion in fluids \textit{can only} occur under the presence of a pressure gradient or external forces.
+Crucially Eqn. \ref{NavierStokes} shows that motion in fluids \textit{can only} occur under the presence of a pressure gradient or external forces.
 In the case of Marangoni flows, motion due to the temperature gradient can only occur via an induced local pressure gradienti, which may be derived from thermodynamics.
 
 Consider a binary mixture with an interface at $z=0$.
@@ -17,7 +17,7 @@ V dP = \sum_{i=0}^{n} N_{i} d\mu_{i} + S dT.
 In the bulk, the fluid pressure is constant and isotropic, giving
 \begin{equation}
 \label{GibbsDuhem}
-\left( \frac{\partial P}{\partial x}\right) = \sum_{i=0}^{n} \rho_{i}^{B} \left(\frac{\partial \mu_{i}}{\partial x}\right) + \frac{S}{V} \left( \frac{\partial T}{\partial x}\right).
+\left( \frac{\partial P}{\partial x}\right) = \sum_{i=0}^{n} \rho_{i}^{\mathrm{B}} \left(\frac{\partial \mu_{i}}{\partial x}\right) + \frac{S}{V} \left( \frac{\partial T}{\partial x}\right).
 \end{equation}
 The Maxwell equations allow the entropy to be related to the partial differential of chemical potential with respect to temperature through
 \begin{equation}
@@ -34,21 +34,21 @@ thus
 \\
 Overall, this allows us to rewrite Eqn. \ref{GibbsDuhem} as
 \begin{equation}
-\left( - \sum_{i=1}^{n}\rho_{i}^{B}s_{i}^{B}+\frac{S^{B}}{V}\right)\left(\frac{\partial T}{\partial x}\right)
+\left( - \sum_{i=1}^{n}\rho_{i}^{\mathrm{B}}s_{i}^{\mathrm{B}}+\frac{S^{\mathrm{B}}}{V}\right)\left(\frac{\partial T}{\partial x}\right)
 \end{equation}
 for which the solution is trivially 
 \begin{equation}
-\frac{S^{B}}{V} = \sum_{i=1}^{n}\rho_{i}^{B}s_{i}^{B}.
+\frac{S^{\mathrm{B}}}{V} = \sum_{i=1}^{n}\rho_{i}^{\mathrm{B}}s_{i}^{\mathrm{B}}.
 \end{equation}
 \\
 Consider the case close to an interface or surface where the pressure will deviate from its bulk value.
 Assume that $\mu_{i}$ and $T$ such that
 \begin{equation}
-\left(\frac{\partial \mu_{i}}{\partial T}\right) = - s_{i}^{B}
+\left(\frac{\partial \mu_{i}}{\partial T}\right) = - s_{i}^{\mathrm{B}}
 \end{equation}
 remains true, then the pressure gradient reduces to
 \begin{equation}
-\left(\frac{\partial P(z,x)}{\partial x}\right) = \left(\sum_{i=1}^{n}\rho_{i}(z)\left(s_{i}(z)-s_{i}^{B}\right)\right)\left(\frac{\partial T}{\partial x}\right).
+\left(\frac{\partial P(z,x)}{\partial x}\right) = \left(\sum_{i=1}^{n}\rho_{i}(z)\left(s_{i}(z)-s_{i}^{\mathrm{B}}\right)\right)\left(\frac{\partial T}{\partial x}\right).
 \end{equation}
 
 Now in the case of an ideal mixture the partial entropy is given by $s_{i}=\frac{\mu_{i}-h_{i}}{T}$, and since $\mu_{i}$ and $T$ are independent of $z$, the pressure gradient can be expressed in terms of the excess enthalpy, $\Delta h(z)$.
@@ -61,7 +61,7 @@ Now in the case of an ideal mixture the partial entropy is given by $s_{i}=\frac
 Substituting Eqn. \ref{ExcessEnthalpy} into Eqn. \ref{NavierStokes} and assuming there is no pressure gradient in either the $z$ or $y$ direction allows the velocity at the interface to be computed as
 \begin{equation}
 \label{DoubleIntegral}
-\nu (z=0) = - \frac{1}{\eta}\int_{0}^{\infty} dz z \Delta h(z) \frac{\partial T}{\partial x}
+\nu (z=0) = - \frac{1}{\eta}\int_{0}^{\infty} \mathrm{d}z\, z \Delta h(z) \frac{\partial T}{\partial x}
 \end{equation}
 where it has been assumed that the fluid in the bulk is at rest ($\nu_{x}(z)=\infty$) is at rest.
 This expression is almost equivalent to that derived by Derjaguin et. al. except for a factor of two, suggesting that Derjaguin's expression may be wrong.\cite{SurfaceForces, Anderson}
@@ -94,6 +94,39 @@ With this it should in principle be possible to compute a flow profile as follow
 It is this approach that is employed in the subsequent investigation of the Marangoni effect. 
 
 \section{Non-uniqueness of the pressure tensor}
+The stress tensor is intimately related to the pressure tensor as
+\begin{equation}
+\sigma_{\alpha \beta}(\mathbf{r}) = - P_{\alpha \beta} (\mathbf{r}).
+\end{equation}
+Now the pressure tensor can be considered as a sum of two contribtuions, a kinetic part arising from the momentum transfer of the particles on the container walls and potential part attributed to the intermolecular forces.\cite{VarnikBinder}
+The kinetic part may be readily calculated from the ideal-gas contribution,
+\begin{equation}
+\mathbf{P}^{K}(\mathbf{r})=k_{\mathrm{B}} T \rho(\mathbf{r}) \hat{\mathbf{I}},
+\end{equation}
+whilst the potential contribution cannot be uniquely defined.
 
+For a homogeneous fluid system, the stress tensor is isotropic with each diagonal element equal to $- P$ where $P$ is the bulk hydrostatic pressure. 
+This pressure can be calculated using the virial equation originally derived by from the virial theorem of Clausius\cite{Clausius}, although also derivable directly by differentiating the canonical partition function\cite{MolTheoryCap} to give
+\begin{equation}
+\label{VirialPressure}
+P_{\alpha \beta}(\mathbf{r})=\frac{1}{V} \left( \rho(\mathbf{r})\left< \nu_{\alpha} \nu_{\beta} \right> + \frac{1}{2} \sum_{i \neq j} (r_{\alpha}^{(i)} - r_{\alpha}^{(i)})f_{\beta}^{ij}i \right).
+\end{equation}
+Clausius' formulation calculates the local pressure by considering the interparticles forces acting on particles located within a volume element at $\mathbf{r}$.
 
+In an inhomogeneous system, such as one containing a liquid--liquid interface, there is an ambiguity over which particles should contribute to the force at a given position.\cite{MolTheoryCap,VarnikBinder,Rowlinson1982}
+This was first reported by Irving and Kirkwood\cite{IrvingKirkwood1949,IrvingKirkwood1950} who describe an alternative method which computes the pressure tensor from the forces acting across an infinitesimal surface $\mathrm{d}\mathbf{A}$ located at $\mathbf{r}$.
+They calculate the local pressure tensor using only pairs of particles for which the line connecting their centers of mass pass through $\mathrm{d}\mathbf{A}$.
+For planar systems, such a those involving an interface in the $(x,y)$ plane, the pressure tensor depends only on the distance from this interface and the normal and tangential components of the pressure tensor can be expressed as
+\begin{align}
+\label{IKpressureN}
+P_{\mathrm{N}}^{\mathrm{IK}}(z) &= \rho(z)k_{\mathrm{B}}T-\frac{1}{2A} \left< \sum_{i \neq j} \frac{|z_{ij}|}{r_{ij}} U'(r_{ij}) \Theta \left( \frac{z-z_{i}}{z_{ij}}\right) \Theta \left( \frac{z_{j} - z}{z_{ij}} \right) \right>,\\
+\label{IKpressureT}
+P_{\mathrm{T}}^{\mathrm{IK}}(z) &= \rho(z)k_{\mathrm{B}}T-\frac{1}{4A} \left< \sum_{i \neq j} \frac{x^{2}_{ij} + y^{2}_{ij}}{r_{ij}} \frac{U'(r_{ij})}{|z_{ij}|} \Theta \left( \frac{z-z_{i}}{z_{ij}}\right) \Theta \left( \frac{z_{j} - z}{z_{ij}} \right) \right>.
+\end{align}
 
+The Irving--Kirkwood has distinct advantages over the virial method for studying planar systems, in particular it yields a normal component which is independent of local fluctuations in the number density.
+For planar systems there are fluctuations of the local density close to walls, due to structural layering of the fluid, and deviatons at liquid--liquid interfaces from the finite size of the interfacial region.
+As a result, oscillations of the normal component of the virial pressure are observed in such systems\cite{VarnikBinder} whilst the Irving--Kirkwood pressure yields a constant normal component equal to the bulk hydrostatic pressure.
+This is consistent with the expected result since the fluid is isotropic in the direction normal to the surface.
+
+In the following investigation, the Marangoni forces calculated using both the virial and the Irving--Kirkwood pressure are compared to identify the signficant of their differences  and how this affects the resulting subsequent Marangoni flow.

@@ -1,5 +1,5 @@
-\chapter{Theoretical Background}
-\section{A macroscopic description}
+\section{Theoretical Background}
+\subsection{A macroscopic description}
 The motion of fluids may be described macroscopically using the  Navier--Stokes equation,\cite{simpleLiquids} modelling a liquid as a continuous medium and combining the conservation of mass and momentum with the relation between the force on a volume element and the local fluid flow.
 In the low Reynolds-number regime the flow velocity is small and thus for a system at equilibrium, the Navier--Stokes equation reduces to
 \begin{equation}
@@ -66,7 +66,7 @@ Substituting Eqn. \ref{ExcessEnthalpy} into Eqn. \ref{NavierStokes} and assuming
 where it has been assumed that the fluid in the bulk is at rest ($\nu_{x}(z)=\infty$) is at rest.
 This expression is almost equivalent to that derived by Derjaguin et. al. except for a factor of two, suggesting that Derjaguin's expression may be wrong.\cite{SurfaceForces, Anderson}
 
-\section{A microscopic approach}
+\subsection{A microscopic approach}
 By its very nature the Marangoni effect is a phenomenom which occurs on microscopic lengthscales, and hence the macroscopic hyrdodynamical approach culminating in Eqn. \ref{DoubleIntegral} is not entirely appropriate.
 Instead of solving the Navier--Stokes equation, the velocity flow field should be  related directly to the local forces acting on the fluid, which may be calculated from the local stress tensor,
 \begin{equation}
@@ -79,21 +79,10 @@ In the case of Marangoni flows, the force is due to a temperature gradient and $
 \label{ForceStressTemp}
 f_{x}(z) = - \left( \frac{\partial \sigma_{xx}(z,x)}{\partial T} \right) \left( \frac{\partial T}{\partial x} \right).
 \end{equation}
-Eqn. \ref{ForceStressTemp} allows the body force to be inferred from the temperature gradient of the stress tensor.
-With this it should in principle be possible to compute a flow profile as follows:
-\begin{enumerate}
-	\item Compute $\sigma_{xx}(z)$ for an equilibrium system at a given temperature $T_{1}$.
-	\item Repeat the calculation for another equilibrium system at slightly higher temperate $T_{2}$.
-	\item Approcimate the temperature gradient of the stress tensor using a finite difference approach,
-		$$\left( \frac{\partial \sigma_{xx}(z,x)}{\partial T} \right) \approx \frac{\sigma_{xx}^{T_{2}}(z,x) - \sigma_{xx}^{T_{1}}(z,x)}{T_{2} - T_{1}}.$$
-	      In this step it is important that the temperature difference is small such that the finite difference approach provides a good estimate of the stress gradient.
-	\item Infer $f_{x}(z)$ using Eqn. \ref{ForceStressTemp}
-	\item Compute flow profile by applying $f_{x}(z)$ as an artifical body force to a non-equilibrium simulation at a suitable intermediate temperature $T_{3}$ (i.e. $T_{1} < T_{3} < T_{3}$).
-\end{enumerate}
+By exploiting Eqn. \ref{ForceStressTemp}, it should be possible to infer the body force acting on the fluid from the temperature gradient of the stress tensor.
 
-It is this approach that is employed in the subsequent investigation of the Marangoni effect. 
 
-\section{Non-uniqueness of the pressure tensor}
+\subsection{Non-uniqueness of the pressure tensor}
 The stress tensor is intimately related to the pressure tensor as
 \begin{equation}
 \sigma_{\alpha \beta}(\mathbf{r}) = - P_{\alpha \beta} (\mathbf{r}).
@@ -130,3 +119,5 @@ As a result, oscillations of the normal component of the virial pressure are obs
 This is consistent with the expected result since the fluid is isotropic in the direction normal to the surface.
 
 In the following investigation, the Marangoni forces calculated using both the virial and the Irving--Kirkwood pressure are compared to identify the signficant of their differences  and how this affects the resulting subsequent Marangoni flow.
+
+\subsection{Linear Response Theory}

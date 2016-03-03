@@ -1,7 +1,8 @@
-\documentclass[a4paper,12pt,openright,twoside]{report}
+\documentclass[a4paper,12pt,openright,oneside]{article}
 %\usepackage[hmarginratio=3:2,vmarginratio=1:1]{geometry}
 \usepackage[top=4cm,bottom=4cm,left=3cm,right=3cm]{geometry}
 \usepackage{amsmath}
+\usepackage{placeins}
 \usepackage{subcaption}
 \usepackage{emptypage}
 \usepackage{subdepth}
@@ -15,9 +16,10 @@
 \usepackage{epigraph}
 \usepackage{bm}
 \usepackage{multirow}
-\usepackage[LGRx,T1]{fontenc} % notice LGRx instead of LGR
+\usepackage[LGR,T1]{fontenc} % notice LGRx instead of LGR
 \usepackage[utf8]{inputenc}   % utf8 is required
 %\usepackage{textgreek}
+
 \newcommand{\textgreek}[1]{\begingroup\fontencoding{LGR}\selectfont#1\endgroup}
 \let\tmp\oddsidemargin
 \let\oddsidemargin\evensidemargin
@@ -39,7 +41,7 @@
 \cleardoublepage
 %\pagenumbering{roman}
 \section*{Acknowledgements}
-\addcontentsline{toc}{chapter}{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
 
 Acknowledgements go here.
 
@@ -83,11 +85,11 @@ Acknowledgements go here.
 %    \markboth{\MakeUppercase{
 %            \chaptername\ \thechapter.
 %\ #1}}{}}
-\renewcommand{\chaptermark}[1]{
-\markboth{\MakeUppercase{#1}}{}}
-\fancyhead[LO]{\leftmark}
-\fancyhead[RE]{\leftmark}
-\fancyhead[LE,RO]{\thepage}
+%\renewcommand{\chaptermark}[1]{
+%\markboth{\MakeUppercase{#1}}{}}
+%\fancyhead[LO]{\leftmark}
+%\fancyhead[RE]{\leftmark}
+%fancyhead[LE,RO]{\thepage}
     
 \input{Chapter1/Chapter1.tex}
 \input{Chapter2/Chapter2.tex}
@@ -98,7 +100,7 @@ Acknowledgements go here.
 
 
 \newpage
-\addcontentsline{toc}{chapter}{Bibliography}
+\addcontentsline{toc}{section}{Bibliography}
 \bibliography{dissertation_master}
 %\thispagestyle{empty}
 \newpage

@@ -100,44 +100,22 @@ The the most signifcant difference occurs directly at the interface where there 
 \caption{PisIKFlow}
 \label{PisIKFlow}
 \end{figure*}
-An identical non-equilibrium run at $T^{*} = 0.8$ was then performed using the Irving--Kirkwood force profile instead of the Virial force and the flow profile was again calculated.
+An identical non-equilibrium run at $T^{*} = 0.85$ was then performed using the Irving--Kirkwood force profile instead of the Virial force and the flow profile was again calculated.
 This was compared to the flow profile calculated using the Virial force as shown in Figure \ref{PisIKFlow}.
 The flow profiles plotted show a reasonably good correspondence, especially for the region $z' \leq 0.4$, although the flow from the Irving--Kirkwood force deviates for higher values of $z'$.
 In particular the flow from the Irving--Kirkwood force is not a large directly at the interface, as a result of the reduction in the force at this point, and also is assymetric.
 Given the symmetry of the system, one would expect the flow profile to be symmetric about the interface and thus this assymmetry is probably a result of the increased amount of noise in the Irving--Kirkwood force profile.
 The increase in noise is a consequence of the shorter equilibrium simulation time which was enforced by the high computational cost of the Irving--Kirkwood analysis.
 
+\subsection{Summary}
+The finite difference approach for the fluid confined between two walls showed the Marangoni force could be calculated using the Virial stress--tensor and the Irving--Kirkwood stress--tensor.
+Both of these methods produced a similar force at the interface of the two fluids although the Irving--Kirkwood stress--tensor gave a reduction in the force calculate directly at the interface.
+By applying these force profiles as an applied body force in a non--equilibrium, the Marangoni flow profile was computed and showed a Couette flow.
+The flow profile for the Irving--Kirkwood and Virial stress--tensors was very similar although the Irving--Kirkwood profile was not symmetrical, probably due to increased noise in the Irving--Kirkwood force profile.
 
 
 
 
 
 
-
-\subsection{The Finite Difference Approach}
-Eqn. \ref{ForceStressTemp} shows that the body force due to a temperature gradient can be inferred from the temperature variation of the stress--tensor. 
-To first order, the temperature gradient of the stress--tensor can be calculated using a finite difference approach across a small temparature variation as
-\begin{equation}
-\label{FinDiff}
-\left( \frac{\partial \sigma_{xx}(z,x)}{\partial T} \right) \approx \frac{\sigma_{xx}^{T_{2}}(z,x) - \sigma_{xx}^{T_{1}}(z,x)}{T_{2} - T_{1}}.
-\end{equation}
-Using this approximation it should, in principle, be possible to compute the Marangoni flow profile for an interface as follows:
-\begin{enumerate}
-	\item Compute $\sigma_{xx}(z)$ for an equilibrium system at a given temperature $T_{1}$.
-	\item Repeat the calculation for another equilibrium system at slightly higher temperate $T_{2}$.
-	\item Approximate the temperature gradient of the stress tensor using the finite difference approach (Eqn. \ref{FinDiff}).
-	\item Infer $f_{x}(z)$ using Eqn. \ref{ForceStressTemp} to calculate a force profile.
-	\item Compute the flow profile by applying $f_{x}(z)$ as an artifical body force to a non-equilibrium simulation at a suitable intermediate temperature $T_{3}$ (i.e. $T_{1} < T_{3} < T_{3}$).
-\end{enumerate}
-
-This method is used in the remainder of this chapter to investigate the Marangoni flow arising at a liquid--liquid interface. 
-
-\subsection{Using a periodic binary-mixture}
-The purest system to study is the case of a symmetrical binary--mixture under three-dimensional periodic boundary conditions, whereby the only deviation from a simple bulk fluid is the presence of two interfaces within the periodic unit box. 
-In this case and forces arising within the fluid can only arise from the effects of the interfaces on the fluid.
-
-This system can be generated using a Lennard--Jones fluid by controlling the relative interaction strengths of the two fluids (henceforth referred to as Fluid A and Fluid B).
-To achieve a suitable level of miscibility of the fluids the values $\epsilon_{AA} = \epsilon_{BB} = 1.0$ and $\epsilon_{AB}=0.55$ were used, in agreement with the previous studies on symmetrical Lennard--Jones binary mixtures.\cite{MorenzoRazo,Blas}
-The pressure was chosen to be $P=0.1$ and the temperature values used were $T=0.8$ and $T=0.9$, ensuring that for all simulations the system exists within the liquid region of the pLennard--Jones phase space.\cite{Smit}
-With an absence of any bounding walls in the system, the fluid pressure and temperature were controlled using a Nos\'{e}--Hoover barostat and thermostat.
 

@@ -1,52 +1,75 @@
 \section{Computational Methods}
 
+Equilibrium MD simulations of a symmetric binary--mixture of two immiscible fluids (A and B) were used to measure the stresses acting on the fluid at two different temperatures and infer the Marangoni force using Eqn. \ref{FinDiff}.
+Two key arrangements of such a mixture were studied, a symmetrical binary–mixture under three--dimensional periodic boundary conditions and a binary--mixture periodic in two--dimensions but held within two walls in the third-dimension which act as a piston, as shown in Fig. \ref{SetUp}.
 
-Statistical mechanics is fundamentally based upon using the microscopic properties of a system to predict and explain its macroscopic behaviour.\cite{StatMech}
-Such studies usually involve sampling the phase space of a system in order to calculate averages of micrscopic properties that relate to a macroscopic observables.
-The phase space, however, is obtrusively large and it is simply not practical to conduct a full ensemble average; one must instead be content with a representative sample.\cite{Bopp2008}
-Practically this is carried out with computational simulations which either directly sample phase--space trajectories (Molecular Dynamics) or which sample configurational space (Monte-Carlo).
-The Marangoni flow is inherentely a dynamic phenomenon and must be studied using a dynamic method, in this case Molecular Dynamics (henceforth MD).
+\begin{figure}[h]
+        \includegraphics[scale=0.25]{AABB.png}
+        \includegraphics[scale=0.25]{AABB_piston.png}
+\caption{The system arrangements for a symmetric binary--mixture of two immiscible fluids under three-dimensional periodic boundary conditions (left) and a binary--mixture periodic in two--dimensions held within two walls (right) are shown. 
+In the case of the three--dimensional boundary conditions, pressure must be controlled use a Nos\'{e}--Hoover barostat whilst for the fluid confined between two walls, these walls may be used as a piston to control the fluid pressure.}
+\label{SetUp}
+\end{figure}
 
-\subsection{The Lennard--Jones Fluid}
-The basic strategy of MD is to sample a system by solving Newton's equations of motions.
-This is achieved by calculating the forces acting on each particle at a given time, $t$, and then integrating the equations of motion to infer the position and velocity at time $t + \delta t$.
-In order to maintain conservation of energy and satisfy detailed balance, the Verlet algorithm is used to give
-\begin{align}
-\label{VerletPos}
-\mathbf{r}( t + \delta t) &= 2 \mathbf{r}(t) - \mathbf{r}(t-\delta t) + \frac{\mathbf{f}(t)}{m} \delta t ^ {2}\\
-\label{VerletVel}
-\mathbf{v}(t) &= \frac{\mathbf{r}(t+\delta t) - \mathbf{r}(t-\delta t)}{2 \delta t},
-\end{align}
-where Eqn. \ref{VerletPos} has the distinct advantage of being symmetric with respect to time--inversion.
-
-To simplify the subsequent simulation, the fluid was modelled using spherical Lennard--Jones particles with the pair--wise potential:
+\subsection{Interaction Model}
+The fluids were modelled using spherical particles and their interaction was controlled using a pair--wuse truncated Lennard--Jones potential:
 \begin{equation}
 V \left( \mathbf{r}^{\mathrm{N}} \right) = \frac{1}{2} \sum_{i\neq j} \phi \left( r_{ij} \right)
 \end{equation}
 where
-\begin{equation}
+\begin{align}
 \label{LJ}
-\phi \left( r_{ij} \right) = 4 \epsilon \left( \left( \frac{\sigma}{r}\right)^{12} - \left( \frac{\sigma}{r}\right)^{6} \right).
+\phi \left( r_{ij} \right) &= 4 \epsilon_{ij} \left( \left( \frac{\sigma_{ij}}{r_{ij}}\right)^{12} - \left( \frac{\sigma_{ij}}{r_{ij}}\right)^{6} \right)\ \mathrm{for}\ r < r_{c}\\
+\phi \left( r_{ij} \right) &= 0\ \mathrm{otherwise}.
+\end{align}
+This potential involves an attractive $ri_{ij}^{-6}$ term accounting for the long--range Van der Waal's interaction and a short--range $r_{ij}^{-12}$ repulsion term corresponding to the Pauli repulsion between particles.
+The length--scale of the potential is given by $\sigma_{ij}$, which was chosen to be equal for all $ij$, whilst the parameter $\epsilon_{ij}$ determines the strength of the interaction. 
+It is often convenient to express quantities including distances and energies in terms of reduced units.
+For a Lennard--Jones system the basic units chosen are $\sigma$ for length, $\epsilon$ for energy and $m$ for mass and all the units others may be derived from these.\cite{FrenkelSmit}
+Physical quantities become dimensionless when expressed in terms of these reduced units, for example $r^{*} \equiv r / \sigma$.
+
+The miscibility of the two fluids (A and B) can be controlled by adjusting the relative values of this interaction paramter, in this study the values chosen were:
+\begin{align}
+\epsilon_{A,A} &= \epsilon_{B,B} = 1.0,\\
+\epsilon_{A,B} &= 0.55,
+\end{align}
+in agrement with previous studies on symmetrical Lennard--Jones binary mixtures.\cite{MorenzoRazo,Blas,HolgerBoppHampe}
+The cutoff for the Lennard--Jones potential was chosen to be $r_{c}^{*} = 4$.
+
+\subsection{The Finite Difference Approach}
+Eqn. \ref{ForceStressTemp} shows that the body force due to a temperature gradient can be inferred from the temperature variation of the stress--tensor. 
+To first order, the temperature gradient of the stress--tensor can be calculated using a finite difference approach across a small temparature variation as
+\begin{equation}
+\label{FinDiff}
+\left( \frac{\partial \sigma_{xx}(z,x)}{\partial T} \right) \approx \frac{\sigma_{xx}^{T_{2}}(z,x) - \sigma_{xx}^{T_{1}}(z,x)}{T_{2} - T_{1}}.
 \end{equation}
-The parameter $\sigma$ controls the length--scale of the potential and is used as the unit of length in the simulations.
-To reduce the computational cost of calculating the pair--wise sum, only the contribution from pairs of particles within $4\sigma$ of each other is included.
-$\epsilon$ gives the strength of the interaction and the relative values for two different types of particles can be used to control the miscibility of two fluids, as shown in Fig. \ref{Miscibility}.
+Using this approximation it should, in principle, be possible to compute the Marangoni flow profile for an interface as follows:
+\begin{enumerate}
+	\item Compute $\sigma_{xx}(z)$ for an equilibrium system at a given temperature $T_{1}$.
+	\item Repeat the calculation for another equilibrium system at slightly higher temperate $T_{2}$.
+	\item Approximate the temperature gradient of the stress tensor using the finite difference approach (Eqn. \ref{FinDiff}).
+	\item Infer $f_{x}(z)$ using Eqn. \ref{ForceStressTemp} to calculate a force profile.
+	\item Compute the flow profile by applying $f_{x}(z)$ as an artifical body force to a non-equilibrium simulation at a suitable intermediate temperature $T_{3}$ (i.e. $T_{1} < T_{3} < T_{3}$).
+\end{enumerate}
 
-\subsection{An isothermal--isobaric ensemble}
-Controlling the temperature and pressure of a fluid is essential if the properties of that fluid are to be investigated.
-This is done using thermostats and barostats which simulate coupling of the system to an external heat bath or volume.
+We employ this method throughout this study to calculate the Marangoni forces arising at the liquid--liquid interfaces in the systems described above.
 
-Thermostats commonly work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassinging the velocity of a randomly chosen particle from the Maxwell distribtuion (Anderson)\cite{AndersonTherm}.
-In this study, the Nos\'{e}--Hoover thermostat is used,  adding an extra term into the equations of motion to provide the effect of an external heat bath.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
+\subsection{Thermostats}
+Controlling the temperature of the fluid during the simulation is essential.
+This is done using a thermostat which simulates coupling of the system to an external heat bath.
+
+Thermostats work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassinging the velocity of a randomly chosen particle from the Maxwell distribtuion (Anderson)\cite{AndersonTherm}.
+In this study, the Nos\'{e}--Hoover thermostat is used, which adds an extra term into the equations of motion to provide the effect of an external heat bath.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
 The result is that the energy of the simulated system fluctuates whilst the total energy of the system and heat bath remains constant, thus maintaining a canonical ensemble.
 
-The bulk pressure of the fluid must be held constant for all simulations, since if this were not true then body forces could occur in the fluid bulk.
-A piston is the simplest way to control the bulk pressure and is relatively easy to create; the fluid is confined between two solid walls and a force equal to $\frac{P_{ext}}{A_{wall}}$ is applied.
-In the case of studying Marangoni flows this does, however, come with the limitation that a Marangoni effect will occur at the liquid--solid boundary \textit{as well} as the liquid--liquid interface.
-Despite this, if the solid--liquid Marangoni force can be ignored and non--slip wall boundary conditions exist, then a piston comes with the advantage of holding the bulk fluid at rest.
+\subsection{Barostats}
+The bulk pressure of the fluid must be held constant for all simulations, since if this were not true then unphysical body forces could occur in the fluid bulk.
+A piston is the simplest way to control the bulk pressure and is relatively easy to create; the fluid is confined between two solid walls and a force equal to $P_{ext} / A_{wall}$ is applied.
+In the case of studying Marangoni flows this does, however, come with the limitation that the thermocapillary effect will occur at the liquid--solid boundary.
+Despite this, if the solid--liquid surface force can be ignored and non--slip wall boundary conditions exist then a piston comes with the advantage of holding the bulk fluid at rest.
 
-Alternatively a Nos\'{e}--Hoover barostat can employed to control the pressure by altering the box dimensions and ajusting the equations of motion. \cite{NoseHoover1, NoseHoover2, NoseHoover3}
-It is important to note that the box dimensions must only be allowed to change in the direction normal to the interface, since any other change will alter the area of the interface and strongly affect the thermodynamic pressure
+Alternatively a Nos\'{e}--Hoover barostat can employed to control the pressure by altering the box dimensions and adjusting the equations of motion accordingly. \cite{NoseHoover1, NoseHoover2, NoseHoover3}
+It is important to note that the box dimensions must only be allowed to change in the direction normal to the interface, since any other change will alter the area of the interface and fatally alter the thermodynamic pressure,
 \begin{equation}
 P = - \left( \frac{\partial F}{\partial V} \right)_{T} + \gamma \left( \frac{\partial A}{\partial V} \right)_{T}.
 \end{equation}
@@ -92,10 +115,8 @@ $$\sqrt{\frac{2}{n-1} \times \frac{C_{0}'}{n'-1}}.$$
 They note that this method gives the same statistical error as the more theoretically rigorous time-correlation method but with a dramatic decrease in computational cost.
 
 \begin{figure*}
-\centering
-        \includegraphics[scale=0.65]{block_average_10e6.eps}
-	\\
-        \includegraphics[scale=0.65]{block_average_1e6.eps}
+        \includegraphics[scale=0.35]{block_average_10e6.eps}
+        \includegraphics[scale=0.35]{block_average_1e6.eps}
 	\caption{The blocking analysis for a simulation time of 10,000,000 timesteps and 1,000,000 timesteps shows clear plateaus in the estimate of the error at block sizes of 10,000 and 5,000 respectively.
 This can be used to estimate the size of blocking needed to decorrelate data in the correspinding molecular dynamics simulations.}
 \label{blocking}
@@ -105,7 +126,8 @@ Using a standard binary mixture simulation identical to those used to calculate 
 These data show a clear plateau at a block size of 10,000 timesteps for the longer simulation time and 5,000 timesteps for the shorter run, with little increase in the error of $\sigma^{2}$ until a much larger block size.
 This information can be used to infer a suitable size for block averaging data within a LAMMPS simulation in order to yield sufficient decorrelation of individual samples and a good estimate of the statistical error. 
 
-\subsection{Computational details}
+
+\subsection{Software details}
 All molecular dynamics simulations were carried out using the LAMMPS (Large Atomic and Molecular Massively Parallel Simulator) package.\cite{LAMMPS}
 Additional processing was carried out using Numpy.\cite{NumPy}
 All graphical figures were plotted using Matplotlib.\cite{MatPlotLib}

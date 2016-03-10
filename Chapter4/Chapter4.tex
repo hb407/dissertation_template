@@ -1,4 +1,69 @@
-\section{Results}
+\section{The binary--mixture confined between two walls}
+The first system studied consisted of a binary--mixture of two fluids confined between two walls.
+The fluid was prepared from a face--centered cubic lattice of spacing $1.64414 \sigma$ under a pressure of $P^{*} = 0.1$ and temperatures of $T^{*} = 0.8$ and $T^{*} = 0.9$, rnsuring the system exists withing the liquid region of the Lennard--Jones phase--space.\cite{Smit}
+The pressure was controlled by applying an external force on one of the confining walls, which were bonded using a harmonic interaction to create a harmonic lattice.
+
+\subsection{Using the Virial stress}
+Initially the two systems were equilibrated for $2 \times 10^{6}$ timesteps (of length $\delta t = 0.001\ \tau$) which was sufficient to create the uniform number density consistent with a fluid state.
+The simulations were then run for a further $40 \times 10^{6}$ timesteps over which period the number--density and Virial stress--tensor were spatially averaged into 400 spatial binds and outputted every timestep.
+These values were then time-averaged using a block--length of $10 \tau$ in accordance with the results of the blocking--analysis described in Section 3.5 to produce profiles for the number--density and $\sigma_{xx}(z^{*})$ at $T^{*} = 0.8$ and $T^{*} = 0.9$, as shown in Figures \ref{PisVirRho} and \ref{PisVirStress}. 
+Since the size of the box in the z--direction ($L_{z^{*}}$) varies for different temperatures when the pressure is held constant, the spatial averaging was done using a scaled coordinate $z'$ which corresponds to $z^{*} / L_{z^{*}}$.
+
+\FloatBarrier
+\begin{figure*}[h]
+\centering
+\includegraphics[scale=0.8]{PisVirRho}
+\caption{PisVirRho caption goes here.}
+\label{PisVirRho}
+\end{figure*}
+
+\begin{figure*}[h]
+\centering
+\includegraphics[scale=0.8]{PisVirStress}
+\caption{PisVirStress caption goes here.}
+\label{PisVirStress}
+\end{figure*}
+%COMMENT ON VIRIAL STRESS PROFILE AND NUMBER DENSITY
+
+\FloatBarrier
+The time--averaged values for the stress--tensor were then used to estimate the gradient of the stress--tensor with respect to temperature using Equation \ref{FinDiff}, shown in Figure \ref{PisVirForce}.
+This gradient shows a clear peak at the interface of the two fluids, corresponding to the expected Marangoni force.
+Importantly the force in the bulk of the fluid (far from both the interface and the walls) is zero within statistical error, which agrees with the prediction that there can be no force acting in a bulk fluid as the result of a temperature gradient.
+In addition to this, there is also an oscillating force occuring at the surface of the wall which can be interpreted as a thermocapillary force (which notably could also be investigated using this method).
+Since we are only interested in simulating the Marangoni effect, these thermocapillary forces were ignored and the central $1/3$ of the force profile was used to create an artifical Marangoni force using a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$ and Equation \ref{ForceStressTemp}.
+
+\begin{figure*}[h]
+\centering
+\includegraphics[scale=0.8]{PisVirForce}
+\caption{PisVirForce caption goes here.}
+\label{PisVirForce}
+\end{figure*}
+\FloatBarrier
+
+This artfical body force was applied to an identical system prepared in the same way as before at $T^{*} = 0.85$.
+A non-equilibrium simulation was run for $40 \times 10^{6}$ and x--component of the fluid velocity, $v^{*}_{x}$, was spatially and temporally averaged using the same blocking analysis 
+This force profile was then applied as a body force to an identical system prepared at $T^{*} = 0.85$ and the x--component of the velocity was spatially and temporally averaged in an analogous way to the number--density and stress--tensor over $40 \times 10^{6}$ timesteps.
+During this simulation the momentum of the walls in the $x$ and $y$ directions was fixed such that they provided a stationary reference point for the fluid.
+As a result, the fluid shows a non-slip boundary condition at the walls and thus the walls act to hold the fluid far away from the interface at rest. 
+
+\begin{figure*}[h]
+\centering
+\includegraphics[scale=0.8]{PisVirFlow}
+\caption{PisVirFlow caption goes here.}
+\label{PisVirFlow}
+\end{figure*}
+\FloatBarrier
+The flow profile calculated for the fluid in this system is shown in Figure \ref{PisVirFlow}. 
+This profile shows a sharp negative peak at the interface of the two fluids, indicating a Marangoni flow in the opposite direction to the temperature gradient as expected.
+Furthermore the flow decay away from the interface is essentially linear which is consistent with a Couette flow arising from shear--driven fluid motion.
+
+
+
+
+
+
+
+
 \subsection{The Finite Difference Approach}
 Eqn. \ref{ForceStressTemp} shows that the body force due to a temperature gradient can be inferred from the temperature variation of the stress--tensor. 
 To first order, the temperature gradient of the stress--tensor can be calculated using a finite difference approach across a small temparature variation as
@@ -26,50 +91,3 @@ To achieve a suitable level of miscibility of the fluids the values $\epsilon_{A
 The pressure was chosen to be $P=0.1$ and the temperature values used were $T=0.8$ and $T=0.9$, ensuring that for all simulations the system exists within the liquid region of the pLennard--Jones phase space.\cite{Smit}
 With an absence of any bounding walls in the system, the fluid pressure and temperature were controlled using a Nos\'{e}--Hoover barostat and thermostat.
 
-\begin{figure}[h]
-\includegraphics{AABBrho1mill}
-\caption{The number density for the individual fluid components in a binary mixture simulated over $10^{6}$ timesteps clearly shows the immiscibility of the fluids. The interfacial region is relatively small and the number densities are uniform in the bulk regions, confirming the liquid state of the system.}
-\label{AABBrho1mill}
-\end{figure}
-\subsection{Simulations over $10^{6}$ timesteps}
-
-\begin{figure}[h]
-\includegraphics{AABBvir1mill}
-\caption{The tangential and normal components of the Virial stress--tensor are plotted for the entire fluid at both temperaturs for an equilibrium simulation over $10^{6}$ timesteps.
-It is clear that this is simulation time is insufficient as the noise level in the data is unacceptably high, although the noise does lie within the statistical error confirming there are no unexpected fluctuations in the bulk.}
-\label{AABBvir1mill}
-\end{figure}
-Two systems at $T=0.8$ and $T=0.9$ were initiated as solid lattices that (since unstable under the pressure and temperature conditions) were allowed to melt over an equilibriation time of $2000 \tau$ and using a timestep of $\delta t = 0.001\tau$. 
-These systems were then monitored over a period of $1,000,000$ timesteps and the average values of $\sigma^{\mathrm{IK}}(z)$, $\sigma^{\mathrm{V}}(z)$ and $\rho(z)$ were calculated.
-Using these data, the density and stress profiles are plotted in Figures \ref{AABBrho1mill}, \ref{AABBvir1mill} and \ref{AABBik1mill}.
-
-Whilst there does appear to be some form of Marangoni force occuring at the interface, it is clear that the level of noise in these data is too large to make any meaningful interpretation (although it is worth noting that the noise lies within the statistical error bars, of which only every 5 are shown for clarity). 
-To reduce the amount of noise would require either a longer simulation run or a larger system size, both of which dramatically increase the computational cost of the simulation.
-This is not particularly significant for calculating the virial stress since this can be computeddd within the LAMMPS package. 
-However, the Irving--Kirkwood stress must be calculated through a post-processing method and is very expensive.
-
-\FloatBarrier
-\subsection{Simulations over $10^{7}$ timesteps}
-
-\FloatBarrier
-\subsection{Simulation over $3\times 10^{7}$ timesteps}
-Whilst the Irving--Kirkwood is simply too expensive to run over such a long time period, it is possible to generate a more precise virial force profile by running the simulation over $3\times 10^{7}$ timesteps.
-The tangential component of the fluid stress--tensor for each temperature is plotted in Figure \ref{AABBvir30mill} and shows significantly less noise than those shown in Figure \ref{AABBvir1mill} or Figure \ref{AABBvir10mill}.
-\begin{figure}[h]
-\includegraphics{AABBvir30mill}
-\caption{Running the simulation over $3\times 10^{7}$ timesteps shows a dramatic reduction in the noise level in the tangential Virial stress--tensor components and in the statistical error.
-However, there is also a slight (and unpredictable) deviation in the position of the interface.
-After recentering, it is possible to use this data to infer the Marangoni body force with a manageable level of noise.}
-\label{AABBvir30mill}
-\end{figure}
-
-\begin{figure}[h]
-\includegraphics{AABBsymForce30mill}
-\caption{The body forces for a binary--mixture infered from equilibrium simulations over $3\times 10^{7}$ timesteps is used to calculate a symmetric force profile which has no overall net force.
-This profile shows a clear force at the interface representing the Marangoni force along with an opposing force for the bulk fluid implying the existence of a bulk back--flow (thus achieving no net flow).}
-\label{AABBsymForce30mill}
-\end{figure}
-
-However upon closer inspection it is clear that the position of the interface has moved in the z-direction, although only by around $\frac{1}{400}^{th}$ of the box size. 
-This irregularity is most likely to be an artefact from the divergence of molecular dynamics simulations over long time periods and can be removed by manually recentering the data to enfore the coincidence of the interface.
-This may then be adjusted such that there is no net force on the fluid and then improved once more by noting that since the system is symmetric, so must be the force profile and thus by averaging between the force profile and its mirror image, a symmetrised force profile can be obtained as shown in Figure \ref{AABBsymForce30mill}.

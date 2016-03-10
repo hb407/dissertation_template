@@ -61,9 +61,44 @@ Away from the interface there is a bulk force acting in the opposite direction t
 However the profile as a whole shows too much noise for the fine--structure of the force to be determined and thus is not of a sufficient quality to be used as an artificial body--force in a non--equilibrium simulation.
 
 \subsection{Reducing the noise in the force--profile}
+To generate a force profile with a sufficiently low level of nosie that it can be used as an artifical body force in a non-equilibrium run requires either a larger system size or a longer simulation timescale.
+Both of these increase the computational cost of calculating the Irving--Kirkwood stress--tensor beyond a practical level and thus to achieve a more accurate force profile, the Virial stress--tensor must be used.
+Considering how similar the Virial and Irving--Kirkwood force profiles appear in Figure \ref{PisIKForce}, using the Virial stress--tensor to calculate the Marangoni force will not create too much deviation from the force that could be calculated from the more suitable Irving--Kirkwood stress--tensor whilst it would enable a much longer simulation time to achieved practically.
+\FloatBarrier
 
- 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{Period30VirStress}
+\caption{Period30VirStress}
+\label{Period30VirStress}
+\end{figure}
 
+To generate the reduced noise force--profile the equilibrium systems at $T^{*}=0.8$ and $T^{*}=0.9$ were run for $30 \times 10^{6}$ timesteps and the spatially averaged Virial stress--tensor was measured every timestep.
+These values were then time--averaged (again using a block length of $10,000$) and the interfaces were recentered to generate the stress profile shown in Figure \ref{Period30VirStress}.
+For both temperatures the stress--profile shows much less noise, especially in the bulk region, for the longer simulation run and the interfacial peaks in the tangential stress--tensor is more symmetric.
+\FloatBarrier
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{Period30VirForce}
+\caption{Period30VirForce}
+\label{Period30VirForce}
+\end{figure}
+Using this stress profile the gradient of the stress--tensor with respect to temperaturee may again be computed using the finite difference and then the average value may be subtracted to give the profile shown in Figure \ref{Period30VirForce}.
+There is a dramatic reduction in the noise of this force profile compared to Figure \ref{Period10Force} and the profile clearly shows a sharp peak at the interface and a back force in the bulk regions.
+\FloatBarrier
+
+Using the profile given in Figure \ref{Period30VirForce} and a temperature gradient of $\partial T / \partial x^{*} = 0.001$ an artifical body force was computed.
+This body force profile was recentered to ensure that the peak corresponding to the Marangoni force aligned with the interfacial region at $T^{*} = 0.85$ and this was applied to a non--equilibrium simulation.
+The non--equilibrium simulation was run for $40 \times 10^{6}$ and the x--component of the velocity was outputted every timestep for $400$ spatial bins across the z--dimension. 
+These values for the velocity were then time--averaged using the same block length described earlier to yield the velocity profile plotted in Figure \ref{Period40VirFlow}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{Period40VirFlow}
+\caption{Period30VirForce}
+\label{Period30VirForce}
+\end{figure}
 
 
 \subsection{Using a periodic binary-mixture}

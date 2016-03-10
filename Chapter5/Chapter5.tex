@@ -15,6 +15,7 @@ As discussed before, the Irving--Kirkwood analysis was very computationally expe
 \FloatBarrier
 
 \begin{figure}[h]
+\centering
 \includegraphics[scale=0.8]{Period10Rho}
 \caption{Period10Rho}
 \label{Period10Rho}
@@ -25,12 +26,14 @@ This would have severe consequences when calculating the Marangoni force from th
 \FloatBarrier
 
 \begin{figure}[h]
+\centering
 \includegraphics[scale=0.8]{Period10VirStress}
 \caption{Period10VirStress}
 \label{Period10VirStress}
 \end{figure}
 
 \begin{figure}[h]
+\centering
 \includegraphics[scale=0.8]{Period10IKStress}
 \caption{Period10IKStress}
 \label{Period10IKStress}
@@ -39,19 +42,20 @@ The recentered Virial and Irving--Kirkwood stress profiles are plotted in Figure
 As with the fluid confined between two walls, the stress--tensor components are equal to $-P_{\mathrm{ext}}$ in the bulk of the fluid correpsonding to the hydrostatic fluid pressure.
 There is a peak in both the Virial and Irving--Kirkwood stress at the interface, again as a result of the anistropy of the interparticle forces in this region.
 These peaks have the same maximum value for both stress--tensors although the Irving--Kirkwood stress shows a stronger minimum directly at the interface.
-\FloatBarrier
 
-\begin{figure}[h]
-\includegraphics[scale=0.8]{Period10Force}
-\caption{Period10Force}
-\label{Period10Force}
-\end{figure}
+\FloatBarrier
 Using these force profiles the gradient of the stress with repsect to temperature was calculated from the finite difference approach.
 For there to be no net force acting on the fluid there must be some source of momentum sink in the system, for example a distant wall bounding the fluid.
 No such momentum sink exists for the infinite fluid represented by this system, therefore the force profile must be adjusted to give no net force.
 To achieve this the average force was subtracted from the force profile fixing ensuring that the integral of the force profile over all space was zero as shown in Figure \ref{Period10Force}.
 
-The resulting force profile shows a similar peak at the interface to seen in Figure \ref{PisIKForce}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{Period10Force}
+\caption{Period10Force}
+\label{Period10Force}
+\end{figure}
+The resulting force profile shows a similar peak at the interface to seen in Figure \ref{PisIKForce} with a similar maximum value suggesting that fixing the total force on the fluid to zero correctly adjusts the data to give a physically meaningful Marangoni force.
 Again there is a reasonably good correspondence between the force calculated using the Irving--Kirkwood and Virial stress--tensors although directly at the interface the magnitude of the peak is reduced for the Irving--Kirkwood force.
 Away from the interface there is a bulk force acting in the opposite direction to the interfacial Marangoni force that will generate the expected bulk backflow.
 However the profile as a whole shows too much noise for the fine--structure of the force to be determined and thus is not of a sufficient quality to be used as an artificial body--force in a non--equilibrium simulation.

@@ -1,7 +1,8 @@
 \section{Computational Methods}
 
 Equilibrium MD simulations of a symmetric binary--mixture of two immiscible fluids (A and B) were used to measure the stresses acting on the fluid at two different temperatures and infer the Marangoni force using Eqn. \ref{FinDiff}.
-Two key arrangements of such a mixture were studied, a symmetrical binary–mixture under three--dimensional periodic boundary conditions and a binary--mixture periodic in two--dimensions but held within two walls in the third-dimension which act as a piston, as shown in Fig. \ref{SetUp}.
+Two key arrangements of such a mixture were studied, a symmetrical binary–mixture under three--dimensional periodic boundary conditions and a binary--mixture periodic in two--dimensions but held within two walls in the third-dimension, as shown in Fig. \ref{SetUp}.
+All molecular dynamics simulations were executed using the LAMMPS (Large Atomic and Molecular Massively Parallel Simulator) package.\cite{LAMMPS}  
 
 \begin{figure}[h]
         \includegraphics[scale=0.25]{AABB.png}
@@ -36,47 +37,42 @@ The miscibility of the two fluids (A and B) can be controlled by adjusting the r
 in agrement with previous studies on symmetrical Lennard--Jones binary mixtures.\cite{MorenzoRazo,Blas,HolgerBoppHampe}
 The cutoff for the Lennard--Jones potential was chosen to be $r_{c}^{*} = 4$.
 
-\subsection{The Finite Difference Approach}
-Eqn. \ref{ForceStressTemp} shows that the body force due to a temperature gradient can be inferred from the temperature variation of the stress--tensor. 
-To first order, the temperature gradient of the stress--tensor can be calculated using a finite difference approach across a small temparature variation as
-\begin{equation}
-\label{FinDiff}
-\left( \frac{\partial \sigma_{xx}(z,x)}{\partial T} \right) \approx \frac{\sigma_{xx}^{T_{2}}(z,x) - \sigma_{xx}^{T_{1}}(z,x)}{T_{2} - T_{1}}.
-\end{equation}
-Using this approximation it should, in principle, be possible to compute the Marangoni flow profile for an interface as follows:
-\begin{enumerate}
-	\item Compute $\sigma_{xx}(z)$ for an equilibrium system at a given temperature $T_{1}$.
-	\item Repeat the calculation for another equilibrium system at slightly higher temperate $T_{2}$.
-	\item Approximate the temperature gradient of the stress tensor using the finite difference approach (Eqn. \ref{FinDiff}).
-	\item Infer $f_{x}(z)$ using Eqn. \ref{ForceStressTemp} to calculate a force profile.
-	\item Compute the flow profile by applying $f_{x}(z)$ as an artifical body force to a non-equilibrium simulation at a suitable intermediate temperature $T_{3}$ (i.e. $T_{1} < T_{3} < T_{3}$).
-\end{enumerate}
-
-We employ this method throughout this study to calculate the Marangoni forces arising at the liquid--liquid interfaces in the systems described above.
-
-\subsection{Calculating the stress--tensor}\label{CalcStress}
-
 \subsection{Thermostats}
-Controlling the temperature of the fluid during the simulation is essential.
-This is done using a thermostat which simulates coupling of the system to an external heat bath.
+In molecular dynamics simulations the temperature can be controlled using thermostats which simulate coupling of the system to an external heat bath.
 
 Thermostats work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassinging the velocity of a randomly chosen particle from the Maxwell distribtuion (Anderson)\cite{AndersonTherm}.
-In this study, the Nos\'{e}--Hoover thermostat is used, which adds an extra term into the equations of motion to provide the effect of an external heat bath.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
-The result is that the energy of the simulated system fluctuates whilst the total energy of the system and heat bath remains constant, thus maintaining a canonical ensemble.
+Throughout this study, the Nos\'{e}--Hoover thermostat was used.
+This method adds an extra term into the equations of motion to provide the effect of an external heat bath.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
+The result is a system where the energy fluctuates whilst the total energy of the system and heat bath remains constant, thus maintaining a canonical ensemble.
 
 \subsection{Barostats}
-The bulk pressure of the fluid must be held constant for all simulations, since if this were not true then unphysical body forces could occur in the fluid bulk.
+The bulk pressure of the fluid must also be held constant for these simulations, since if this were not true then unphysical body forces could occur in the fluid bulk.
 A piston is the simplest way to control the bulk pressure and is relatively easy to create; the fluid is confined between two solid walls and a force equal to $P_{ext} / A_{wall}$ is applied.
-In the case of studying Marangoni flows this does, however, come with the limitation that the thermocapillary effect will occur at the liquid--solid boundary.
-Despite this, if the solid--liquid surface force can be ignored and non--slip wall boundary conditions exist then a piston comes with the advantage of holding the bulk fluid at rest.
+This is the method used for studing the binary--mixture confined between two planar walls.
+In the case of Marangoni flows a potentially problematic thermocapillary effect will also occur at the boundary of the liquid and the solid piston.
+Despite this, if the thermocapillary force can be ignored and non--slip wall boundary conditions exist then a piston also provides a method for fixing the bulk fluid at rest.
 
-Alternatively a Nos\'{e}--Hoover barostat can employed to control the pressure by altering the box dimensions and adjusting the equations of motion accordingly. \cite{NoseHoover1, NoseHoover2, NoseHoover3}
-It is important to note that the box dimensions must only be allowed to change in the direction normal to the interface, since any other change will alter the area of the interface and fatally alter the thermodynamic pressure,
+Alternatively a Nos\'{e}--Hoover barostat can control the pressure by altering the box dimensions and adjusting the equations of motion accordingly. \cite{NoseHoover1, NoseHoover2, NoseHoover3}
+When studying the surface--driven effects the box dimensions must only be changed in the normal direction to the interface, since any other direction will alter the area of the interface and create an error in the thermodynamic pressure,
 \begin{equation}
 P = - \left( \frac{\partial F}{\partial V} \right)_{T} + \gamma \left( \frac{\partial A}{\partial V} \right)_{T}.
 \end{equation}
 
-\subsection{Estimating statistical error}
+\subsection{Preparing the fluid system}
+% Box dimensions, lattice, melt, conditions etc
+
+\subsection{Calculating the stress--tensor}\label{CalcStress}
+% Short details on how stress--tensor was calculated
+The Virial stress--tensor may be calculated directly within the LAMMPS package using an in--built function and spatially averaged during the simulation.
+This may be performed for groups of atoms (for example the individual fluid atoms) or for the system as a whole.
+
+However LAMMPS does not have a mechanism for calculating the Irving--Kirkwood stress--tensor.
+To calculate this, dump files containing the atom positions and velocities must be outputted from LAMMPS and post--processed.
+This processing included a programme originally written by R. Ganti that used Equations \ref{IKpressureN} and \ref{IKpressureT} to calculate the pressure--tensor and was adapted for the specific systems in this study. 
+Compared to the Virial stress--tensor, computing the Irving--Kirwood stress--tensor incurred around a 4-fold increase in computational cost.
+
+\subsection{Calculating averages}
+% Details on the spatial binning, calculating block averages and quanitfiying statistical error.
 With all experiments it is important to have a method of quantifying the statistical error in data, and computer simulations are not exempt.
 The measurements made in a molecular dynamics simulation are time-averages of observable and are evaluated over some finite simulation time as
 $$A_{\tau} = \frac{1}{\tau} \int_{t=0}^{\tau} A(t) dt.$$

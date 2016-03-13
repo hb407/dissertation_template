@@ -42,7 +42,7 @@ Physical quantities become dimensionless when expressed in terms of these units,
 Scaled coordinates expressed relative to the simulation box size can also be used, for example $z' = z^{*} / L_{z^{*}}$ where $L_{z^{*}}$ is the dimension of the box in the z--direction.
 These are useful when the box--dimensions can vary, such as when a barostat acts on the system.
 
-\subsection{Thermostats}
+\subsection{Thermostats}\label{Thermostats}
 In molecular dynamics simulations, the temperature is controlled using thermostats which simulate the system coupling to an external heat bath.
 
 Thermostats work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassinging the velocity of randomly chosen particles from the Maxwell distribtuion (Anderson)\cite{AndersonTherm}.
@@ -50,7 +50,7 @@ The Nos\'{e}--Hoover thermostat was used throughout this study.
 This simply adds an extra term into the equations of motion to provide the effect of an external heat bath.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
 The result is a system where the energy fluctuates but the total energy of the system and heat bath remains constant, maintaining a canonical ensemble.
 
-\subsection{Barostats}
+\subsection{Barostats}\label{Barostats}
 The bulk pressure of the fluid must also be held constant.
 A piston provides the simplest method and is relatively easy to create; the fluid is confined between two solid walls and a force equal to $P_{ext} / A_{wall}$ is applied.
 This was used for studing the binary--mixture confined between two planar walls.
@@ -63,7 +63,7 @@ When studying surface--driven effects, the box dimensions must only be changed i
 P = - \left( \frac{\partial F}{\partial V} \right)_{T} + \gamma \left( \frac{\partial A}{\partial V} \right)_{T}.
 \end{equation}
 
-\subsection{Preparing the system}
+\subsection{Preparing the system}\label{SystemPrep}
 The fluid was prepared from a face--centred cubic lattice with a spacing of $1.64414\ \sigma$ and a simulation box size of $L_{x^{*}}=13.1531$, $L_{y^{*}}=13.1531$ and $L_{z^{*}}=32.8828$.
 This lattice was equilibrated over $2\times 10^{6}$ timesteps of length $0.001\ \tau$ to generate a fluid state.
 The barostat was set to a pressure of $P^{*} = 0.1$ and the temperatures used were $T^{*} = 0.8$ and $T^{*} = 0.8$, ensuring the system occupied the liquid region of the Lennard--Jones phase space.\cite{Smit}
@@ -76,7 +76,7 @@ Instead this was calculated by dumping the particle positions on a given timeste
 The stress--tensor was then computed using a programme written by R. Ganti and adapted for the specific systems studied.
 This was significantly more expensive than the Virial stress--tensor, incurring approximately a 4-fold increase in computational time.
 
-\subsection{Calculating averages}
+\subsection{Computing averages}\label{ComputeAve}
 Usually time--averages of physical observables are calculated in molecular dynamics simulations. 
 In the systems studied, the relevant observables corresponded to the number--density, stress--tensor and particle velocities.
 Their values were measured every timestep and spatially averaged for $400$ planar slabs across the z--dimension of the box.
@@ -112,7 +112,7 @@ A blocking--analysis for a binary--mixture identical to those used throughout th
 The plateau begins at a block length of $10\ \tau$ for the long simulation and $5\ \tau$ for the shorter run, with little increase in the error of the variance until a much larger block size.
 Considering this result, a block length of $10\ \tau$ was used to provide a good estimate for the error of all time--averages calculated in the subsequent simulations.
 
-\subsection{Modelling surfactants}
+\subsection{Modelling surfactant molecules}\label{ModellingSurfactants}
 \FloatBarrier
 
 \begin{figure*}[h]
@@ -127,7 +127,7 @@ Inspired by Howes and Radke's study on non--ionic surfactants,\cite{HowesSurfact
 The `head' and `tail' groups interact with each other with strength $\epsilon_{H, T} = 1.00$.
 \FloatBarrier
 
-\subsection{Software details}
+\subsection{Software details}\label{SoftwareDetails}
 All molecular dynamics simulations were carried out using the LAMMPS (Large Atomic and Molecular Massively Parallel Simulator) package.\cite{LAMMPS}
 Additional processing was carried out using Numpy.\cite{NumPy}
 All graphical figures were plotted using Matplotlib.\cite{MatPlotLib}

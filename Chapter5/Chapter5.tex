@@ -116,3 +116,20 @@ Furthermore, as this system has no sources of momentum the force profile had to 
 This force was calculated using both the Irving--Kirkwood and Virial stress--tensor, however due to the high computational cost of the Irving--Kirkwood method the simulation could not be run for long enough to reduce the noise sufficiently.
 Regardless, both of the methods yielded phenomenologically similar force profiles and thus by computing the Virial stress over a much longer timescale, a more precised force profile could be calcuated.
 Using this force--profile in a non-equilibrium simulation produced a net fluid flow, probably an error due to the lack of a momentum sink, but the relative motion of the fluid showed the expected peak at the interface with an opposing back flow in the fluid bulk.
+
+
+\subsubsection{SUMMARY piston}
+The finite difference approach for the fluid confined between two walls showed the Marangoni force could be calculated using the Virial stress--tensor and the Irving--Kirkwood stress--tensor.
+Both of these methods produced a similar force at the interface of the two fluids although the Irving--Kirkwood stress--tensor gave a reduction in the force calculate directly at the interface.
+By applying these force profiles as an applied body force in a non--equilibrium, the Marangoni flow profile was computed and showed a Couette flow.
+The flow profile for the Irving--Kirkwood and Virial stress--tensors was very similar although the Irving--Kirkwood profile was not symmetrical, probably due to increased noise in the Irving--Kirkwood force profile.
+
+\subsubsection{SUMMARY periodic}
+Using the binary--mixture periodic in three--dimensions allowed the Marangoni effect to be studied without the influence of external wall effects.
+By measuring the stress--tensor at $T^{*}=0.8$ and $T^{*}=0.9$ and calculating the finite difference, the force profile in the fluid resulting from a temperature gradient was computed and this showed a peak at the interface of the two fluids.
+It was important to ensure that the interfaces in the two equilibrium simulations were aligned before calculating the finite difference to create a faithful force profile.
+Furthermore, as this system has no sources of momentum the force profile had to be adjusted to ensure there was no net force acting on the fluid.
+
+This force was calculated using both the Irving--Kirkwood and Virial stress--tensor, however due to the high computational cost of the Irving--Kirkwood method the simulation could not be run for long enough to reduce the noise sufficiently.
+Regardless, both of the methods yielded phenomenologically similar force profiles and thus by computing the Virial stress over a much longer timescale, a more precised force profile could be calcuated.
+Using this force--profile in a non-equilibrium simulation produced a net fluid flow, probably an error due to the lack of a momentum sink, but the relative motion of the fluid showed the expected peak at the interface with an opposing back flow in the fluid bulk.

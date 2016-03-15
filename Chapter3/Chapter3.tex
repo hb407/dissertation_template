@@ -3,7 +3,7 @@
 Equilibrium molecular dynamics simulations of a symmetric binary--mixture of two immiscible fluids (A and B) were used to measure the stresses acting on the fluid at two different temperatures and infer the Marangoni force using Equation \ref{FinDiff}.
 Where possible, this force was then applied as an artificial body force to generate a Marangoni flow profile at an intermediate temperature.
 
-Two key systems were studied, a symmetrical binary–mixture under three--dimensional periodic boundary conditions and a binary--mixture periodic in two--dimensions but confined between two walls in the third-dimension, as shown in Figure \ref{SetUp}.
+Two key systems were studied, a symmetrical binary–mixture under three--dimensional periodic boundary conditions, and a binary--mixture periodic in two--dimensions but confined between two walls in the third-dimension, as shown in Figure \ref{SetUp}.
 All molecular dynamics simulations were executed using the LAMMPS (Large Atomic and Molecular Massively Parallel Simulator) package.\cite{LAMMPS}  
 
 \begin{figure}[h]
@@ -39,26 +39,26 @@ The cutoff for the Lennard--Jones potential was chosen to be $r_{c} = 4\ \sigma$
 Physical quantities including distances and energies are expressed in terms of reduced units.
 For a Lennard--Jones system, the basic units are $\sigma$ for length, $\epsilon$ for energy and $m$ for mass, from which all other units may be derived.\cite{FrenkelSmit}
 Physical quantities become dimensionless when expressed in terms of these units, for example $r^{*} \equiv r / \sigma$.
-Scaled coordinates expressed relative to the simulation box size can also be used, for example $z' = z^{*} / L_{z^{*}}$ where $L_{z^{*}}$ is the dimension of the box in the z--direction.
-These are useful when the box--dimensions can vary, such as when a barostat acts on the system.
+Scaled coordinates expressed relative to the simulation box size are also used, for example $z' = z^{*} / L_{z^{*}}$ where $L_{z^{*}}$ is the dimension of the box in the z--direction.
+These are useful if the box--dimensions vary, such as when a barostat acts on the system.
 
 \subsection{Thermostats}\label{Thermostats}
-In molecular dynamics simulations, the temperature is controlled using thermostats which simulate the system coupling to an external heat bath.
+In molecular dynamics simulations, the temperature is controlled using thermostats, which simulate the coupling of the system to an external heat bath.
 
 Thermostats work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassinging the velocity of randomly chosen particles from the Maxwell distribtuion (Anderson)\cite{AndersonTherm}.
 The Nos\'{e}--Hoover thermostat was used throughout this study.
-This simply adds an extra term into the equations of motion to provide the effect of an external heat bath.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
-The result is a system where the energy fluctuates but the total energy of the system and heat bath remains constant, maintaining a canonical ensemble.
+This adds an extra term into the equations of motion to provide the effect of an external heat bath.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
+The result is a system where the energy fluctuates but the combined energy of the system and heat bath remains constant, maintaining a canonical ensemble.
 
 \subsection{Barostats}\label{Barostats}
 The bulk pressure of the fluid must also be held constant.
 A piston provides the simplest method and is relatively easy to create; the fluid is confined between two solid walls and a force equal to $P_{ext} / A_{wall}$ is applied.
 This was used for studing the binary--mixture confined between two planar walls.
 In the case of Marangoni flows, a thermocapillary effect will also occur at the boundary of the liquid and the solid piston.
-If the thermocapillary force can be ignored and non--slip wall boundary conditions exist then a piston also allows the bulk fluid to be fixed at rest.
+If the thermocapillary force can be ignored, and non--slip wall boundary conditions exist, then a piston also allows the bulk fluid to be fixed at rest.
 
 Alternatively a Nos\'{e}--Hoover barostat can control the pressure by adjusting the box dimensions and altering the equations of motion. \cite{NoseHoover1, NoseHoover2, NoseHoover3}
-When studying surface--driven effects, the box dimensions must only be changed in the direction perpendicular to the interface, since any other direction will alter the area of the interface and create an error in the thermodynamic pressure,
+When studying surface effects, the box dimensions must only be changed in the direction perpendicular to the interface, since any other direction will alter its area and create an error in the thermodynamic pressure,
 \begin{equation}
 P = - \left( \frac{\partial F}{\partial V} \right)_{T} + \gamma \left( \frac{\partial A}{\partial V} \right)_{T}.
 \end{equation}
@@ -66,11 +66,11 @@ P = - \left( \frac{\partial F}{\partial V} \right)_{T} + \gamma \left( \frac{\pa
 \subsection{Preparing the system}\label{SystemPrep}
 The fluid was prepared from a face--centred cubic lattice with a spacing of $1.64414\ \sigma$ and a simulation box size of $L_{x^{*}}=13.1531$, $L_{y^{*}}=13.1531$ and $L_{z^{*}}=32.8828$.
 This lattice was equilibrated over $2\times 10^{6}$ timesteps of length $0.001\ \tau$ to generate a fluid state.
-The barostat was set to a pressure of $P^{*} = 0.1$ and the temperatures used were $T^{*} = 0.8$ and $T^{*} = 0.8$, ensuring the system occupied the liquid region of the Lennard--Jones phase space.\cite{Smit}
+The barostat was set to a pressure of $P^{*} = 0.1$ and the temperatures used were $T^{*} = 0.8$ and $T^{*} = 0.9$, ensuring the system occupied the liquid region of the Lennard--Jones phase space.\cite{Smit}
 Solid walls in the system were represented by a harmonically bonded lattice with spring constant of $K^{*} = 2500$ and an equilbrium length of $r^{*}_{0}=1.163$.
 
 \subsection{Calculating the stress--tensor}\label{CalcStress}
-The Virial stress--tensor was calculated using an in--built function within the LAMMPS package which returns the stress--tensor for each atom.
+The Virial stress--tensor was calculated using an in--built function within the LAMMPS package, which returns the stress--tensor for each atom.
 However, LAMMPS does not have a method for calculating the Irving--Kirkwood stress--tensor.
 Instead this was calculated by dumping the particle positions on a given timestep to a file and post--processing.
 The stress--tensor was then computed using a programme written by R. Ganti and adapted for the specific systems studied.
@@ -84,7 +84,7 @@ These spatial averages were then time--averaged over the full duration of the si
 
 Under the ergodic hypothesis, time--averages can be equated to ensemble averages for an infinitely long simulation time.\cite{Bopp2008}
 Practically, however, these averages must be evaluated over a finite time period and have an associated statistical error.
-The method of block--averaging developed by Flybjerg and Peterson provides an efficient technique for computing this error.\cite{Flyvbjerg1989}
+The method of block--averaging, developed by Flybjerg and Peterson, provides an efficient technique for computing this error.\cite{Flyvbjerg1989}
 They show that the variance of an observable, $A$, can be estimated by
 \begin{equation}
 \mathrm{var}(A) \geq \left< \frac{C_{0}}{n-1} \right>,
@@ -94,7 +94,7 @@ where $C_{0}$ is the value of the time-correlation function for the block--trans
 C_{0} \equiv \frac{1}{n} \sum_{k=1}^{n} \left( A_{k} - \bar{A} \right) \left(A_{k} - \bar{A} \right).
 \end{equation}
 A lower bound for the variance can be calculated by finding the block length at which this estimate reaches a plateau.
-Furthermore the error in the variance can be estimated as 
+Furthermore, the error in the variance can be estimated as 
 \begin{equation}
 \sqrt{\frac{2}{n-1} \times \frac{C_{0}}{n-1}}.
 \end{equation}
@@ -104,23 +104,22 @@ Furthermore the error in the variance can be estimated as
         \includegraphics[scale=0.35]{block_average_10e6.eps}
         \includegraphics[scale=0.35]{block_average_1e6.eps}
 	\caption{The blocking analysis for a simulation time of 10,000,000 timesteps and 1,000,000 timesteps shows clear plateaus in the estimate of the error at block sizes of 10,000 and 5,000 respectively.
-This can be used to estimate the size of blocking needed to decorrelate data in the correspinding molecular dynamics simulations.}
+This can be used to estimate the size of blocking needed to decorrelate data in the corresponding molecular dynamics simulations.}
 \label{blocking}
 \end{figure*}
 
 A blocking--analysis for a binary--mixture identical to those used throughout this study was executed over a simulation time of $1,000\ \tau$ and $10,000\ \tau$, as shown in Figure \ref{blocking}.
 The plateau begins at a block length of $10\ \tau$ for the long simulation and $5\ \tau$ for the shorter run, with little increase in the error of the variance until a much larger block size.
 Considering this result, a block length of $10\ \tau$ was used to provide a good estimate for the error of all time--averages calculated in the subsequent simulations.
-
-\subsection{Modelling surfactant molecules}\label{ModellingSurfactants}
 \FloatBarrier
 
+\subsection{Modelling surfactant molecules}\label{ModellingSurfactants}
 \begin{figure*}[h]
 \centering
 \includegraphics[scale=0.4]{surfactant.png}
 \caption{Surfactant molecules are represented by a pair of Lennar--Jones spherical particles connected by a harmonic bond. 
-The head particle has a stronger interaction with fluid A and whilst the tail has a stronger interaction with fluid B.
-These properties are controlled using the relative values of $\epsilon_{ij}$ and imitate the typical behaviour of surface active molecules.
+The head particle has a stronger interaction with fluid A whilst the tail has a stronger interaction with fluid B.
+These properties are controlled using the relative values of $\epsilon_{ij}$ and imitate the typical behaviour of non--ionic surfactant molecules.
  }
 \label{surfactant}
 \end{figure*}

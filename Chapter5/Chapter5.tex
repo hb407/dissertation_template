@@ -1,18 +1,31 @@
 \section{Concluding Remarks}
-%\subsubsection{SUMMARY piston}
-The finite difference approach for the fluid confined between two walls showed the Marangoni force could be calculated using the Virial stress--tensor and the Irving--Kirkwood stress--tensor.
-Both of these methods produced a similar force at the interface of the two fluids although the Irving--Kirkwood stress--tensor gave a reduction in the force calculate directly at the interface.
-By applying these force profiles as an applied body force in a non--equilibrium, the Marangoni flow profile was computed and showed a Couette flow.
-The flow profile for the Irving--Kirkwood and Virial stress--tensors was very similar although the Irving--Kirkwood profile was not symmetrical, probably due to increased noise in the Irving--Kirkwood force profile.
+Using equilibrium simulations at two close temperatures, the gradient of the stress--tensor with respect to temperature was estimated for binary--mixtures through a finite--difference method.
+This gradient was calculated for the Virial and Irving--Kirkwood stress--tensors for a binary--mixture confined between two walls, and in both cases there was a similar negative peak at the interface.
+Combining with a temperature gradient, an artificial body force was calculated and applied in a non--equilibrium simulation, yielding a net interfacial flow that was interpreted as a the Marangoni effect.
+The flow occured in the opposing direction to the temperature gradient as predicted.
+Despite no external forces acting on the system, a net steady state flow was possible since the confining walls provided a momentum sink and a balancing frictional force.
 
-%\subsubsection{SUMMARY periodic}
-Using the binary--mixture periodic in three--dimensions allowed the Marangoni effect to be studied without the influence of external wall effects.
-By measuring the stress--tensor at $T^{*}=0.8$ and $T^{*}=0.9$ and calculating the finite difference, the force profile in the fluid resulting from a temperature gradient was computed and this showed a peak at the interface of the two fluids.
-It was important to ensure that the interfaces in the two equilibrium simulations were aligned before calculating the finite difference to create a faithful force profile.
-Furthermore, as this system has no sources of momentum the force profile had to be adjusted to ensure there was no net force acting on the fluid.
+The same method was then applied for a binary--mixture which was periodic in all three--dimensions, and a similar peak in the stress--gradient was measured.
+However, there was a large amount of noise in this gradient which was reduced by running the simulation for a longer time period.
+As a result, it was only the Virial stress was practical for calcualting a sufficiently precise gradient profile.
+To create the effect of a momentum sink in this infinite fluid, the stress--gradient was adjusted such that the overall gradient was zero.
+Applying this force in a non--equilibrium simulation produced a flow profile, showing a negative peak at the interfaces relative to the centre--of--mass motion and an associated back flow in the bulk of the fluid.
+Whilst there should be no overall fluid flow in this system, it is likely that the noise in the applied force created errors which resulted in the net fluid motion. 
 
-This force was calculated using both the Irving--Kirkwood and Virial stress--tensor, however due to the high computational cost of the Irving--Kirkwood method the simulation could not be run for long enough to reduce the noise sufficiently.
-Regardless, both of the methods yielded phenomenologically similar force profiles and thus by computing the Virial stress over a much longer timescale, a more precised force profile could be calcuated.
-Using this force--profile in a non-equilibrium simulation produced a net fluid flow, probably an error due to the lack of a momentum sink, but the relative motion of the fluid showed the expected peak at the interface with an opposing back flow in the fluid bulk.
+To remove these effects, one would either need to reduce the noise in the force profile or create an effective artificial momentum sink.
+Reducing the noise further would require even longer simulation times which could introduce other errors through the divergence of molecular dynamics simulations.
+Alternatively, it could be possible to fix the momentum by holding the centre--of--mass stationary throughout the simulation, although this may obscure other important physical features.
 
-\subsection{Future directions}
+Having established a working system in the form of the fluid confined between two walls, the effect of surfactants on Marangoni flows was investigated by adding different concentrations of nonionic surfactant molecules.
+The Virial stress was again computed at two temperatures and its gradient was estimated through the finite difference method.
+As the concentration of surfactant increased, there was a reduction in the magnitude of the interfacial peak.
+
+These stress--gradients were used to calculate an artificial body force that was then applied in a non--equilibrium simulation.
+The resulting Marangoni flow was seen to decrease to zero as the surfactant concentration increased, in agreement with experimental studies.
+Furthermore, the shape of the velocity profile deviated from the linear decay observed in the absence of surfactant.
+This may be due to a non--uniform fluid viscosity, since the addition of surfactants should also decrease the viscosity of the interfacial region.
+
+If more time had been available, it would have been interesting to compute the viscosity of different regions in the fluid to confirm this effect.
+In addition, the change in the Marangoni flow profile due to reduced interfacial viscosity could be studied by using a different pairwise interaction for each fluid.
+For example, using a potential with no attractive component for one fluid and a Lennard--Jones potential for the other would create an interfacial region with greater anisotropy of the interparticle interactions, causing the viscosity to change.
+Fine--tuning each potential would also allow greater control over the variation in viscosity.

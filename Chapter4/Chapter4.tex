@@ -1,5 +1,5 @@
 \section{Results and Discussion}
-\subsection{Binary--mixture confined between two walls}
+\subsection{Binary--mixture confined between two walls}\label{Piston}
 Initially a binary--mixture of two fluids confined between two walls was studied. 
 This corresponds to the physical case of a liquid sandwiched between two plates.
 The fluid was prepared as described in Section \ref{SystemPrep} at a pressure of $P^{*} = 0.1$ and temperatures of $T^{*} = 0.8$ and $T^{*} = 0.9$.
@@ -258,11 +258,11 @@ This system was chosen since the results of Section \ref{Piston} showed it allow
 The surfactant molecules were added to a single plane between the two fluids in the initial lattice (before equilibration).
 A certain fraction of these molecules were then removed to vary the surfactant concentration, quantified as a fraction of the total number of fluid particles present,
 \begin{equation}
-\mathrm{Surfactant Fraction} \equiv \frac{N_{\mathrm{surfactant}}}{N_{\mathrm{surfactant}}+N_{\mathrm{fluid}}}
+\mathrm{Surfactant\ Fraction} \equiv \frac{N_{\mathrm{surfactant}}}{N_{\mathrm{surfactant}}+N_{\mathrm{fluid}}}
 \end{equation}
 This allowed the surfactant fraction to be varied between $0$ and $0.00323$.
 
-Taking surfactant fractions of $0.000$, $0.0031$, $0.0098$, $0.0194$, $0.0264$, $0.0298$ and $0.0323$, the fluid was then prepared as described in Section \ref{SysPrep} with a pressure of $P^{*}=0.1$ and temperatures of $T^{*}=0.8$ and $T^{*}=0.9$.
+Taking surfactant fractions of $0.000$, $0.0031$, $0.0098$, $0.0194$, $0.0264$, $0.0298$ and $0.0323$, the fluid was then prepared as described in Section \ref{SystemPrep} with a pressure of $P^{*}=0.1$ and temperatures of $T^{*}=0.8$ and $T^{*}=0.9$.
 A piston barostat and Nos\'{e}--Hoover thermostat were used and each system was run at equilibrium for $30 \times 10^{6}$ timesteps of length $0.001\ \tau$.
 
 \begin{figure}[h]
@@ -276,7 +276,7 @@ They also show the correct orientation, with `Head' particles interacting most s
 \label{SurfRho}
 \end{figure}
 
-The resulting number density of each species then showed a uniform bulk density, sharp interface and peaks for the Head and Tail groups located at the interface, as shown for $T^{*}=0.8$ and a surfactant fraction of $0.0194$ in Figure \ref{SurfRho}.
+The resulting number density of each species shows a uniform bulk density, a sharp interface and peaks for the Head and Tail groups located at the interface, as shown for $T^{*}=0.8$ and a surfactant fraction of $0.0194$ in Figure \ref{SurfRho}.
 At the interface, the surfactant molecules were correctly oriented with respect to Fluid A and Fluid B.
 \FloatBarrier
 
@@ -289,7 +289,7 @@ As the amount of surfactant is increased, the strength of this peak decreases to
 \label{SurfForce}
 \end{figure}
 
-The Virial stress--tensor was computed during the equilibrium simulations and used to compute the gradient of the stress with respect to temperaturei for each surfactant fraction.
+The Virial stress--tensor was computed during the equilibrium simulations and used to compute the gradient of the stress with respect to temperature for each surfactant fraction.
 These results are plotted in Figure \ref{SurfForce} show a pronounced reduction in the magnitude of the interfacial peak as the surfactant fraction increases.
 This corresponds to the expected reduction in the Marangoni force at the interface.
 Two smaller peaks on either side of the central peak also develop for higher surfactant fractions.

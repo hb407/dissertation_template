@@ -1,21 +1,24 @@
 \section{Introduction}
-Interfacial flows resulting from a chemical potential or temperature gradient were first reported by J. Thompson in 1865.\cite{JThompson}
-This phenomenon was later termed the ``Marangoni Effect'' after it formed the basis of Carlo Marangoni's doctoral dissertation.\cite{Marangoni}
-Since then, temperature induced Marangoni flows, also known as thermocapillary flows, have been the focus of a number of scientific studies.
+Interfacial flows resulting from a chemical potential or temperature gradient were first reported by J. Thompson in 1855.\cite{JThompson}
+After forming the basis of Carlo Marangoni's doctoral dissertation in 1865, this phenomenon was termed the ``Marangoni Effect''.\cite{Marangoni}
+Since then, temperature induced Marangoni flows, also known as thermocapillary motion, have been the focus of a number of scientific studies.
 
-Through the works of Derjaguin\cite{SurfaceForces} and Levich\cite{Levich}, a thorough macroscopic description has been developed.
+Through the works of Derjaguin et al.\cite{SurfaceForces} and Levich\cite{Levich}, a thorough macroscopic description has been developed.
 Anderson summarises these results in the context of phoresis.\cite{Anderson}.
+On the simplest level, the effect is described as a result of an interfacial tension gradient.
+Experimental studies show that hot fluids have a lower surface tension than cold fluids,\cite{Ficalbi1972,Kayser1975} and thus motion will occur from the warmer regions towards to colder ones.
+However, this analysis does not progress far since the temperature dependence of surface tension itself is not rigorously understood.
 
-On the simplest level, this effect is described as a consequence of an interfacial tension gradient.
-Empirical studies show that hot fluids have a lower surface tension than cold fluids, and thus motion will occur from the warmer regions towards to colder ones.
-Th
-Beyond this description, Derjaguin demonstrated that the flow can be calculated from the excess enthalpy of a fluid close to the interface, hence formulating a thermodynamic theory of thermocapillary motion.\cite{SurfaceForces}
+Despite this, Levich uses hydrodynamics to derive the fluid velocity across a shallow pan in terms of $\partial \gamma / \partial T$.
+Futhermore, he achieves this result using a continuity equation setting the total flow to zero.
+This implies that any interfacial flow is accompanied by an opposing flow in the fluid bulk.
 
-However, this is not particulaly informative since the temperature dependence of surface--tension is itself known only through empirical studies.
+In contrast, Derjaguin et al. computed the momentum flux from an applied temperature gradient by computing the energy flux carried by a pressure--driven convection and applying Onsager's reciprocal rule.\cite{SurfaceForces}
+Futhermore, they showed that this velocity can be related to the excess enthalpy density near the interface compared to the bulk fluid, yielding a macroscopic description
 
-The thermodynamic backbone upon which this theory is founded is reliant on knowledge of the macroscopic properties of the system.
-In contrast, the flow itself is inherently a microscopic phenomenon and is localised at the interfaces of bulk fluids. 
-Such a localised effect cannot be faithfully described using a thermodynamic description, instead it requires a microscopic theory formulated around the interpaticle interactions. 
+However, these theories are founded upon a thermodynamic backbone which relies on knowledge of the macroscopic system properties.
+Marangoni flows are inherently a microscopic phenomenon, localised at fluid interfaces.
+A thermodynamic description cannot faithfully describe such an effect, instead a microscopic theory based on interparticle interactions is required.
 No such theory currently exists, and there has been limited research in this area.\cite{HolgerBoppHampe}
 By studying the microscopic properties of a liqud--liquid interface, this report aims to model the Maragnoni effect and investigate the link between the microscopic fluid properties and its macroscopic motion.
 

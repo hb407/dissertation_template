@@ -7,52 +7,55 @@ Through the works of Derjaguin et al.\cite{SurfaceForces} and Levich\cite{Levich
 Anderson summarises these results in the context of phoresis.\cite{Anderson}.
 On the simplest level, the effect is described as a result of an interfacial tension gradient.
 Experimental studies show that hot fluids have a lower surface tension than cold fluids,\cite{Ficalbi1972,Kayser1975} and thus motion occurs in the opposite direction to an applied temperature gradient.
-However, this analysis does not progress far since the temperature dependence of surface tension itself is not rigorously understood.
+However, this analysis does not progress far since the temperature dependence of surface tension is itself not rigorously understood.
 
 Regardless, Levich uses hydrodynamics to derive the fluid velocity across a shallow pan in terms of $\partial \gamma / \partial T$.
 He achieves this result using a continuity equation setting the total flow to zero.
-This implies that any interfacial flow is accompanied by an opposing flow in the fluid bulk.
+This implies that any interfacial flow is accompanied by an opposing flow in the bulk fluid.
 
-In contrast, Derjaguin et al. calculated the momentum flux from an applied temperature gradient by computing the energy flux carried by a pressure--driven convection and applying Onsager's reciprocal rule.\cite{SurfaceForces}
+In contrast, Derjaguin et al. calculates the momentum flux from an applied temperature gradient by computing the energy flux carried by a pressure--driven convection and applying Onsager's reciprocal rule.\cite{SurfaceForces}
 They showed that this velocity can be related to the excess enthalpy density near the interface (compared to the bulk fluid), yielding a macroscopic description.
 
-However, these theories are founded upon a thermodynamic backbone which relies on knowledge of the macroscopic system properties.
+However, these theories are founded upon a thermodynamic backbone which relies on knowledge of the macroscopic system.
 Marangoni flows are inherently a microscopic phenomenon, localised at fluid interfaces, and thus a thermodynamic description cannot faithfully describe this effect.
-Instead, a macroscopic theory based on interparticle interactions is required.
+Instead, a microscopic theory based on interparticle interactions is required.
 No such theory currently exists and there has been limited research in this area.\cite{HolgerBoppHampe}
+
 By studying the microscopic properties of a liqud--liquid interface, this report aims to model the Maragnoni effect and investigate the link between the microscopic fluid properties and its macroscopic motion.
 
 \subsection{Experimental studies}
 Despite the lack of a microscopic theory, there has been substantial experimental research into the Marangoni effect.
-Many of these studies have focussed on the more curious examples of Marangoni flows, such as Thompson's ``tears of wine''\cite{JThompson,Venerus,Tadmor,Cazabat1995} and the ``coffee ring effect'',\cite{Sefian,HuLarson,Sefiane2014} whilst others have shown it is becoming ever more important in technological applications.
-For example, Sternling and Scriven\cite{SternlingScriven} proposed Marangoni effects as the origin for interfacial turbelence and mass transport, yielding applications in fluid mixing and oil recovery,\cite{Aguilera2005,LyfordA,LyfordB} whilst Subramanian and Balasubramanian outline the importance of Marangoni forces for the motion of bubbles and droplets in reduced gravity environments.\cite{MotionOfBubblesAndDrops} 
+Many of these studies have focussed on more curious examples of Marangoni flows, such as Thompson's ``tears of wine''\cite{JThompson,Venerus,Tadmor,Cazabat1995} and the ``coffee ring effect'',\cite{Sefian,HuLarson,Sefiane2014} whilst others have shown its importance in technological applications.
+For example, Sternling and Scriven\cite{SternlingScriven} proposed Marangoni effects as the origin of interfacial turbulence and mass transport, yielding applications in fluid mixing and oil recovery.\cite{Aguilera2005,LyfordA,LyfordB} 
+Furthermore, Subramanian and Balasubramanian outline the importance of Marangoni forces for the motion of bubbles and droplets in reduced gravity.\cite{MotionOfBubblesAndDrops} 
 
-In 1959, Young et al. produced a theoretical description of this motion of bubbles and droplets under the influence of a temperature gradient, a phenomena described as thermophoresis.\cite{Young1959}
-They describe how this gradient causes a higher surface--tension on the low temperature side of the droplet, resulting in a force pulling the surrounding fluid towards the low temperature region and a corresponding reaction force propelling the droplet towards the warmer fluid region (note the similarity to electrophoresis where there is no-net force within the droplet).
+In 1959, Young et al. produced a theoretical description of this motion of bubbles and droplets under the influence of a temperature gradient, a phenomenon termed thermophoresis.\cite{Young1959}
+They describe how this gradient causes a higher surface tension on the low temperature side of the droplet, resulting in a force pulling the surrounding fluid towards this region.
+A corresponding reaction force then propels the droplet towards the warmer fluid.
+Analogously to electrophoresis, there is no net force acting on the fluid within the droplet.
+
 This force was measured experimentally by S. C. Hardy,\cite{Hardy1978} who used a temperature gradient to balance the Marangoni and buoyancy forces acting on a droplet within a fluid, thus holding the droplet stationary.
-Later, theoretical modelling by Kim and Subramanian suggested that the inclusion of surface--active substances could be used to prevent thermophoresis,\cite{KimSubramanianA,KimSubramanianB} a prediction that was confirmed experimentally.\cite{BartonSubramanian,ChenStebe}
+Later theoretical modelling by Kim and Subramanian suggested that the inclusion of surface--active substances could be used to prevent thermophoresis,\cite{KimSubramanianA,KimSubramanianB} a prediction that was confirmed experimentally.\cite{BartonSubramanian,ChenStebe}
 
-With the advances in space technology over the past half a century, thermophoresis and thermocapillary motion have become important mechanisms for fluid motion and mass transfer in low--gravity environments, where surface effects dominate over buoyancy driven motion.
-The motion of bubbles and drops due to interfacial gradients is considered to be key for materials processing in space, enabling phase separation of binary mixtures and the potential to make uniform composite materials.\cite{BartonSubramanian}
-Moreover, fluid transport in the absence of gravity is important for controlling fluid fuels aboard satellites, often carried for thrusters used to perform orbital adjustments.\cite{MotionOfBubblesAndDrops} 
+With the advances in space technology, thermophoresis and thermocapillary motion have become important mechanisms for fluid motion and mass transfer in low--gravity environments, where surface effects dominate over buoyancy driven motion.
+The motion of bubbles and drops due to interfacial gradients is considered key for materials processing in space, enabling phase separation of binary mixtures and the potential to make uniform composite materials.\cite{BartonSubramanian}
+Moreover, fluid transport in the absence of gravity is important for controlling fluids aboard satellites, for example fuel which is often carried for thrusters used to perform orbital adjustments.\cite{MotionOfBubblesAndDrops} 
 
 \subsection{Striving for a microscopic description}
-With so many potential applications, the search for a micrcoscpic description is becoming ever more significant, and computer simulations are increasingly being used to understand this phenomenom.
-Marangoni flows are inherently dynamic and must be studied using a time--dependent method such as molecular dynamics.
-To model the dynamic behaviour of an immiscible binary--mixture under the effect of a temperature gradient might initially appear trivial; simply create a temperature gradient for such a system and measure the subsequent particle velocites.
+With so many potential applications, the search for a micrcoscpic description is becoming ever more significant, and computer simulations are increasingly being used to understand this phenomenon.
+Marangoni flows are inherently dynamic and can therefore be studied using a time dependent method such as molecular dynamics.
+To model the behaviour of a partially miscible binary--mixture under the effect of a temperature gradient might initially appear trivial; simply create a temperature gradient in a system and measure the subsequent particle velocites.
 This non-equilibirum approach is used by Hampe et al. in their study of the Marangoni effect.\cite{HolgerBoppHampe}
-Despite their positive results, the method is complicated by the use of periodic boundary conditions (required to model a macroscopic fluid) that require each unit cell to have two temperature gradients, such that the temperature is also periodic.
-Any flow due to this gradient then generates an opposing concentration gradient and an equilibrium stationary state will be reached.
+Despite their positive results, the method is complicated by the use of periodic boundary conditions that require each unit cell to have two temperature gradients, such that the temperature gradient is also periodic.
+Any flow due to this gradient then generates an opposing concentration gradient, and an equilibrium state will be reached.
 
-In this study we investigate the use of equilibirium molecular dynamics simulations for modelling the Marangoni effect.
-%Molecular dynamics heavily relies on the use of forces acting on a particle, these forces are calculated on each timestep and are used to integrate the equations of motion.
-%It is therefore easy to measure the stress acting on a fluid element during a simulation or to apply artificial forces.
-By calculating the equilibrium stress acting on a binary mixture for two different temperatures, the differential of the stress with respect to temperature can be estimated and used to infer a body force corresponding to the Marangoni force.
-This can then be applied as a constant body force in a non-equilibrium simulation at an intermediate temperature to imitate the Marangoni force, thus circumventing the complications of a periodic temperature profile.
-Finally, by measuring the velocity profile in this non--equilibrium simulation, the Marangoni flow can be observed.
+In this study we investigate the use of equilibrium molecular dynamics simulations for modelling the Marangoni effect.
+By calculating the equilibrium stress acting on a binary--mixture for two different temperatures, the differential of the transverse stress with respect to temperature can be estimated and used to infer a body force corresponding to the Marangoni force.
+This can then be applied as a constant force in a equilibrium simulation at an intermediate temperature to imitate the Marangoni force, thus circumventing the complications of a periodic temperature profile.
+By measuring the velocity profile in this final simulation, Marangoni flows can be observed.
 
-Using this equilibrium method we show that a Marangoni force at liquid--liquid interface can be calculated from the fluid stress--tensor and used to generate a Marangoni flow.
-This technique is then used to investigate the effect of surfactants on the magnitude of the Marangoni flow and compare these results to the experimental observations.
+Using this equilibrium method we show that a Marangoni force at a liquid--liquid interface can be calculated from the transverse stress--tensor and used to generate a Marangoni flow.
+The effect of surfactants on the magnitude of the Marangoni flow is then investigated and compared to experimental observations.
 
 The theoretical description of the Maragoni effect is described in Section 2, whilst Section 3 outlines the computational methods used.
 The simulation results are discussed in Section 4.

@@ -59,7 +59,7 @@ In molecular dynamics simulations, the temperature is controlled using thermosta
 
 Thermostats work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassigning the velocity of randomly chosen particles to that obtained from the Maxwell distribution (Anderson)\cite{AndersonTherm}.
 The Nos\'{e}--Hoover thermostat was used throughout this study.
-This introduces a fictious frictional force into the equations of motion which adjusts the particle velocities until the temperature is equal to the desired value.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
+This introduces a fictitious frictional force into the equations of motion which adjusts the particle velocities until the temperature is equal to the desired value.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
 The equations of motion in 3D become:
 \begin{align}
 m_{i}\frac{\mathrm{d}^{2}\mathbf{r}_{}}{\mathrm{d} t ^{2}} =& \mathbf{f}_{i} - \zeta m_{i} \mathbf{v}_{i}\\
@@ -85,7 +85,7 @@ P = - \left( \frac{\partial F}{\partial V} \right)_{T} + \gamma \left( \frac{\pa
 The fluid was prepared from a face--centred cubic lattice with a spacing of $1.64414\ \sigma$ and a simulation box size of $L_{x^{*}}=13.1531$, $L_{y^{*}}=13.1531$ and $L_{z^{*}}=32.8828$.
 This lattice was melted over $2\times 10^{6}$ timesteps of length $0.001\ \tau$ to generate a fluid state.
 The barostat was set to a pressure of $P^{*} = 0.1$ and the temperatures used were $T^{*} = 0.8$ and $T^{*} = 0.9$, ensuring the system occupied the liquid region of the Lennard--Jones phase space.\cite{Smit}
-Solid walls in the system were constructed with a harmonically bonded lattice using a spring constant of $K^{*} = 2500$ and an equilbrium length of $r^{*}_{0}=1.163$.
+Solid walls in the system were constructed with a harmonically bonded lattice using a spring constant of $K^{*} = 2500$ and an equilibrium bond length of $r^{*}_{0}=1.163$.
 
 \subsection{Calculating the stress tensor}\label{CalcStress}
 The Virial stress tensor was calculated using an in--built function within the LAMMPS package, which returns the stress tensor for each atom.

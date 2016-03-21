@@ -1,41 +1,53 @@
 \section{Computational Methods}
 
-Equilibrium molecular dynamics simulations of a symmetric binary--mixture of two immiscible fluids (A and B) were used to measure the stresses acting on the fluid at two different temperatures and infer the Marangoni force using Equation \ref{FinDiff}.
-Where possible, this force was then applied as an artificial body force to generate a Marangoni flow profile at an intermediate temperature.
+Equilibrium molecular dynamics simulations of a symmetric binary--mixture of partially miscible fluids were used to measure the stresses acting on the fluid at two different temperatures.
+The Marangoni force was then inferred using Equation \ref{FinDiff}.
+Where possible, this force was applied as an artificial body force in a simulation at an intermediate temperature to generate a Marangoni flow profile.
 
-Two key systems were studied, a symmetrical binary–mixture under three--dimensional periodic boundary conditions, and a binary--mixture periodic in two--dimensions but confined between two walls in the third-dimension, as shown in Figure \ref{SetUp}.
+Two key systems were studied, a symmetric binary–mixture under three--dimensional periodic boundary conditions, and a binary--mixture periodic in the $(x,y)$ plane but confined between two walls in the $z$--dimension, as shown in Figure \ref{SetUp}.
 All molecular dynamics simulations were executed using the LAMMPS (Large Atomic and Molecular Massively Parallel Simulator) package.\cite{LAMMPS}  
 
 \begin{figure}[h]
-        \includegraphics[scale=0.25]{AABB.png}
-        \includegraphics[scale=0.25]{AABB_piston.png}
-\caption{The system arrangements for a symmetric binary--mixture of two immiscible fluids under three-dimensional periodic boundary conditions (left) and a binary--mixture periodic in two--dimensions held within two walls (right) are shown. 
-In the case of the three--dimensional boundary conditions, pressure must be controlled use a Nos\'{e}--Hoover barostat whilst for the fluid confined between two walls, these walls may be used as a piston to control the fluid pressure.}
-\label{SetUp}
+	\begin{subfigure}
+		\includegraphics[scale=0.25]{AABB.png}
+		\caption{A binary--mixture of two partially miscible fluids under three--dimensional periodic boundary conditions is used. 
+The pressure and temperature are controlled using a Nos\'{e}--Hoover barostat and thermostat.
+}
+		\label{AABB}
+	\end{subfigure}
+	\begin{subfigure}
+		\includegraphics[scale=0.25]{AABB_piston.png}
+		\caption{A binary--mixture confined between two planar walls with periodic boundary conditions in the $(x,y)$ plane is also studied.
+A Nos\'{e}--Hoover thermostat is used and the pressure is regulated by employing the confining walls as a piston.}
+		\label{AABB_piston}
+	\end{subfigure}
+	\caption{The systems used for simulations of the Marangoni flow both involve a partially miscible binary--mixture of Fluid A (blue) and Fluid B (green).}
+	\label{SetUp}
 \end{figure}
 
 \subsection{Interaction Model}\label{InteractionModel}
-The fluids were modelled using spherical particles and their interaction was controlled through a pair--wise truncated Lennard--Jones potential:
+The fluids were modelled using spherical particles and their interaction was tuned to a pair--wise truncated Lennard--Jones potential:
 \begin{equation}
 V \left( \mathbf{r}^{\mathrm{N}} \right) = \frac{1}{2} \sum_{i\neq j} \phi \left( r_{ij} \right)
 \end{equation}
 where
 \begin{align}
 \label{LJ}
-\phi \left( r_{ij} \right) &= 4 \epsilon_{ij} \left( \left( \frac{\sigma_{ij}}{r_{ij}}\right)^{12} - \left( \frac{\sigma_{ij}}{r_{ij}}\right)^{6} \right)\ \mathrm{for}\ r < r_{c}\\
-\phi \left( r_{ij} \right) &= 0\ \mathrm{otherwise}.
+\phi \left( r_{ij} \right) &= 4 \epsilon_{ij} \left( \left( \frac{\sigma_{ij}}{r_{ij}}\right)^{12} - \left( \frac{\sigma_{ij}}{r_{ij}}\right)^{6} \right)\ \mathrm{for}\ r \leq r_{c}\\
+\phi \left( r_{ij} \right) &= 0\ \mathrm{for} r > r_{c}.
 \end{align}
-This potential involves an attractive $r_{ij}^{-6}$ term accounting for the long--range Van der Waal's interaction and a short--range $r_{ij}^{-12}$ repulsion term corresponding to the Pauli repulsion between particles.
+This potential involves an attractive $r_{ij}^{-6}$ term accounting for the long--range Van der Waal's interaction and a short--range $r_{ij}^{-12}$ repulsive term corresponding to the Pauli repulsion between particles.
 The length--scale of the potential is given by $\sigma_{ij}$ (chosen to be equal for all pairs of $i$ and $j$) whilst the parameter $\epsilon_{ij}$ determines the strength of the interaction. 
 
-The miscibility of the two fluids (A and B) can be controlled using the relative values of the interaction parameter, in this study the values chosen were:
+The miscibility of the two fluids (A and B) can be controlled using the relative values of the interaction parameter; in this study the values chosen were:
 \begin{align}
 \epsilon_{A,A} &= \epsilon_{B,B} = 1.0,\\
 \epsilon_{A,B} &= 0.55,
 \end{align}
-in agrement with previous studies on immiscible symmetrical Lennard--Jones binary mixtures.\cite{MorenzoRazo,Blas,HolgerBoppHampe}
-The cutoff for the Lennard--Jones potential was chosen to be $r_{c} = 4\ \sigma$.
+in agreement with previous studies on similar Lennard--Jones binary--mixtures.\cite{MorenzoRazo,Blas,HolgerBoppHampe}
+The cutoff for the potential was chosen to be $r_{c} = 4\ \sigma$.
 
+\subsection{Reduced Units}\label{ReducedUnits}
 Physical quantities including distances and energies are expressed in terms of reduced units.
 For a Lennard--Jones system, the basic units are $\sigma$ for length, $\epsilon$ for energy and $m$ for mass, from which all other units may be derived.\cite{FrenkelSmit}
 Physical quantities become dimensionless when expressed in terms of these units, for example $r^{*} \equiv r / \sigma$.
@@ -45,40 +57,46 @@ These are useful if the box--dimensions vary, such as when a barostat acts on th
 \subsection{Thermostats}\label{Thermostats}
 In molecular dynamics simulations, the temperature is controlled using thermostats, which simulate the coupling of the system to an external heat bath.
 
-Thermostats work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassinging the velocity of randomly chosen particles from the Maxwell distribtuion (Anderson)\cite{AndersonTherm}.
+Thermostats work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassigning the velocity of randomly chosen particles to that obtained from the Maxwell distribution (Anderson)\cite{AndersonTherm}.
 The Nos\'{e}--Hoover thermostat was used throughout this study.
-This adds an extra term into the equations of motion to provide the effect of an external heat bath.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
+This introduces a fictious frictional force into the equations of motion which adjusts the particle velocities until the temperature is equal to the desired value.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
+The equations of motion in 3D become:
+\begin{align}
+m_{i}\frac{\mathrm{d}^{2}\mathbf{r}_{}}{\mathrm{d} t ^{2}} =& \mathbf{f}_{i} - \zeta m_{i} \mathbf{v}_{i}\\
+\frac{\mathrm{d} \zeta (t)}{\mathrm{d} t} =& \frac{1}{Q}\left[ \sum_{i=1}^{N} m_{i} \frac{\mathbf{v}^{2}_{i}}{2} - \frac{3N+1}{2}k_{\mathrm{B}}T\right].
+\end{align}
 The result is a system where the energy fluctuates but the combined energy of the system and heat bath remains constant, maintaining a canonical ensemble.
 
 \subsection{Barostats}\label{Barostats}
 The bulk pressure of the fluid must also be held constant.
-A piston provides the simplest method and is relatively easy to create; the fluid is confined between two solid walls and a force equal to $P_{ext} / A_{wall}$ is applied.
-This was used for studing the binary--mixture confined between two planar walls.
+A piston provides the simplest method and is relatively easy to create; the fluid is confined between two solid walls and a force equal to $P_{ext} \times A_{wall}$ is applied.
+This was used for studying the binary--mixture confined between two walls.
 In the case of Marangoni flows, a thermocapillary effect will also occur at the boundary of the liquid and the solid piston.
-If the thermocapillary force can be ignored, and non--slip wall boundary conditions exist, then a piston also allows the bulk fluid to be fixed at rest.
+The interface must be sufficiently far from the walls such that this thermocapillary force can be ignored.
+Only the interfacial force should then be applied in the final simulation.
 
-Alternatively a Nos\'{e}--Hoover barostat can control the pressure by adjusting the box dimensions and altering the equations of motion. \cite{NoseHoover1, NoseHoover2, NoseHoover3}
-When studying surface effects, the box dimensions must only be changed in the direction perpendicular to the interface, since any other direction will alter its area and create an error in the thermodynamic pressure,
+Alternatively a Nos\'{e}--Hoover barostat can regulate the pressure by adjusting the simulation box dimensions and altering the equations of motion accordingly. \cite{NoseHoover1, NoseHoover2, NoseHoover3}
+When studying surface effects, the box size must only be changed in the direction perpendicular to the interface, since any other direction will alter its area and create an error in the thermodynamic pressure,
 \begin{equation}
 P = - \left( \frac{\partial F}{\partial V} \right)_{T} + \gamma \left( \frac{\partial A}{\partial V} \right)_{T}.
 \end{equation}
 
 \subsection{Preparing the system}\label{SystemPrep}
 The fluid was prepared from a face--centred cubic lattice with a spacing of $1.64414\ \sigma$ and a simulation box size of $L_{x^{*}}=13.1531$, $L_{y^{*}}=13.1531$ and $L_{z^{*}}=32.8828$.
-This lattice was equilibrated over $2\times 10^{6}$ timesteps of length $0.001\ \tau$ to generate a fluid state.
+This lattice was melted over $2\times 10^{6}$ timesteps of length $0.001\ \tau$ to generate a fluid state.
 The barostat was set to a pressure of $P^{*} = 0.1$ and the temperatures used were $T^{*} = 0.8$ and $T^{*} = 0.9$, ensuring the system occupied the liquid region of the Lennard--Jones phase space.\cite{Smit}
-Solid walls in the system were represented by a harmonically bonded lattice with spring constant of $K^{*} = 2500$ and an equilbrium length of $r^{*}_{0}=1.163$.
+Solid walls in the system were constructed with a harmonically bonded lattice using a spring constant of $K^{*} = 2500$ and an equilbrium length of $r^{*}_{0}=1.163$.
 
-\subsection{Calculating the stress--tensor}\label{CalcStress}
-The Virial stress--tensor was calculated using an in--built function within the LAMMPS package, which returns the stress--tensor for each atom.
-However, LAMMPS does not have a method for calculating the Irving--Kirkwood stress--tensor.
+\subsection{Calculating the stress tensor}\label{CalcStress}
+The Virial stress tensor was calculated using an in--built function within the LAMMPS package, which returns the stress tensor for each atom.
+However, LAMMPS does not have a method for calculating the Irving--Kirkwood stresstensor.
 Instead this was calculated by dumping the particle positions on a given timestep to a file and post--processing.
-The stress--tensor was then computed using a programme written by R. Ganti and adapted for the specific systems studied.
-This was significantly more expensive than the Virial stress--tensor, incurring approximately a 4-fold increase in computational time.
+The stress tensor was then computed using a programme written by R. Ganti and adapted for the specific systems studied.
+Since the Virial method is implemented in parallel whilst the Irving--Kirkwood method is not, the Irving--Kirkwood stress was significantly more expensive to compute, incurring approximately a 4-fold increase in computational time.
 
 \subsection{Computing averages}\label{ComputeAve}
 Usually time--averages of physical observables are calculated in molecular dynamics simulations. 
-In the systems studied, the relevant observables corresponded to the number--density, stress--tensor and particle velocities.
+In the systems studied, the observables are the number density, stress tensor and particle velocities.
 Their values were measured every timestep and spatially averaged for $400$ planar slabs across the z--dimension of the box.
 These spatial averages were then time--averaged over the full duration of the simulation.
 
@@ -103,8 +121,9 @@ Furthermore, the error in the variance can be estimated as
 \hspace{-4em}
         \includegraphics[scale=0.35]{block_average_10e6.eps}
         \includegraphics[scale=0.35]{block_average_1e6.eps}
-	\caption{The blocking analysis for a simulation time of 10,000,000 timesteps and 1,000,000 timesteps shows clear plateaus in the estimate of the error at block sizes of 10,000 and 5,000 respectively.
-This can be used to estimate the size of blocking needed to decorrelate data in the corresponding molecular dynamics simulations.}
+	\caption{The blocking analysis for a simulation time of $10,000\ \tau$ and $10,000\ \tau$ shows clear plateaus in the estimate of the error at block sizes of $10\ \tau$ and $5\ \tau$ respectively.
+This can be used to estimate the block size needed to decorrelate data and produce a reliable estimate of the error in the data.
+Throughout the subsequent simulations, a block size of $10\ \tau$ was used.}
 \label{blocking}
 \end{figure*}
 
@@ -117,15 +136,14 @@ Considering this result, a block length of $10\ \tau$ was used to provide a good
 \begin{figure*}[h]
 \centering
 \includegraphics[scale=0.4]{surfactant.png}
-\caption{Surfactant molecules are represented by a pair of Lennar--Jones spherical particles connected by a harmonic bond. 
-The head particle has a stronger interaction with fluid A whilst the tail has a stronger interaction with fluid B.
+\caption{Surfactant molecules are represented by a pair of spherical Lennard--Jones particles connected by a harmonic bond. 
+The head particle has a stronger interaction with Fluid A whilst the tail has a stronger interaction with Fluid B.
 These properties are controlled using the relative values of $\epsilon_{ij}$ and imitate the typical behaviour of non--ionic surfactant molecules.
  }
 \label{surfactant}
 \end{figure*}
-%Surface--active molecules are characterised by head and tail groups which have differing interaction strengths with the component fluids of an immiscible mixture.
 To investigate the effects of surfactants on the Marangoni effect, the surfactant molecules were modelled as a pair of Lennard--Jones particles connected by a harmonic bond with spring constant $K^{*} = 25$ and equilibrium bond length $r^{*}_{0}=1.63$.
-Inspired by Howes and Radke's study on non--ionic surfactants,\cite{HowesSurfactant} the `head' particle has a stronger interaction with fluid A particles, ($\epsilon_{H, A} = 1.33$ and $\epsilon_{H, B} = 0.17$) whilst the `tail' particle has a stronger interaction with fluid B particles ($\epsilon_{T, A} = 0.17$ and $\epsilon_{T, B} = 1.33$).
+Inspired by Howes and Radke's study on non--ionic surfactants,\cite{HowesSurfactant} the `head' particle has a stronger interaction with Fluid A particles, ($\epsilon_{H, A} = 1.33$ and $\epsilon_{H, B} = 0.17$) whilst the `tail' particle has a stronger interaction with Fluid B particles ($\epsilon_{T, A} = 0.17$ and $\epsilon_{T, B} = 1.33$).
 The `head' and `tail' groups interact with each other with strength $\epsilon_{H, T} = 1.00$.
 \FloatBarrier
 

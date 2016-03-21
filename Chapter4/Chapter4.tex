@@ -5,8 +5,8 @@ The fluid was prepared as described in Section \ref{SystemPrep} at a pressure of
 The confining walls were used as a piston to control the pressure.
 
 \subsubsection{Using the Virial stress}\label{VirialStressPiston}
-Once equilibrated, the simulations were run for $40 \times 10^{6}$ timesteps and the number--density and Virial stress--tensor were computed every timestep.
-These values were then time-averaged to produce profiles for the number--density and $\sigma_{xx}(z')$ as shown in Figures \ref{PisVirRho} and \ref{PisVirStress}. 
+Once equilibrated, the simulations were run for $40 \times 10^{6}$ timesteps and the number density and Virial stress tensor were computed every timestep.
+These values were then time-averaged to produce profiles for the number density and $\sigma(z')$ as shown in Figures \ref{PisVirRho} and \ref{PisVirStress}. 
 
 \FloatBarrier
 \begin{figure*}[h]
@@ -28,18 +28,19 @@ Towards the wall there are temperature dependent oscillations which may provide 
 \label{PisVirStress}
 \end{figure*}
 
-Both the density profile and the stress--profile show the expected features of a binary--mixture. 
+Both the density profile and the stress profile show the expected features of a binary--mixture. 
 There is a uniform density in the bulk of the fluid and an interfacial region of finite width where the density of one species falls sharply and the density of the other increases.
 Close to the walls, there are large oscillations in the density that are a consequence of structural layering in the fluid close to the solid.
 
-For the stress--profile, the bulk value for the tangential component is equal to $-P_{\mathrm{ext}}$, corresponding to the hydrostatic pressure of the fluid.
+For the stress profile, the bulk values for the normal and tangential components are equal to $-P_{\mathrm{ext}}$, corresponding to the hydrostatic pressure of the fluid as expected.
 At the interface there is a peak in the tangential stress due to the anisotropy of the intermolecular forces in this region; this can be related to the interfacial tension.\cite{Marchand2011}
+Furthermore, there is a change in the normal component at the interface, resulting from density deviations in this region.
 
-The time--averaged values for the stress--tensor were then used to estimate the gradient of the stress with respect to temperature using Equation \ref{FinDiff}, as shown in Figure \ref{PisVirForce}.
-This gradient also shows a peak at the interface of the two fluids, providing the origin of the Marangoni force.
-Importantly the gradient in the bulk of the fluid (far from both the interface and the walls) is zero, within statistical error, ensuring there is no force acting in the bulk fluid.
-In addition, there is an oscillating gradient at the surface of the wall which can be interpreted as a thermocapillary force.
-Since we are only interested in simulating the Marangoni effect, these thermocapillary forces were ignored.
+The time--averaged values for the stress tensor were then used to estimate the derivative of the stress with respect to temperature using Equation \ref{FinDiff}, as shown in Figure \ref{PisVirForce}.
+This derivative shows a peak at the interface of the two fluids, providing the origin of the Marangoni force.
+In the bulk of the fluid the derivative is zero within statistical error, ensuring there is no force acting in this region.
+In addition, the derivative oscillates at the surface of the wall.
+This can be interpreted as a thermophoretic force and is henceforth ignored.
 
 \begin{figure*}[h]
 \centering
@@ -51,31 +52,31 @@ The oscillations at the liquid--solid boundaries create a thermocapillary force 
 \end{figure*}
 \FloatBarrier
 
-The central $1/3$ of the force profile was then used to create an artifical Marangoni force using a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$ and Equation \ref{ForceStressTemp}.
-This artfical body force was applied to an identical system prepared at $T^{*} = 0.85$.
-A non-equilibrium simulation was then run for $40 \times 10^{6}$ timestpes and the time--average of the x--component of the fluid velocity, $v^{*}_{x}(z')$, was computed.
-The momenta of the walls in the $x$ and $y$ directions were fixed such that they provided a stationary reference point for the fluid.
-As a result, the fluid shows non-slip boundary conditions and the walls act to hold the bulk fluid at rest.
+Using the central $1/3$ of the derivative profile, an artificial Marangoni force was computed using a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$ and Equation \ref{ForceStressTemp}.
+This force was applied to an identical system prepared at $T^{*} = 0.85$.
+An equilibrium simulation was then run for $40 \times 10^{6}$ timesteps and the time--average of the x--component of the fluid velocity, $v^{*}_{x}(z')$, was computed.
+The momenta of the walls in the $x,y$ plane were fixed such that they provided a stationary reference point for the fluid, creating a momentum sink.
 
 \begin{figure*}[h]
 \centering
 \includegraphics[scale=0.8]{PisVirFlow}
-\caption{The fluid velocity generated from a non--equilibrium simulation with an applied artifical Marangoni force calculated from the Virial stress shows a peak at the interface.
+\caption{The fluid velocity generated from a non--equilibrium simulation with an applied artificial Marangoni force calculated from the Virial stress shows a peak at the interface.
 The flow direction of this peak is from warm regions to cold.
 The greatest velocity magnitude is around 0.16 and this decays linearly to zero at the surface of the piston, corresponding to a Couette flow.}
 \label{PisVirFlow}
 \end{figure*}
-The flow profile calculated for the fluid in this system is shown in Figure \ref{PisVirFlow}. 
+The fluid velocity profile is shown in Figure \ref{PisVirFlow}. 
 There is a sharp negative peak at the interface indicating a Marangoni flow in the opposing direction to the temperature gradient.
 Furthermore, the flow decays linearly away from the interface, consistent with a Couette flow arising from shear--driven fluid motion.\cite{FluidMech}
-There is also a net flow of the fluid, suggesting an overall force acting on the liquid.
-The walls in the system act as a momentum sink, providing a friction force on the fluid which allows this steady--state flow to arise under the isolated effect of a temperature--gradient.
+
+There is also a net flow in the system, suggesting an overall force acting on the fluid.
+The walls in the system act as a momentum sink, providing a frictional force which allows this steady--state flow to arise under the isolated effect of a temperature--gradient.
 \FloatBarrier
 
 \subsubsection{Comparing to the Irving--Kirkwood stress}
-Figure \ref{PisVirRho} shows there are significant deviations in the fluid density at the interface and the walls and that the amount of deviation varies with temperature.
-Because of the strong dependence of the Virial stress on the local density of the fluid, there is the potential for these changes to interfere with the measurement of the Marangoni force.
-To verify the significance of these deviations, the stress--tensor was also calculated using the Irving--Kirkwood formula, since this does not depend on the local fluid density.
+Figure \ref{PisVirStress} shows the normal component of the Virial stress is not uniform across the interface.
+In contrast, the normal stress calculated using the Irving--Kirkwood formula does not depend on the local fluid density and should therefore be constant throughout the liquid.
+To verify if the difference in these methods has a significant effect on the measurement of the Marangoni force, the Irving--Kirkwood stress was also calculated.
 
 \begin{figure*}[h]
 \centering
@@ -87,8 +88,9 @@ There are also similar oscillations at the wall due to a thermocapillary force.}
 \end{figure*}
 \FloatBarrier
 The fluids were prepared at $P^{*}=0.1$ and $T^{*}=0.8$ and $T^{*}=0.9$ as before.
-Since the Irving--Kirkwood stress--tensor takes much longer to compute (see Section \ref{CalcStress}), the equilibrium simulations were only run for $1 \times 10^{6}$ timesteps, resulting in a greater amount of statistical error.
-This produced the time--averaged stress--tensor profiles shown in Figure \ref{PisIKStress}.
+Since the Irving--Kirkwood stress tensor was more computationally expensive (see Section \ref{CalcStress}), the equilibrium simulations were only run for $1 \times 10^{6}$ timesteps, resulting in a greater amount of statistical error.
+This produced the time--averaged stress profiles shown in Figure \ref{PisIKStress}.
+The tangential component of the Irving--Kirkwood stress shows a similar peak to the Virial stress whilst the normal component is constant throughout, as expected.
 \FloatBarrier
 
 \begin{figure*}[h]
@@ -98,9 +100,9 @@ This produced the time--averaged stress--tensor profiles shown in Figure \ref{Pi
 In both gradient profiles, there is no net gradient in the bulk and thus there will be no body force acting in the fluid bulk.}
 \label{PisIKForce}
 \end{figure*}
-The finite difference method was again used to calculate the gradient of this stress--tensor with respect to temperature and this is compared to the Virial result in Figure \ref{PisIKForce}.
-Still focussing on only the central $1/3$ of the fluid, there is a good correspondence between the two gradient profiles and the interfacial peak occurs both across the same spatial region and with the same maximum value.
-The most signifcant difference occurs directly at the interface, where there is a sharp reduction in the Irving--Kirkwood gradient.
+The finite difference method was again used to calculate the derivative of the stress with respect to temperature and this is compared to the Virial result in Figure \ref{PisIKForce}.
+Still focussing on only the central $1/3$ of the fluid, there is a good correspondence between the two derivatives and the interfacial peak occurs both across the same spatial region and with the same maximum value.
+The most significant difference occurs directly at the interface, where there is a sharp reduction in the derivative of the Irving--Kirkwood stress.
 This is probably a result of the reduction in density at the interface affecting the Virial stress--tensor more than the Irving--Kirkwood stress--tensor.
 \FloatBarrier
 
@@ -112,10 +114,10 @@ The peak value is not as large as that from the Virial force as a result of the 
 The Virial flow is symmetric whilst the Irving--Kirkwood flow is not, this is probably a result of the greater degree of noise in the Irving--Kirkwood gradient due to a short simulation time.}
 \label{PisIKFlow}
 \end{figure*}
-Using a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$ to compute the Irving--Kirkwood aritifical body force, a non--equilibrium simulation at $T^{*} = 0.85$ was run for $40 \times 10^{6}$ timesteps.
-The flow profile was calculated and compared to the result obtained using the Virial force, as shown in Figure \ref{PisIKFlow}.
-The profiles show a reasonably good correspondence, especially for the region $z' \leq 0.4$, although they deviate for higher values of $z'$.
-In particular the flow from the Irving--Kirkwood force is not as large directly at the interface, as a result of the reduction in the force at this point.
+Using a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$ to compute the Irving--Kirkwood artificial body force, an equilibrium simulation at $T^{*} = 0.85$ was run for $40 \times 10^{6}$ timesteps.
+The fluid velocity was measured and compared to the result obtained using the Virial force, as shown in Figure \ref{PisIKFlow}.
+The profiles show a reasonably close correspondence, especially for the region $z' \leq 0.4$, although they deviate for higher values of $z'$.
+In particular the flow from the Irving--Kirkwood method is not as large directly at the interface, as a result of the reduction in the force at this point.
 The Irving--Kirkwood velocity profile is also asymmetric despite the symmetry of the system.
 This asymmetry may be the result of an increase in the noise of the Irving--Kirkwood force relative to the Virial force, which results from the shorter simulation time enforced by the high computational cost of the Irving--Kirkwood analysis.
 
@@ -124,16 +126,17 @@ This asymmetry may be the result of an increase in the noise of the Irving--Kirk
 Equation \ref{NavierStokes} showed that the existence of a temperature gradient in the system should not be able to generate a net flow in the fluid. 
 Levich discusses this further, describing how the interfacial flow must be accompanied by a back-flow in the bulk fluid.\cite{Levich}
 In the case of the binary--mixture held between two walls, the stationary walls provide a momentum sink which allows a net flow to exist within the fluid.
-To replicate the behaviour described by Levich, a system void of momentum sinks must be studied, for example a binary--mixture of two immiscible fluids with periodic boundary conditions in all dimensions.
+To replicate the behaviour of an infinite fluid where a back flow may be observed, a system void of momentum sinks must be studied.
+The system used was composed of a binary--mixture of two partially miscible fluids with periodic boundary conditions in all dimensions.
 
-This system, shown on the left--hand side of Figure \ref{SetUp}, was prepared as described in Section \ref{SystemPrep} with the parameters given in Section \ref{InteractionModel}.
+This system, shown in Figure \ref{AABB}, was prepared as described in Section \ref{SystemPrep} with the parameters given in Section \ref{InteractionModel}.
 The distance between consecutive interfaces was $0.5 L_{z^{*}}$.
 A Nos\'{e}--Hoover barostat and thermostat were used to control the pressure at $P^{*} = 0.1$ with temperatures of $T^{*}=0.8$ and $T^{*}=0.9$.
 
 \subsubsection{Comparing the Virial and Irving--Kirkwood stress}
 There is again an ambiguity over which stress--tensor should be used for computing the Marangoni force.
-Initially, the equilibrated symmetric binary--mixture was simulated for $10 \times 10^{6}$ timesteps and the number--density, $\sigma^{\mathrm{V}}$ and $\sigma^{\mathrm{IK}}$ were computed.
-As discussed before, the Irving--Kirkwood analysis was highly computationally expensive and this simulation length was the upper feasible limit.
+Once equilibrated, the system was simulated for $10 \times 10^{6}$ timesteps over which the number density, Virial and Irving--Kirkwood stress were computed.
+As discussed before, the Irving--Kirkwood analysis was computationally expensive and this simulation length was the upper feasible limit.
 \FloatBarrier
 
 \begin{figure}[h]
@@ -145,8 +148,8 @@ The number density falls at higher temperature and the position of the interface
 \label{Period10Rho}
 \end{figure}
 After this period, the density profile (plotted in Figure \ref{Period10Rho}) showed a uniform density in the fluid bulk and a sharp interfacial region as expected.
-However, the exact position of the interface had shifted during the simulation and was no longer coincedent for the two temperatures.
-To calculate the Marangoni force from the stress profile, this shift was manually removed by recentering the interfaces prior to computing the finite difference.
+However, the position of the interface shifted during the simulation and was no longer coincident for the two temperatures.
+To calculate the Marangoni force from the stress profile, this shift was manually removed by recentering the interfaces.
 \FloatBarrier
 
 \begin{figure}[h]
@@ -167,15 +170,15 @@ The Irving--Kirkwood and Virial stress both show peaks of a similar magnitude an
 \label{Period10IKStress}
 \end{figure}
 The recentered Virial and Irving--Kirkwood stress profiles are plotted in Figures \ref{Period10VirStress} and \ref{Period10IKStress} respectively.
-As with the fluid confined between two walls, the bulk stress--tensor components are equal to $-P_{\mathrm{ext}}$, correpsonding to the hydrostatic fluid pressure.
-There is a similar peak in both the Virial and Irving--Kirkwood stress at the interface.
-The peaks also have the same maximum value for both stress--tensors, although the Irving--Kirkwood stress shows a stronger minimum directly at the interface.
-Similarly to Figure \ref{PisIKStress}, this is probably the result of a reduced density in the interfacial region.
+As with the fluid confined between two walls, the bulk stress components are equal to $-P_{\mathrm{ext}}$, corresponding to the hydrostatic fluid pressure.
+There is an interfacial peak in both the Virial and Irving--Kirkwood tangential stress at the interface with a similar maximum value, although the Irving--Kirkwood stress shows a stronger minimum directly at the interface.
+Similar to Figure \ref{PisIKStress}, this is probably the result of a reduced density in the interfacial region.
+Furthermore, the normal component of the Irving--Kirkwood stress is clearly uniform across the interface, as expected.
 
 \FloatBarrier
-Using these stress profiles, the gradient of the stress with respect to temperature was calculated through the finite difference approach.
-For there to be no net force acting on the fluid, the gradient profile was adjusted by subtracting the average value from each point to ensure the intergral over all space was zero, as shown in Figure \ref{Period10Force}.
-This replicated the effect of a momentum sink in the infinite periodic fluid, for example a distant bounding wall.
+Using these stress profiles, the derivative of the stress with respect to temperature was calculated through the finite difference approach.
+For there to be no net force acting on the fluid, the derivative profile was adjusted by subtracting the average value from each point to ensure the integral over all space was zero, as shown in Figure \ref{Period10Force}.
+This ensured there would be no net force acting on the fluid, even in the absence of a momentum sink in the system.
 
 \begin{figure}[h]
 \centering
@@ -187,16 +190,16 @@ Consequently, the gradient profiles are not sufficiently precise to use for calc
 }
 \label{Period10Force}
 \end{figure}
-The resulting gradient profile shows a similar peak at the interface to Figure \ref{PisIKForce}. 
+The derivative profile shows a similar interfacial peak to Figure \ref{PisIKForce}. 
 The maximum values are similar, suggesting that fixing the total force to zero correctly adjusts the data to give a physically meaningful Marangoni force.
-Again there is a reasonably good correspondence between the gradient calculated from the Irving--Kirkwood and Virial stress--tensors, and the magnitude of the Irving--Kirkwood peak is reduced directly at the interface.
-There is also a bulk gradient acting in the opposite direction to the interfacial peak, generating the predicted back force which balances the Marangoni force.
-However, the profile as a whole shows too much noise for the fine--structure to be determined and is not of a sufficient quality to be used in calculating an artificial body--force.
+Again there is a reasonably good correspondence between the derivatives calculated from the Irving--Kirkwood and Virial stress tensors, and the magnitude of the Irving--Kirkwood peak is reduced directly at the interface.
+In the bulk fluid, the derivative acts in the opposite direction to the interfacial peak, generating the predicted back force which balances the Marangoni force.
+However, the profile as a whole shows too much noise for the fine--structure to be determined and is not of sufficient quality to be used in calculating an artificial body--force.
 
 \subsubsection{Reducing the noise in the force--profile}
-To generate a gradient profile with a sufficiently low level of nosie requires either a larger system size or a longer simulation time.
-Both of these increase the computational cost of calculating the Irving--Kirkwood stress--tensor beyond a practical level, and the Virial stress--tensor must be used.
-Considering how similar the Virial and Irving--Kirkwood gradient profiles appear in Figure \ref{PisIKForce}, using the Virial stress--tensor does not create too much deviation from the more suitable Irving--Kirkwood stress--tensor, whilst enabling a much longer simulation time.
+To generate a profile with a sufficiently low noise requires either a larger system size or a longer simulation time.
+Both of these increase the computational cost of calculating the Irving--Kirkwood stress beyond a practical level, and instead the Virial stress must be used.
+Considering how similar the Virial and Irving--Kirkwood derivative profiles appear in Figure \ref{PisIKForce}, using the Virial stress does not create too much deviation from the more suitable Irving--Kirkwood stress, whilst enabling a much longer simulation time.
 \FloatBarrier
 
 \begin{figure}[h]
@@ -209,7 +212,7 @@ This simulation time is too long for the Irving--Kirkwood method to be feasible.
 \label{Period30VirStress}
 \end{figure}
 
-The reduced noise stress--profile was generated by running the equilibrium systems for $30 \times 10^{6}$ timesteps.
+The reduced noise stress was calculated by running the equilibrium systems for $30 \times 10^{6}$ timesteps.
 Recentering the interfaces generated the Virial stress profile shown in Figure \ref{Period30VirStress}.
 For both temperatures, the profiles show much less noise compared to Figure \ref{Period10VirStress}, especially in the bulk region, and the interfacial peaks are more symmetric.
 \FloatBarrier
@@ -218,17 +221,18 @@ For both temperatures, the profiles show much less noise compared to Figure \ref
 \centering
 \includegraphics[scale=0.8]{Period30VirForce}
 \caption{The Virial stress gradient calculated using equilibrium simulations of $30 \times 10^{6}$ timesteps showed significantly less noise than the equilibrium simulations of $10 \times 10^{6}$ timesteps.
-Having subtracted the average value to give no gradient overall, the plot confirms there is a sharp and symmetrical interfacial peak with an opposing gradient in the fluid bulk.
+Having subtracted the average value, the plot confirms there is a sharp and symmetric interfacial peak with an opposing bulk derivative.
 }
 \label{Period30VirForce}
 \end{figure}
-Using these stress profiles, the gradient of the stress--tensor with respect to temperature was again computed using the finite difference and the average value subtracted to give the profile shown in Figure \ref{Period30VirForce}.
-There is a dramatic reduction in the noise of this gradient profile compared to Figure \ref{Period10Force}, with a sharp peak at the interface and an opposing gradient in the bulk regions.
+
+Using these stress profiles, the derivative of the stress--tensor with respect to temperature was again computed using the finite difference and the average value subtracted to give the profile shown in Figure \ref{Period30VirForce}.
+There is a dramatic reduction in the noise compared to Figure \ref{Period10Force}, with a sharp peak at the interface and an opposing stress derivative in the bulk regions.
 \FloatBarrier
 
-Using the gradients given in Figure \ref{Period30VirForce} and a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$, an artifical body force was computed.
-The body force was recentered to ensure that the peak corresponding to the Marangoni force aligned with the interfacial region, and was applied in a non--equilibrium simulation at $T^{*} = 0.85$.
-This simulation was run for $40 \times 10^{6}$ timesteps, and $v^{*}_x(z')$ was computed to give the flow profile plotted in Figure \ref{Period30VirFlow}.
+Using the stress derivative given in Figure \ref{Period30VirForce} and a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$, an artificial body force was computed.
+The body force was recentered to ensure the Marangoni peak was aligned with the interfacial region, and this was applied in an equilibrium simulation at $T^{*} = 0.85$.
+This simulation was run for $40 \times 10^{6}$ timesteps, and $v^{*}_x(z')$ was computed to give the flow velocity plotted in Figure \ref{Period30VirFlow}.
 
 \begin{figure}[h]
 \centering
@@ -240,30 +244,30 @@ Despite this, the fluid velocity relative to this centre--of--mass motion sugges
 \label{Period30VirFlow}
 \end{figure}
 
-Despite the simulation being run for a long timescale, this flow profile still retains a lot of statistical noise.
+Despite the simulation being run for a long timescale, the velocity profile still retains a lot of statistical noise.
 It would be difficult practically to reduce this noise further.
-Moreover, the average velocity (indicated the hashed line) is non--zero, implying that there is centre--of--mass motion during the simulation.
-This motion is occuring even though the gradient--profile has been recentered to give no net force overall.
+Moreover, the average velocity (indicated by the hashed line) is non--zero, indicating centre--of--mass motion during the simulation.
+This motion occurs even though the stress derivative has been adjusted to give no net force overall.
 It is likely that in the absence of a momentum sink for a system like this, it would be very difficult to completely remove this net flow without artificially fixing the centre--of--mass throughout the simulation.
 
-Despite this, the relative motion across the fluid can still be considered, and there does appear to be a velocity peak at the interface (with $v < v_{\mathrm{COM}}$) corresponding to a Marangoni flow with a back flow in the bulk fluid (with $v > v_{\mathrm{COM}}$) as predicted.
-This result is, however, somewhat ambiguous and there was insufficient project time to improve the non--equilibrium simulation further.
+Despite this, the relative motion across the fluid can still be considered, and there does appear to be a velocity peak at the interface (with $v < v_{\mathrm{COM}}$) corresponding to a Marangoni flow, with a back flow in the bulk fluid (with $v > v_{\mathrm{COM}}$) as predicted.
+This result is, however, somewhat ambiguous and there was insufficient time to improve this simulation further.
 
 \subsection{The effect of surfactants}
 Surfactant molecules decrease the surface free energy of interfaces, as they have a favourable interaction with both fluids and bridge the interfacial plane.
-This reduction in surface--tension should also cause a decrease in the Marangoni effect, as observed experimentally.\cite{KimSubramanianA,KimSubramanianB,BartonSubramanian,ChenStebe}
+This reduction in surface tension should also cause a decrease in the surface tension gradient and thus the Marangoni effect, as observed experimentally.\cite{KimSubramanianA,KimSubramanianB,BartonSubramanian,ChenStebe}
 
 To model this, the non--ionic surfactant molecules described in Section \ref{ModellingSurfactants} were added to the binary--mixture confined between two walls.
-This system was chosen since the results of Section \ref{Piston} showed it allowed a steady--state flow to be generated and modelled effectively.
+This system was chosen since the results of Section \ref{Piston} showed it allowed a steady state flow to be generated and modelled effectively.
 
-The surfactant molecules were added to a single plane between the two fluids in the initial lattice before equilibration.
+The surfactant molecules were added to a single plane between the two fluids in the initial lattice before melting.
 A certain fraction of these molecules were then removed to vary the surfactant concentration, quantified as a fraction of the total number of fluid particles present,
 \begin{equation}
 \mathrm{Surfactant\ Fraction} \equiv \frac{N_{\mathrm{surfactant}}}{N_{\mathrm{surfactant}}+N_{\mathrm{fluid}}}.
 \end{equation}
-This allowed the surfactant fraction to be varied between $0$ and $0.00323$.
+This allowed the surfactant fraction to be varied between $0$ and $0.0323$.
 
-Taking surfactant fractions of $0.000$, $0.0031$, $0.0098$, $0.0194$, $0.0264$, $0.0298$ and $0.0323$, the fluid was then prepared as described in Section \ref{SystemPrep}, with a pressure of $P^{*}=0.1$ and temperatures of $T^{*}=0.8$ and $T^{*}=0.9$.
+Taking fractions of $0.000$, $0.0031$, $0.0098$, $0.0194$, $0.0264$, $0.0298$ and $0.0323$, the fluid was prepared as described in Section \ref{SystemPrep}, with a pressure of $P^{*}=0.1$ and temperatures of $T^{*}=0.8$ and $T^{*}=0.9$.
 A piston barostat and Nos\'{e}--Hoover thermostat were used and each system was run at equilibrium for $30 \times 10^{6}$ timesteps of length $0.001\ \tau$.
 
 \begin{figure}[h]
@@ -278,7 +282,7 @@ They also show the correct orientation, with `Head' particles interacting most s
 \end{figure}
 
 The resulting number density of each species shows a uniform bulk density, a sharp interface and peaks for the head and tail groups located at the interface, as shown for $T^{*}=0.8$ and a surfactant fraction of $0.0194$ in Figure \ref{SurfRho}.
-The surfactant molecules were correctly oriented with head groups interacting with fluid A and tail groups with fluid B.
+The surfactant molecules were correctly oriented with head groups interacting with Fluid A and tail groups with Fluid B.
 \FloatBarrier
 
 \begin{figure}[h]
@@ -290,12 +294,17 @@ As the amount of surfactant is increased, the strength of this peak decreases to
 \label{SurfForce}
 \end{figure}
 
-The Virial stress--tensor was computed during the equilibrium simulations and used to compute the gradient of the stress with respect to temperature for each surfactant fraction.
-These results, plotted in Figure \ref{SurfForce}, show a pronounced reduction in the magnitude of the interfacial peak as the surfactant fraction increases.
-This corresponds to the expected reduction in the Marangoni force at the interface.
+The Virial stress was computed during the equilibrium simulations and used to compute the derivative of the stress with respect to temperature for each surfactant fraction.
+These results, plotted in Figure \ref{SurfForce}, show a pronounced reduction in the magnitude of the interfacial peak as the surfactant fraction increases, corresponding to the expected reduction in the Marangoni force.
+
 Two smaller positive peaks on either side of the centre also develop for higher surfactant fractions.
-These potentially correspond to an opposing force driven by a gradient in the amount of surfactant at the interface, which becomes significant at high surfactant fractions.
-Further investigation would be needed to confirm the origin of this peak.
+It is unclear exactly what these peaks correspond to.
+They may simply be the result of an increase in the fluid density, due to localisation of the surfactant particles in this region. 
+An increase in surfactant fraction would then exaggerate this density change.
+In future, this could be verified by computing the Irving--Kirkwood stress, where any peaks due to density deviations should disappear.
+
+Furthermore, the harmonic forces in the surfactant molecules may be providing a contribution to these peaks in the stress.
+The physical significance of this contribution could be investigated by varying the spring constant for the surfactant bond.
 \FloatBarrier
 
 \begin{figure}[h]
@@ -306,9 +315,9 @@ As the amount of surfactant increases there is a reduction in the magnitude of t
 }
 \label{SurfFlow}
 \end{figure}
-Using a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$, the central $1/3$ of the stress--gradients in Figure \ref{SurfForce} were used to caculate an artificial body force, which was applied in a non--equilibrium simulation at $T^{*}=0.85$.
-These simulations were run for $30 \times 10^{6}$ timesteps over which $v_{x}(z')$ was computed and plotted in Figure \ref{SurfFlow}.
-There is a clear decrease in the interfacial velocity as the surfactant fraction is increased, suggesting that the presence of surfactants is causing a retardation of the Marangoni effect.
+Using a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$, the central $1/3$ of the stress--gradients in Figure \ref{SurfForce} were used to compute an artificial body force, which was applied to simulations at $T^{*}=0.85$.
+These were run for $30 \times 10^{6}$ timesteps over which $v_{x}(z')$ was measured and plotted in Figure \ref{SurfFlow}.
+There is a clear decrease in the interfacial velocity as the surfactant fraction is increased, suggesting a retardation of the Marangoni effect induced by the surfactant molecules.
 
 \FloatBarrier
 \begin{figure}[h]
@@ -321,15 +330,17 @@ Such an effect may only be significant for high surfactant concentrations.
 }
 \label{InterVel}
 \end{figure}
-The interfacial velocity can be taken as the peak velocity of the profiles shown in Figure \ref{SurfFlow}.
-Comparing these values against the surfactant fraction shows a clear reduction in the magnitude of this peak value as the surfactant fraction increases, as shown in Figure \ref{InterVel}.
-Above a fraction of $0.025$ it appears the Marangoni effect has been removed completely, matching the experimental observations well.
+The interfacial velocity can be taken as the peak of the flow shown in Figure \ref{SurfFlow}.
+Comparing these values against the surfactant fraction shows a reduction in the magnitude of this peak value as the surfactant fraction increases, as shown in Figure \ref{InterVel}.
+Above a fraction of $0.025$ it appears the Marangoni effect has been removed completely.
+This retardation has been observed experimentally by Barton and Subramanian and is discussed in their study on the relation between droplet size and upward motion under a vertical temperature gradient.\cite{BartonSubramanian} 
+They note that droplets actually sink on the addition of a nonionic surfactant, indicating the eradication of the Marangoni force and the dominance of gravity.
 
 \FloatBarrier
-The sharpness of the peak in the Marangoni flow is also decreased and no longer fits the Couette model as conclusively as when no surfactant molecules are present.
-This may be because the surfactant molecules decrease the viscosity at the interface, giving non-uniformity across the fluid. 
+The sharpness of the Marangoni flow peak in Figure \ref{SurfFlow} also decreases as the surfactant fraction increases and no longer fits the Couette model as conclusively.
+This may be a result of the reduction in viscosity at the interface due to the presence of surfactant molecules, giving a non-uniform viscosity across the fluid. 
 To confirm this, the viscosity could be measured using the Green--Kubo relation,
 \begin{equation}
-\eta = \frac{1}{V k_{\mathrm{B}} T} \int_{0}^{\infty} \left< \sigma_{xy} \left( \tau \right) \sigma_{xy}(0) \right> \mathrm{d} \tau.
+\eta = \frac{1}{V k_{\mathrm{B}} T} \int_{0}^{\infty} \left< \sigma_{xy} \left( \tau \right) \sigma_{xy}(0) \right> \mathrm{d} \tau,
 \end{equation}
-This would form a good basis for future work in this area.
+providing a good basis for future work in this area.

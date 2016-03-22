@@ -5,25 +5,29 @@ The fluid was prepared as described in Section \ref{SystemPrep} at a pressure of
 The confining walls were used as a piston to control the pressure.
 
 \subsubsection{Using the Virial stress}\label{VirialStressPiston}
-Once equilibrated, the simulations were run for $40 \times 10^{6}$ timesteps and the number density and Virial stress tensor were computed every timestep.
+Once equilibrated, the simulations were run for $40 \times 10^{6}$ timesteps of length $0.001\ \tau$ and the number density and Virial stress tensor were computed every timestep.
 These values were then time-averaged to produce profiles for the number density and $\sigma(z')$ as shown in Figures \ref{PisVirRho} and \ref{PisVirStress}. 
 
 \FloatBarrier
 \begin{figure*}[h]
 \centering
-\includegraphics[scale=0.8]{PisVirRho}
-\caption{The number density for the two fluids at $T^{*} = 0.8$ and $T^{*} = 0.9$ is shown. 
-The bulk density is uniform, representing a fluid state, and the interface can be seen as the sharp change in the densities of the two fluids.
-Near the wall there are oscillations in the density, representing structural layering of the fluid.}
+\includegraphics[scale=1.0]{PisVirRho}
+\caption{The number density for the two fluids confined between two walls at $T^{*} = 0.8$ and $T^{*} = 0.9$ was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$. 
+The bulk density is uniform, representing a fluid state, and the interface manifests itself as a sharp change in the densities of the two fluids.
+Structural layering of the fluid creates oscillations in the density close to the walls.
+}
 \label{PisVirRho}
 \end{figure*}
 
 \begin{figure*}[h]
 \centering
-\includegraphics[scale=0.8]{PisVirStress}
-\caption{The Virial stress tensor for the total fluid at each temperature shows a bulk value equal to $-P_{ext}$, representing the hydrostatic pressure, and a peak at the interface due to the anisotropy of the interparticle forces in this region.
-This peak is related to the interfacial tension and its temperature dependence is the driving force for the Marangoni effect.
-Towards the wall there are temperature dependent oscillations which may provide the origin of the thermocapillary force.
+\includegraphics[scale=1.0]{PisVirStress}
+\caption{The Virial stress tensor components for the combined fluid confined between two walls at $T^{*} = 0.8$ and $T^{*} = 0.9$ was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+Both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
+There is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
+This can be related to the surface tension and its temperature dependence is the driving force for the Marangoni effect.
+There is also a change in the normal component at the interface, resulting from the dependence of the Virial stress on density deviations.
+Towards the wall there are temperature dependent oscillations in both components which provide the origin of the thermophoretic force.
 }
 \label{PisVirStress}
 \end{figure*}
@@ -44,10 +48,10 @@ This can be interpreted as a thermophoretic force and is henceforth ignored.
 
 \begin{figure*}[h]
 \centering
-\includegraphics[scale=0.8]{PisVirForce}
-\caption{The gradient of the Virial stress--tensor with respect to temperature shows a negative peak at the interface.
-This will generate a force in the opposite direction to a temperature gradient, creating a Marangoni flow.
-The oscillations at the liquid--solid boundaries create a thermocapillary force and are ignored.}
+\includegraphics[scale=1.0]{PisVirForce}
+\caption{The derivate of the tangential component of the Virial stress with respect to temperature, calculated using the finite difference approximation, shows a negative peak at the interface.
+When combined with a specified temperature gradient, this generates a force in the opposite direction to a temperature gradient, imitating the Marangoni force.
+The oscillations at the liquid--solid surface create the thermophoretic force and are subsequentlyignored.}
 \label{PisVirForce}
 \end{figure*}
 \FloatBarrier
@@ -59,10 +63,10 @@ The momenta of the walls in the $x,y$ plane were fixed such that they provided a
 
 \begin{figure*}[h]
 \centering
-\includegraphics[scale=0.8]{PisVirFlow}
-\caption{The fluid velocity generated from a non--equilibrium simulation with an applied artificial Marangoni force calculated from the Virial stress shows a peak at the interface.
-The flow direction of this peak is from warm regions to cold.
-The greatest velocity magnitude is around 0.16 and this decays linearly to zero at the surface of the piston, corresponding to a Couette flow.}
+\includegraphics[scale=1.0]{PisVirFlow}
+\caption{The velocity profile of a confined fluid at $T^{*}=0.85$ under the influence of the Virial Marangoni force was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+A steady state negative interfacial peak emerges, corresponding to a Marangoni flow in the opposite direction to the temperature gradient.
+The peak velocity magnitude is approximately 0.16 and this decays linearly to zero at the surface of the bounding walls, corresponding to a Couette flow.}
 \label{PisVirFlow}
 \end{figure*}
 The fluid velocity profile is shown in Figure \ref{PisVirFlow}. 
@@ -80,7 +84,7 @@ To verify if the difference in these methods has a significant effect on the mea
 
 \begin{figure*}[h]
 \centering
-\includegraphics[scale=0.8]{PisIKStress}
+\includegraphics[scale=1.0]{PisIKStress}
 \caption{The Irving--Kirkwood stress--tensor shows a similar profile to the Virial stress--tensor (see Figure \ref{PisVirStress}) although the interfacial peak is divided into two and a reduction in the stress occurs directly at the interface.
 %This represents the reduction in the momentum flux across the interfacial plane as a result of the weaker interaction between non--equivalent fluid particles.
 There are also similar oscillations at the wall due to a thermocapillary force.}

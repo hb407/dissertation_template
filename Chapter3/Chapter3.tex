@@ -6,7 +6,7 @@ Where possible, this force was applied as an artificial body force in a simulati
 
 Two key systems were studied, a symmetric binary–mixture under three--dimensional periodic boundary conditions, and a binary--mixture periodic in the $(x,y)$ plane but confined between two walls in the $z$--dimension, as shown in Figure \ref{SetUp}.
 All molecular dynamics simulations were executed using the LAMMPS (Large Atomic and Molecular Massively Parallel Simulator) package.\cite{LAMMPS}  
-
+g
 \begin{figure}[h]
 	\begin{subfigure}{.5\linewidth}
 		\includegraphics[scale=0.25]{AABB.png}
@@ -18,8 +18,9 @@ All molecular dynamics simulations were executed using the LAMMPS (Large Atomic 
 		\caption{Binary--mixture confined by planar walls} 
 		\label{AABB_piston}
 	\end{subfigure}
-	\caption{The systems used for simulations of the Marangoni flow both involve a partially miscible binary--mixture of Fluid A (blue) and Fluid B (green).
-The pressure in the mixture periodic in all dimensions is regulated using a Nos\'{e}--Hoover barostat whilst for the confined fluid, the walls are used to create a piston.	
+	\caption{Both the systems studied incorporated a partially miscible binary--mixture of Fluid A (blue) and Fluid B (green).
+For the mixture periodic in all dimensions, the pressure is regulated using a Nos\'{e}--Hoover barostat.
+In the confined fluid, the walls are used to create a piston and an external force equal to $P_{\mathrm{ext}} \times A_{\mathrm{wall}}$ is applied.
 }
 	\label{SetUp}
 \end{figure}

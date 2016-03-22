@@ -8,20 +8,19 @@ Two key systems were studied, a symmetric binary–mixture under three--dimensio
 All molecular dynamics simulations were executed using the LAMMPS (Large Atomic and Molecular Massively Parallel Simulator) package.\cite{LAMMPS}  
 
 \begin{figure}[h]
-	\begin{subfigure}{.2\linewidth}
+	\begin{subfigure}{.5\linewidth}
 		\includegraphics[scale=0.25]{AABB.png}
-		\caption{A binary--mixture of two partially miscible fluids under three--dimensional periodic boundary conditions is used. 
-The pressure and temperature are controlled using a Nos\'{e}--Hoover barostat and thermostat.
-}
+		\caption{Binary--mixture periodic in all dimensions}
 		\label{AABB}
 	\end{subfigure}
-	\begin{subfigure}{.2\linewidth}
+	\begin{subfigure}{.5\linewidth}
 		\includegraphics[scale=0.25]{AABB_piston.png}
-		\caption{A binary--mixture confined between two planar walls with periodic boundary conditions in the $(x,y)$ plane is also studied.
-A Nos\'{e}--Hoover thermostat is used and the pressure is regulated by employing the confining walls as a piston.}
+		\caption{Binary--mixture confined by planar walls} 
 		\label{AABB_piston}
 	\end{subfigure}
-	\caption{The systems used for simulations of the Marangoni flow both involve a partially miscible binary--mixture of Fluid A (blue) and Fluid B (green).}
+	\caption{The systems used for simulations of the Marangoni flow both involve a partially miscible binary--mixture of Fluid A (blue) and Fluid B (green).
+The pressure in the mixture periodic in all dimensions is regulated using a Nos\'{e}--Hoover barostat whilst for the confined fluid, the walls are used to create a piston.	
+}
 	\label{SetUp}
 \end{figure}
 

@@ -118,12 +118,22 @@ Furthermore, the error in the variance can be estimated as
 \end{equation}
 
 \begin{figure*}[h]
-\hspace{-4em}
-        \includegraphics[scale=0.35]{block_average_10e6.eps}
-        \includegraphics[scale=0.35]{block_average_1e6.eps}
-	\caption{The blocking analysis for a simulation time of $10,000\ \tau$ and $10,000\ \tau$ shows clear plateaus in the estimate of the error at block sizes of $10\ \tau$ and $5\ \tau$ respectively.
-This can be used to estimate the block size needed to decorrelate data and produce a reliable estimate of the error in the data.
-Throughout the subsequent simulations, a block size of $10\ \tau$ was used.}
+\hspace{-3em}
+	\begin{subfigure}{.5\linewidth}
+                \includegraphics[scale=0.6]{block_average_1e6.eps}
+                \caption{Simulation time = $1000\ \tau$}
+        \end{subfigure}
+\hspace{2em}
+        \begin{subfigure}{.5\linewidth}
+                \includegraphics[scale=0.6]{block_average_10e6.eps}
+                \caption{Simulation time = $10000\ \tau$}
+	\end{subfigure}
+	\caption{The blocking analysis for a system identical to those studied is compared for simulation times of $1000\ \tau$ and $10000\ \tau$.
+Plateaus in the estimate of the variance begin at block lengths of approximately $5\ \tau$ and $10\ \tau$ respectively.
+The error in the variance does not become significant until much larger block lengths.
+Throughout the subsequent simulations, a block size of $10\ \tau$ was used.
+This ensured decorrelation of the data and produced a reliable estimate of the statistical error.
+}
 \label{blocking}
 \end{figure*}
 
@@ -137,8 +147,8 @@ Considering this result, a block length of $10\ \tau$ was used to provide a good
 \centering
 \includegraphics[scale=0.4]{surfactant.png}
 \caption{Surfactant molecules are represented by a pair of spherical Lennard--Jones particles connected by a harmonic bond. 
-The head particle has a stronger interaction with Fluid A whilst the tail has a stronger interaction with Fluid B.
-These properties are controlled using the relative values of $\epsilon_{ij}$ and imitate the typical behaviour of non--ionic surfactant molecules.
+The head particle has a stronger interaction with Fluid A ($\epsilon_{H, A} = 1.33$ and $\epsilon_{H, B} = 0.17$) whilst the tail has a stronger interaction with Fluid B ($\epsilon_{T, A} = 0.17$ and $\epsilon_{T, B} = 1.33$).
+This generates the desired surface active behaviour.
  }
 \label{surfactant}
 \end{figure*}

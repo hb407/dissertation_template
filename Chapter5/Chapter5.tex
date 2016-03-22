@@ -1,34 +1,63 @@
 \section{Concluding Remarks}
-Using equilibrium simulations at two close temperatures, the gradient of the stress--tensor with respect to temperature was estimated for binary--mixtures through a finite--difference method.
-This gradient was calculated for the Virial and Irving--Kirkwood stress--tensors for a binary--mixture confined between two walls, and in both cases there was a similar negative peak at the interface.
-Combining with a temperature gradient, an artificial body force was calculated and applied in a non--equilibrium simulation, yielding a net interfacial flow that was interpreted as the Marangoni effect.
-The flow occured in the opposing direction to the temperature gradient as predicted.
-Despite no external forces acting on the system, a net steady state flow was possible since the confining walls provided a momentum sink and a balancing frictional force.
+Using equilibrium simulations at two close temperatures, the derivative of the tangential component of the stress tensor with respect to temperature was estimated for binary--mixtures through a finite--difference method.
+The derivative of the Virial and Irving--Kirkwood stress was calculated for a mixture confined between two walls, and in both cases there was a similar negative interfacial peak.
+Combining with a temperature gradient, an artificial body force was computed and applied in a third equilibrium simulation, resulting in a non--equilibrium with a net interfacial flow.
+This was interpreted as a Marangoni flow and occurred in the opposite direction to the applied temperature gradient, as expected.
+The confining walls provided a momentum sink in the system, exerting a frictional force on the fluid and allowing a steady state flow to be achieved.
 
-The same method was then applied for a binary--mixture which was periodic in all three--dimensions, and a similar peak in the stress--gradient was measured.
-However, there was a large amount of noise in this gradient which was reduced by running the simulation for a longer time period.
-As a result, only the Virial stress was feasible for calcualting a sufficiently precise gradient profile.
-To create the effect of a momentum sink in this infinite fluid, the stress--gradient was adjusted such that the overall gradient was zero.
-Applying this force in a non--equilibrium simulation produced a flow profile, showing a negative peak at the interfaces relative to a net centre--of--mass motion, and an associated back flow in the bulk of the fluid.
-Whilst there should be no overall flow in this system, it is likely that the noise in the applied force created errors which resulted in the net fluid motion. 
+The same method was then applied for a binary--mixture periodic in all dimensions, and a similar peak in the stress derivative was observed.
+However, the fine structure of this derivative was obscured by significant noise.
+This was reduced by running the simulation for a longer time period.
+As a result, only the Virial stress was feasible for calculating a sufficiently precise gradient profile.
 
-To remove these effects, one would either need to reduce the noise in the force profile or create a more effective artificial momentum sink.
-Reducing the noise further would require even longer simulation times which could introduce other errors through the divergence of molecular dynamics simulations.
-Alternatively, it could be possible to fix the momentum by holding the centre--of--mass stationary throughout the simulation, although this may obscure other important physical features.
+In the absence of a momentum sink, the stress derivative was adjusted to ensure no net force was applied on the system, and was used to calculate an artificial body force.
+Applying this force produced a flow profile showing a negative peak at the interfaces relative to a net centre--of--mass motion, and an associated back flow in the bulk of the fluid.
 
-Having established a working system in the form of the fluid confined between two walls, the effect of surfactants on Marangoni flows was investigated by adding different concentrations of non-ionic surfactant molecules.
-The Virial stress was again computed at two temperatures and its gradient was estimated through the finite difference method.
-As the concentration of surfactant increased, there was a reduction in the magnitude of the interfacial peak.
+The origin of the centre--of--mass motion is unclear. 
+It is possible, although unlikely, that is is the result of errors induced by noise in the applied force.
+For example, errors in the average derivative will cause the derivative profile to be incorrectly recentred and a net applied force could result.
+Running the initial equilibrium simulations for an even longer period could allow a more precise force to be calculated and the effect of noise verified. 
 
-These stress--gradients were used to calculate an artificial body force that was then applied in a non--equilibrium simulation.
-The resulting Marangoni flow was seen to decrease to zero as the surfactant concentration increased, in agreement with experimental studies.
+Alternatively, the centre--of--mass could be artificially held stationary throughout the simulation.
+However, this would be rather unphysical, since observing a stationary centre--of--mass is essential to verifying the correct behaviour of Maragnoni flows.
+Fixing the centre--of--mass would allow only the relative motion of different fluid regions to be observed.
+
+Having established a working system in the form of the fluid confined between two walls, the effect of surfactants on Marangoni flows was investigated by adding different concentrations of non-ionic surfactant molecules into the interfacial region.
+The tangential Virial stress was again computed at two temperatures and its derivative with respect to temperature was estimated through the finite difference.
+As the concentration of surfactant increased, there was a reduction in the magnitude of the negative interfacial peak and the emergence of two secondary positive peaks on either side of the interface..
+
+The stress derivatives were used to calculate an artificial body force that was then applied in a third equilibrium simulation.
+The magnitude of the resulting Marangoni flow was seen to decrease to zero as the surfactant concentration increased, in agreement with experimental studies.
 Furthermore, the shape of the velocity profile deviated from the linear decay observed in the absence of surfactant.
-This may be due to a non--uniform fluid viscosity, since the addition of surfactants should also decrease the viscosity of the interfacial region.
+This may be due to a non--uniform fluid viscosity, since the addition of surfactants should decrease the viscosity of the interfacial region.
 
-In future studies, it would be interesting to compute the viscosity of different regions in the fluid and compare them to the flow velocity.
-In addition, the change in the Marangoni flow profile due to reduced interfacial viscosity could be studied by using a different pairwise interaction for each fluid.
-For example, using a potential with no attractive component for one fluid and a Lennard--Jones potential for the other would create an interfacial region with greater anisotropy of the interparticle interactions, causing the viscosity to change.
-Fine--tuning each potential would also allow greater control over the variation in viscosity.
+\subsection{Future directions of study}
+There are a number of ambiguities in the results reported which may be verified through further study.
+For example, if more time was available it would be interesting to compute more accurate force profiles from the Irving--Kirkwood stress by using a larger system.
+This could be made more efficient by implementing the Irving--Kirkwood analysis in parallel.
 
-Through the results of this study combined with future work, a greater understanding of the relationship between the stresses within a fluid and the velocity due to a temperature gradient can be achieved. 
-Ultimately this is working towards a comprehensive microscopic understanding of the Marangoni effect.
+Furthermore, by introducing a contribution from the harmonic bonding into this analysis, it could be used to study systems with added surfactant.
+Using the Irving--Kirkwood stress would confirm whether the secondary peaks observed as surfactant fraction increases are the result of an increase in local density due to the presence of surfactant particles, or some other significant physical feature.
+
+It would also be interesting to compute the viscosity across the liquid and compare this for the pure fluid and the fluid with surfactant present.
+As described in Section \ref{SurfResult}, this can be calculated using a Green--Kubo relation.
+Comparing the shape of the flow profile to the uniformity in the viscosity would allow the deviation from the Couette flow model to be investigated.
+
+Beyond this, linear response theory suggests that the flow induced by a temperature gradient could computed as:
+\begin{equation}
+\left< v_{x} \right> = \frac{\nabla T}{T} V \int_{\tau =0}{\infty} \left< J_{x}(0) Q_{x}(\tau) \right> \mathrm{d} \tau,
+\label{LinResponse}
+\end{equation}
+where $J$ and $Q$ are the mass and heat flux respectively.
+By computing this average velocity for the mixture confined between two walls, both with and without an applied body force, Equation \ref{LinResponse} could allow a general relation between flow velocity and temperature gradient to be developed.
+This could be compared for the bulk and interfacial regions, since there should be no correlation between the heat flux and mass flux away from the interfaces.
+
+In addition to this, a greater understanding could be developed using Onsager's reciprocal rule, as employed be Derjaguin et al.
+This could be achieved by applying a pressure gradient to a simulation and measuring the resulting heat flux.
+From the relation of these quantities, the mass flux from a temperature gradient could be computed. 
+
+Finally, once informative methods for the basic study of Marangoni flows have been developed, the natural progression would be to investigate different systems and geometries.
+For example, it would be interesting to study a non--symmetric binary--mixture or to replicate the thermophoresis of bubbles and drops under a temperature gradient, as observed experimentally.
+
+Through the results of this study, combined with future work, a greater understanding of the relationship between the stresses within a fluid and the velocity due to a temperature gradient can be achieved. 
+Ultimately this is working towards a microscopic description and a more comprehensive understanding of the Marangoni effect.

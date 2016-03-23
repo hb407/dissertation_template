@@ -27,7 +27,7 @@ Both the normal and tangential stress show bulk values equal to $-P_{ext}$, repr
 There is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
 This can be related to the surface tension and its temperature dependence is the driving force for the Marangoni effect.
 There is also a change in the normal component at the interface, resulting from the dependence of the Virial stress on density deviations.
-Towards the wall there are temperature dependent oscillations in both components which provide the origin of the thermophoretic force.
+Towards the wall there are temperature dependent oscillations in both components, providing the origin of the thermophoretic force.
 }
 \label{PisVirStress}
 \end{figure*}
@@ -49,9 +49,10 @@ This can be interpreted as a thermophoretic force and is henceforth ignored.
 \begin{figure*}[h]
 \centering
 \includegraphics[scale=1.0]{PisVirForce}
-\caption{The derivate of the tangential component of the Virial stress with respect to temperature, calculated using the finite difference approximation, shows a negative peak at the interface.
-When combined with a specified temperature gradient, this generates a force in the opposite direction to a temperature gradient, imitating the Marangoni force.
-The oscillations at the liquid--solid surface create the thermophoretic force and are subsequentlyignored.}
+\caption{The derivate of the tangential component of the Virial stress with respect to temperature was calculated using the finite difference approximation.
+This shows a negative peak in the interfacial region.
+When combined with a specified temperature gradient, a force in the opposite direction to a temperature gradient is generated, imitating the Marangoni force.
+The oscillations at the liquid--solid surface create the thermophoretic force and are subsequently ignored.}
 \label{PisVirForce}
 \end{figure*}
 \FloatBarrier
@@ -64,9 +65,9 @@ The momenta of the walls in the $x,y$ plane were fixed such that they provided a
 \begin{figure*}[h]
 \centering
 \includegraphics[scale=1.0]{PisVirFlow}
-\caption{The velocity profile of a confined fluid at $T^{*}=0.85$ under the influence of the Virial Marangoni force was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+\caption{The velocity profile of a confined fluid at $T^{*}=0.85$ with an applied force calculated from Figure \ref{PisVirForce} was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
 A steady state negative interfacial peak emerges, corresponding to a Marangoni flow in the opposite direction to the temperature gradient.
-The peak velocity magnitude is approximately 0.16 and this decays linearly to zero at the surface of the bounding walls, corresponding to a Couette flow.}
+The magnitude of the peak velocity is approximately 0.16 and this decays linearly to zero at the surface of the bounding walls, corresponding to a Couette flow.}
 \label{PisVirFlow}
 \end{figure*}
 The fluid velocity profile is shown in Figure \ref{PisVirFlow}. 
@@ -85,23 +86,34 @@ To verify if the difference in these methods has a significant effect on the mea
 \begin{figure*}[h]
 \centering
 \includegraphics[scale=1.0]{PisIKStress}
-\caption{The Irving--Kirkwood stress--tensor shows a similar profile to the Virial stress--tensor (see Figure \ref{PisVirStress}) although the interfacial peak is divided into two and a reduction in the stress occurs directly at the interface.
-%This represents the reduction in the momentum flux across the interfacial plane as a result of the weaker interaction between non--equivalent fluid particles.
-There are also similar oscillations at the wall due to a thermocapillary force.}
+\caption{The Irving--Kirkwood stress tensor components for the combined fluid confined between two walls at $T^{*} = 0.8$ and $T^{*} = 0.9$ was time--averaged over $1 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+Both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
+Similar to Figure \ref{PisVirStress}, there is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
+However, this peak is divided into two with a reduction in the stress directly at the interface.
+This difference to the Virial stress arises because the Irving--Kirkwood stress does not depend on the local density. 
+The normal components of the stress are constant across the system as expected.
+}
 \label{PisIKStress}
 \end{figure*}
-\FloatBarrier
+\FloatBarrier 
 The fluids were prepared at $P^{*}=0.1$ and $T^{*}=0.8$ and $T^{*}=0.9$ as before.
 Since the Irving--Kirkwood stress tensor was more computationally expensive (see Section \ref{CalcStress}), the equilibrium simulations were only run for $1 \times 10^{6}$ timesteps, resulting in a greater amount of statistical error.
-This produced the time--averaged stress profiles shown in Figure \ref{PisIKStress}.
-The tangential component of the Irving--Kirkwood stress shows a similar peak to the Virial stress whilst the normal component is constant throughout, as expected.
+This produced the time--averaged stress shown in Figure \ref{PisIKStress}.
+The tangential component shows a similar profile to the Virial stress although the interfacial peak is divided into two with a reduction in the stress directly at the interface.
+This difference directly at the interface arises since the Irving--Kirkwood does not depend on local density.
+The normal component of the Irving--Kirkwood stress is constant throughout representing the isotropy of the system in this direction.
 \FloatBarrier
 
 \begin{figure*}[h]
 \centering
-\includegraphics[scale=0.8]{PisIKForce}
-\caption{The gradient of the Irving--Kirkwood stress--tensor with respect to temperature shows a peak across the interfacial region, representing the origin of the Marangoni force. This occurs with a similar maginitude to the gradient of the Virial stress--tensor although like the stress profile, the Irving--Kirkwood gradient is split into two peaks.
-In both gradient profiles, there is no net gradient in the bulk and thus there will be no body force acting in the fluid bulk.}
+\includegraphics[scale=1.0]{PisIKForce}
+\caption{The derivate of the tangential component of the Irving--Kirkwood stress with respect to temperature was calculated using the finite difference approximation.
+There is an analogous negative peak in the interfacial region to Figure \ref{PisVirForce}, with a similar magnitude and spatial extent.
+However, the peak in the Irving--Kirkwood derivative is split into two.
+This difference arises because unlike the Virial stress, the Irving--Kirkwood stress does not depend on local density.
+When combined with a specified temperature gradient, a force in the opposite direction to a temperature gradient is generated, imitating the Marangoni force.
+The derivative in the bulk is zero, providing no body force away from the interface.
+}
 \label{PisIKForce}
 \end{figure*}
 The finite difference method was again used to calculate the derivative of the stress with respect to temperature and this is compared to the Virial result in Figure \ref{PisIKForce}.
@@ -112,10 +124,14 @@ This is probably a result of the reduction in density at the interface affecting
 
 \begin{figure*}[h]
 \centering
-\includegraphics[scale=0.8]{PisIKFlow}
-\caption{The flow profile calculated using the Irvining--Kirkwood Marangoni flow shows a similar profile to that calculated from the Virial force, with a sharp peak at the interface and a linear Couette flow into the bulk.
-The peak value is not as large as that from the Virial force as a result of the sharp reduction of the Irving--Kirkwood stress gradient directly at the interface.
-The Virial flow is symmetric whilst the Irving--Kirkwood flow is not, this is probably a result of the greater degree of noise in the Irving--Kirkwood gradient due to a short simulation time.}
+\includegraphics[scale=1.0]{PisIKFlow}
+\caption{The velocity profile of a confined fluid at $T^{*}=0.85$ with an applied force calculated from Figure \ref{PisIKForce} was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+This is compared to the velocity profile produced using the force calculated from the Virial stress.
+Both show a steady state negative interfacial peak, corresponding to a Marangoni flow in the opposite direction to the temperature gradient, with a linear decay into the bulk.
+The peak value using the force calculated from the Irving--Kirkwood stress is not as large as that using the force calculated from the Virial stress.
+This is a result of the reduction of the Irving--Kirkwood stress derivative directly at the interface.
+Moreover, the Virial flow is symmetric about the interface whilst the Irving--Kirkwood flow is not. 
+This is probably a result of the increase in noise in the Irving--Kirkwood derivative due to a shorter simulation time.}
 \label{PisIKFlow}
 \end{figure*}
 Using a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$ to compute the Irving--Kirkwood artificial body force, an equilibrium simulation at $T^{*} = 0.85$ was run for $40 \times 10^{6}$ timesteps.

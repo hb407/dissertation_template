@@ -22,7 +22,7 @@ Structural layering of the fluid creates oscillations in the density close to th
 \begin{figure*}[h]
 \centering
 \includegraphics[scale=1.0]{PisVirStress}
-\caption{The Virial stress tensor components for the combined fluid confined between two walls at $T^{*} = 0.8$ and $T^{*} = 0.9$ was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+\caption{The Virial stress tensor components for the combined fluid confined between two walls at $T^{*} = 0.8$ and $T^{*} = 0.9$ were time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
 Both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
 There is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
 This can be related to the surface tension and its temperature dependence is the driving force for the Marangoni effect.
@@ -86,7 +86,7 @@ To verify if the difference in these methods has a significant effect on the mea
 \begin{figure*}[h]
 \centering
 \includegraphics[scale=1.0]{PisIKStress}
-\caption{The Irving--Kirkwood stress tensor components for the combined fluid confined between two walls at $T^{*} = 0.8$ and $T^{*} = 0.9$ was time--averaged over $1 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+\caption{The Irving--Kirkwood stress tensor components for the combined fluid confined between two walls at $T^{*} = 0.8$ and $T^{*} = 0.9$ were time--averaged over $1 \times 10^{6}$ timesteps of length $0.001\ \tau$.
 Both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
 Similar to Figure \ref{PisVirStress}, there is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
 However, this peak is divided into two with a reduction in the stress directly at the interface.
@@ -110,9 +110,9 @@ The normal component of the Irving--Kirkwood stress is constant throughout repre
 \caption{The derivate of the tangential component of the Irving--Kirkwood stress with respect to temperature was calculated using the finite difference approximation.
 There is an analogous negative peak in the interfacial region to Figure \ref{PisVirForce}, with a similar magnitude and spatial extent.
 However, the peak in the Irving--Kirkwood derivative is split into two.
-This difference arises because unlike the Virial stress, the Irving--Kirkwood stress does not depend on local density.
+This difference arises because, unlike the Virial stress, the Irving--Kirkwood stress does not depend on local density.
 When combined with a specified temperature gradient, a force in the opposite direction to a temperature gradient is generated, imitating the Marangoni force.
-The derivative in the bulk is zero, providing no body force away from the interface.
+The derivative in the bulk is zero, providing no body force acting on the fluid away from the interface.
 }
 \label{PisIKForce}
 \end{figure*}
@@ -161,10 +161,11 @@ As discussed before, the Irving--Kirkwood analysis was computationally expensive
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Period10Rho}
-\caption{The number--density of the component fluids at $T^{*}=0.8$ and $T^{*}=0.9$ shows a binary--mixture with the interface at around $z'=0.5$.
-With the periodic boundary conditions, there are two interfaces per simulation box.
-The number density falls at higher temperature and the position of the interface is slightly shifted, this shift must be removed before calculating the stress--gradient.}
+\includegraphics[scale=1.0]{Period10Rho}
+\caption{The number density for the two fluids periodic in all dimensions at $T^{*} = 0.8$ and $T^{*} = 0.9$ was time--averaged over $10 \times 10^{6}$ timesteps of length $0.001\ \tau$. 
+The bulk density is uniform, representing a fluid state, and the interfaces manifest themselves as a sharp change in the densities of the two fluids.
+Between the two temperatures the position of the interface is slightly shifted, this must be corrected before calculating the stress derivative.
+}
 \label{Period10Rho}
 \end{figure}
 After this period, the density profile (plotted in Figure \ref{Period10Rho}) showed a uniform density in the fluid bulk and a sharp interfacial region as expected.
@@ -174,18 +175,24 @@ Before calculating the Marangoni force from the stress profile, this shift was r
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Period10VirStress}
-\caption{The tangential component of the Virial stress--tensor shows a bulk value of $-P_{ext}$ and a peak at the interfaces due to the anisotropy of the interparticle fluids at these points.
-This peak has a similar form to that seen in the fluid confined between two wall, seen in Figure \ref{PisVirStress}.
+\includegraphics[scale=1.0]{Period10VirStress}
+\caption{The Virial stress tensor components for the combined fluid periodic in all dimensions $T^{*} = 0.8$ and $T^{*} = 0.9$ were time--averaged over $10 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+Both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
+There is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
+This peak has a similar form that seen in Figure \ref{PisVirStress} and its temperature dependence provides the origin of the Marangoni effect.
+There is also a change in the normal component at the interface, resulting from the dependence of the Virial stress on density deviations.
 }
 \label{Period10VirStress}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Period10IKStress}
-\caption{Similarly to Figure \ref{PisIKStress}, the Irving--Kirkwood stress for the binary--mixture periodic in three dimensions matches the Virial stress closely except directly at the interfaces.
-The Irving--Kirkwood and Virial stress both show peaks of a similar magnitude and spatial coverage but the peak in the Irving--Kirkwood stress is again split into two peaks.
+\includegraphics[scale=1.0]{Period10IKStress}
+\caption{The Irving--Kirkwood stress tensor components for the combined fluid periodic in all dimensions $T^{*} = 0.8$ and $T^{*} = 0.9$ were time--averaged over $10 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+Both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
+There is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
+This peak has a similar form to that seen in the Virial stress, although they deviate directly at the interface.
+Since the Irving--Kirkwood stress does not depend on local density, the normal component is uniform across the system, as expected.
 }
 \label{Period10IKStress}
 \end{figure}
@@ -202,11 +209,12 @@ This guaranteed there would be no net applied force acting on the fluid, even in
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Period10Force}
-\caption{The gradient of the stress--tensor with respect to temperature calculated using equilibrium simulations of $10 \times 10^{6}$ timesteps shows the expected peak at the interfaces. 
-This profile was adjusted to give no net gradient by subtracting the average gradient.
-There appears to be a good correspondence between the Irving--Kirkwood and Virial stress--gradients, however such a short simulation timescale gives a large amount of noise in this gradient profile.
-Consequently, the gradient profiles are not sufficiently precise to use for calculating an artificial body force and applying this to a non--equilibrium simulation.
+\includegraphics[scale=1.0]{Period10Force}
+\caption{The derivate of the tangential component of the Irving--Kirkwood and Virial stress with respect to temperature was calculated using the finite difference approximation.
+The average value was subtracted to ensure the integral of the derivative profile over all space was zero.
+Both the Virial and Irving--Kirkwood stress derivatives show a negative peak at the interface, with a similar maximum value and spatial extent.
+However, there is too much noise in these profiles, obscuring the fine structure and preventing a definitive comparison.
+Furthermore, these derivatives are not precise enough to be useful for calculating an artificial body force.
 }
 \label{Period10Force}
 \end{figure}
@@ -224,10 +232,12 @@ Considering how similar the Virial and Irving--Kirkwood derivative profiles appe
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Period30VirStress}
-\caption{Running the equilibrium simulation over $30 \times 10^{6}$ timesteps produced a much more precise Virial stress profile with a significant reduction in noise relative to Figure \ref{Period10VirStress}.
-The noise in the bulk stress lies within statistical error and thus is consistent with the hydrostatic pressure.
-This simulation time is too long for the Irving--Kirkwood method to be feasible.
+\includegraphics[scale=1.0]{Period30VirStress}
+\caption{The Virial stress tensor components for the combined fluid periodic in all dimensions $T^{*} = 0.8$ and $T^{*} = 0.9$ were time--averaged over $30 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+This produced a significant reduction in noise relative to Figure \ref{Period10VirStress}.
+As before, both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
+There is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
+The normal component at the interface also deviates from the bulk value as a result of the dependence of the Virial stress on the local density.
 }
 \label{Period30VirStress}
 \end{figure}
@@ -239,9 +249,11 @@ For both temperatures, the profiles show much less noise compared to Figure \ref
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Period30VirForce}
-\caption{The Virial stress gradient calculated using equilibrium simulations of $30 \times 10^{6}$ timesteps showed significantly less noise than the equilibrium simulations of $10 \times 10^{6}$ timesteps.
-Having subtracted the average value, the plot confirms there is a sharp and symmetric interfacial peak with an opposing bulk derivative.
+\includegraphics[scale=1.0]{Period30VirForce}
+\caption{The derivate of the tangential component of the Virial stress was calculated using the finite difference approach.
+The average value was subtracted to ensure the integral of the derivative profile over all space was zero.
+There is a significant reduction in noise compared to Figure \ref{Period10Force}.
+A sharp, negative peak can be seen at the interface, leading to the Marangoni force, and an opposing derivate occurs in the bulk of the fluid, yielding a balancing back flow.
 }
 \label{Period30VirForce}
 \end{figure}
@@ -257,10 +269,11 @@ This simulation was run for $40 \times 10^{6}$ timesteps, and $v^{*}_x(z')$ was 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.8]{Period30VirFlow}
-\caption{The flow profile calculated from a non--equilibrium simulation using the stress gradient shown in Figure \ref{Period30VirForce} and a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$ has a large amount of noise and is not very conclusive.
-There is a net flow velocity despite the average gradient being set to zero, it is unlikely this could be improved upon without artificially fixing the centre--of--mass.
-Despite this, the fluid velocity relative to this centre--of--mass motion suggests a negative peak at the interfaces with some back flow in the bulk regions, satisfying Levich's requirement of a stationary net flow.\cite{Levich}
- }
+\caption{The velocity profile of an infinite binary--mixture at $T^{*}=0.85$, with an applied force calculated using Figure \ref{Period30VirForce} and temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$, was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
+A non--equilibrium emerges with a non--zero average velocity (indicated by the hashed line), despite the average derivative being fixed to zero.
+It is unlikely this could be removed without artificially fixing the centre--of--mass.
+Despite this, the fluid velocity relative to this centre--of--mass motion suggests a Marangoni flow at the interfaces with an opposing flow in the bulk regions, as predicted by Levich.\cite{Levich}
+}
 \label{Period30VirFlow}
 \end{figure}
 

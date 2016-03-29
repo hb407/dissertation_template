@@ -6,7 +6,6 @@ Where possible, this force was applied as an artificial body force in a simulati
 
 Two key systems were studied, a symmetric binary–mixture under three--dimensional periodic boundary conditions, and a binary--mixture periodic in the $(x,y)$ plane but confined between two walls in the $z$--dimension, as shown in Figure \ref{SetUp}.
 All molecular dynamics simulations were executed using the LAMMPS (Large Atomic and Molecular Massively Parallel Simulator) package.\cite{LAMMPS}  
-g
 \begin{figure}[h]
 	\begin{subfigure}{.5\linewidth}
 		\includegraphics[scale=0.25]{AABB.png}
@@ -37,7 +36,7 @@ where
 \phi \left( r_{ij} \right) &= 0\ \mathrm{for} r > r_{c}.
 \end{align}
 This potential involves an attractive $r_{ij}^{-6}$ term accounting for the long--range Van der Waal's interaction and a short--range $r_{ij}^{-12}$ repulsive term corresponding to the Pauli repulsion between particles.
-The length--scale of the potential is given by $\sigma_{ij}$ (chosen to be equal for all pairs of $i$ and $j$) whilst the parameter $\epsilon_{ij}$ determines the strength of the interaction. 
+The length--scale of the potential is given by $\sigma_{ij}$ (chosen to be equal for all pairs of $i$ and $j$) while the parameter $\epsilon_{ij}$ determines the strength of the interaction. 
 
 The miscibility of the two fluids (A and B) can be controlled using the relative values of the interaction parameter; in this study the values chosen were:
 \begin{align}
@@ -59,8 +58,8 @@ In molecular dynamics simulations, the temperature is controlled using thermosta
 
 Thermostats work by applying a stochastic frictional force to particles, either by adding a random force to momenta (Langevin)\cite{Langevin} or reassigning the velocity of randomly chosen particles to that obtained from the Maxwell distribution (Anderson)\cite{AndersonTherm}.
 The Nos\'{e}--Hoover thermostat was used throughout this study.
-This introduces a fictitious frictional force into the equations of motion which adjusts the particle velocities until the temperature is equal to the desired value.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
-The equations of motion in 3D become:
+This introduces a fictitious frictional force into the equations of motion, adjusting the particle velocities until the temperature is equal to the desired value.\cite{NoseHoover1, NoseHoover2, NoseHoover3}
+The equations of motion in three--dimensions become:
 \begin{align}
 m_{i}\frac{\mathrm{d}^{2}\mathbf{r}_{}}{\mathrm{d} t ^{2}} =& \mathbf{f}_{i} - \zeta m_{i} \mathbf{v}_{i}\\
 \frac{\mathrm{d} \zeta (t)}{\mathrm{d} t} =& \frac{1}{Q}\left[ \sum_{i=1}^{N} m_{i} \frac{\mathbf{v}^{2}_{i}}{2} - \frac{3N+1}{2}k_{\mathrm{B}}T\right].
@@ -89,19 +88,19 @@ Solid walls in the system were constructed with a harmonically bonded lattice us
 
 \subsection{Calculating the stress tensor}\label{CalcStress}
 The Virial stress tensor was calculated using an in--built function within the LAMMPS package, which returns the stress tensor for each atom.
-However, LAMMPS does not have a method for calculating the Irving--Kirkwood stresstensor.
-Instead this was calculated by dumping the particle positions on a given timestep to a file and post--processing.
+However, LAMMPS does not have a method for calculating the Irving--Kirkwood stress tensor.
+Instead this was calculated by saving the particle positions on a given timestep to a file and post--processing.
 The stress tensor was then computed using a programme written by R. Ganti and adapted for the specific systems studied.
 Since the Virial method is implemented in parallel whilst the Irving--Kirkwood method is not, the Irving--Kirkwood stress was significantly more expensive to compute, incurring approximately a 4-fold increase in computational time.
 
 \subsection{Computing averages}\label{ComputeAve}
 Usually time--averages of physical observables are calculated in molecular dynamics simulations. 
 In the systems studied, the observables are the number density, stress tensor and particle velocities.
-Their values were measured every timestep and spatially averaged for $400$ planar slabs across the z--dimension of the box.
+Their values were measured on every timestep and spatially averaged into $400$ planar slabs across the z--dimension of the box.
 These spatial averages were then time--averaged over the full duration of the simulation.
 
 Under the ergodic hypothesis, time--averages can be equated to ensemble averages for an infinitely long simulation time.\cite{Bopp2008}
-Practically, however, these averages must be evaluated over a finite time period and have an associated statistical error.
+Practically, however, these averages must be evaluated over a finite time period, and have an associated statistical error.
 The method of block--averaging, developed by Flybjerg and Peterson, provides an efficient technique for computing this error.\cite{Flyvbjerg1989}
 They show that the variance of an observable, $A$, can be estimated by
 \begin{equation}
@@ -138,7 +137,7 @@ This ensured decorrelation of the data and produced a reliable estimate of the s
 \end{figure*}
 
 A blocking--analysis for a binary--mixture identical to those used throughout this study was executed over a simulation time of $1,000\ \tau$ and $10,000\ \tau$, as shown in Figure \ref{blocking}.
-The plateau begins at a block length of $10\ \tau$ for the long simulation and $5\ \tau$ for the shorter run, with little increase in the error of the variance until a much larger block size.
+The plateau begins at a block length of $10\ \tau$ for the long simulation and $5\ \tau$ for the shorter run, with little increase in the error of the variance until a much larger block size is reached.
 Considering this result, a block length of $10\ \tau$ was used to provide a good estimate for the error of all time--averages calculated in the subsequent simulations.
 \FloatBarrier
 

@@ -1,11 +1,11 @@
 \section{Theoretical Background}
 \subsection{The macroscopic description}\label{Macroscopic}
-The motion of fluids may be described macroscopically using the  Navier--Stokes equation.\cite{simpleLiquids} 
+The motion of fluids may be described macroscopically using the Navier--Stokes equation.\cite{simpleLiquids} 
 This models liquids as a continuous medium and combines the conservation of mass and momentum with the relation between the force on a volume element and the local fluid flow.
-In the low Reynolds-number regime the flow velocity is small and the Navier--Stokes equation reduces to
+In the low Reynolds-number regime the flow velocity is small, and the Navier--Stokes equation reduces to
 \begin{equation}
 \label{NavierStokes}
-\eta \nabla^{2}\mathbf{\nu}(r,t) = \nabla P(r,t) - \mathbf{f}(r).
+\eta \nabla^{2}\mathbf{v}(r,t) = \nabla P(r,t) - \mathbf{f}(r).
 \end{equation}
 Equation \ref{NavierStokes} shows that motion in fluids \textit{can only} occur under the presence of a pressure gradient or external forces.
 In the case of Marangoni flows, motion due to the temperature gradient must result from induced local pressure gradients, which may be derived from thermodynamics.
@@ -66,10 +66,10 @@ Substituting Equation \ref{ExcessEnthalpy} into Equation \ref{NavierStokes} and 
 v (z=0) = - \frac{1}{\eta}\int_{0}^{\infty} \mathrm{d}z\, z \Delta h(z) \frac{\partial T}{\partial x}
 \end{equation}
 where it has been assumed that the fluid in the bulk is at rest ($v_{x}(z=\infty)=0$).
-This expression is almost equivalent to that derived by Derjaguin et al., except for a factor of two, suggesting there may be an error in Derjaguin's approach.\cite{SurfaceForces, Anderson}
+This expression is almost equivalent to that derived by Derjaguin et al., except for a factor of two, suggesting a potential error in Derjaguin's approach.\cite{SurfaceForces, Anderson}
 
 \subsection{A microscopic approach}
-The Marangoni effect is a phenomenon occurring on microscopic length--scales, and hence this macroscopic hydrodynamic approach is not entirely appropriate.
+The Marangoni effect is a phenomenon occurring on microscopic length--scales, and hence a macroscopic hydrodynamic approach is not entirely appropriate.
 Instead of solving the Navier--Stokes equation, the velocity should be related directly to the local forces acting on the fluid, which may be calculated from the local stress tensor,
 \begin{equation}
 \label{ForceStress}
@@ -84,7 +84,7 @@ f_{x}(z) = - \left( \frac{\partial \sigma_{xx}(z,x)}{\partial T} \right) \left( 
 
 \subsection{The Finite Difference Approach}
 Equation \ref{ForceStressTemp} shows that the force due to a temperature gradient can be inferred from the temperature variation of the stress tensor. 
-To first order, the temperature gradient of the stress tensor can be calculated using a finite difference approach as
+To a first order approximation, the temperature gradient of the stress tensor can be calculated using a finite difference approach as
 \begin{equation}
 \label{FinDiff}
 \left( \frac{\partial \sigma_{xx}(z,x)}{\partial T} \right) \approx \frac{\sigma_{xx}^{T_{2}}(z,x) - \sigma_{xx}^{T_{1}}(z,x)}{T_{2} - T_{1}}.
@@ -119,7 +119,7 @@ P_{\alpha \beta}(\mathbf{r})=\frac{1}{V} \left( -m(\mathbf{r})\left< \nu_{\alpha
 Clausius' formulation calculates the local pressure by considering the forces acting on particles located within a volume element at $\mathbf{r}$.
 
 In an inhomogeneous system there is an ambiguity over which particles should contribute to the force at a given position.\cite{MolTheoryCap,VarnikBinder,Rowlinson1982}
-This was first reported by Irving and Kirkwood\cite{IrvingKirkwood1949,IrvingKirkwood1950} who describe an alternative method that computes the pressure tensor from the forces acting across an infinitesimal surface $\mathrm{d}\mathbf{A}$ located at $\mathbf{r}$.
+This was first reported by Irving and Kirkwood\cite{IrvingKirkwood1949,IrvingKirkwood1950} who described an alternative method that computes the pressure tensor from the forces acting across an infinitesimal surface $\mathrm{d}\mathbf{A}$ located at $\mathbf{r}$.
 They calculate the local pressure tensor using only pairs of particles for which the line connecting their centers of mass passes through $\mathrm{d}\mathbf{A}$.
 For planar systems, such as those involving an interface in the $(x,y)$ plane, the pressure tensor depends only on the distance from this interface and the normal and tangential components can be expressed as
 \begin{align}
@@ -129,7 +129,8 @@ P_{\mathrm{N}}^{\mathrm{IK}}(z) &= \rho(z)k_{\mathrm{B}}T-\frac{1}{2A} \left< \s
 P_{\mathrm{T}}^{\mathrm{IK}}(z) &= \rho(z)k_{\mathrm{B}}T-\frac{1}{4A} \left< \sum_{i \neq j} \frac{x^{2}_{ij} + y^{2}_{ij}}{r_{ij}} \frac{U'(r_{ij})}{|z_{ij}|} \Theta \left( \frac{z-z_{i}}{z_{ij}}\right) \Theta \left( \frac{z_{j} - z}{z_{ij}} \right) \right>.
 \end{align}
 
-The Irving--Kirkwood stress has key advantages over the Virial method for studying confined systems, in particular it yields a normal component independent of local fluctuations in the number density.
+The Irving--Kirkwood stress has advantages over the Virial method for studying confined systems.
+In particular it yields a normal component independent of local fluctuations in the number density.
 Density fluctuations occur close to walls due to structural layering of the fluid, and there is reduced density at liquid--liquid interfaces from the finite width of the interfacial region.
 As a result, oscillations in the normal component of the Virial pressure are observed in such systems\cite{VarnikBinder} whilst the Irving--Kirkwood pressure yields a constant normal component, equal to the bulk hydrostatic pressure.
 This is more consistent with the expected result since the fluid is isotropic in the direction normal to the surface.

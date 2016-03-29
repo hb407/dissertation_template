@@ -5,7 +5,7 @@ The fluid was prepared as described in Section \ref{SystemPrep} at a pressure of
 The confining walls were used as a piston to control the pressure.
 
 \subsubsection{Using the Virial stress}\label{VirialStressPiston}
-Once equilibrated, the simulations were run for $40 \times 10^{6}$ timesteps of length $0.001\ \tau$ and the number density and Virial stress tensor were computed every timestep.
+Once equilibrated, the simulations were run for $40 \times 10^{6}$ timesteps of length $0.001\ \tau$ and the number density and Virial stress tensor were computed on every timestep.
 These values were then time-averaged to produce profiles for the number density and $\sigma(z')$ as shown in Figures \ref{PisVirRho} and \ref{PisVirStress}. 
 
 \FloatBarrier
@@ -59,7 +59,7 @@ The oscillations at the liquid--solid surface create the thermophoretic force an
 
 Using the central $1/3$ of the derivative profile and a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$, an artificial Marangoni force was computed through Equation \ref{ForceStressTemp}.
 This force was applied to an identical system prepared at $T^{*} = 0.85$.
-An equilibrium simulation was then run for $40 \times 10^{6}$ timesteps and the time--average of the x--component of the fluid velocity, $v^{*}_{x}(z')$, was computed.
+An equilibrium simulation was then run for $40 \times 10^{6}$ timesteps, and the time--average of the x--component of the fluid velocity $v^{*}_{x}(z')$ was computed.
 The momenta of the walls in the $x,y$ plane were fixed such that they provided a stationary reference point for the fluid, creating a momentum sink.
 
 \begin{figure*}[h!]
@@ -91,7 +91,7 @@ Both the normal and tangential stress show bulk values equal to $-P_{ext}$, repr
 Similar to Figure \ref{PisVirStress}, there is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
 However, this peak is divided into two with a reduction in the stress directly at the interface.
 This difference to the Virial stress arises because the Irving--Kirkwood stress does not depend on the local density. 
-The normal components of the stress are constant across the system as expected.
+The normal components of the stress are constant across the system, as expected.
 }
 \label{PisIKStress}
 \end{figure*}
@@ -101,7 +101,7 @@ Since the Irving--Kirkwood stress tensor was more computationally expensive (see
 This produced the time--averaged stress shown in Figure \ref{PisIKStress}.
 The tangential component shows a similar profile to the Virial stress although the interfacial peak is divided into two with a reduction in the stress directly at the interface.
 This difference directly at the interface arises since the Irving--Kirkwood does not depend on local density.
-The normal component of the Irving--Kirkwood stress is constant throughout representing the isotropy of the system in this direction.
+The normal component of the Irving--Kirkwood stress is constant throughout, representing the isotropy of the system in this direction.
 \FloatBarrier
 
 \begin{figure*}[h!]
@@ -116,7 +116,7 @@ The derivative in the bulk is zero, providing no body force acting on the fluid 
 }
 \label{PisIKForce}
 \end{figure*}
-The finite difference method was again used to calculate the derivative of the stress with respect to temperature and this is compared to the Virial result in Figure \ref{PisIKForce}.
+The finite difference method was again used to calculate the derivative of the stress with respect to temperature, and this is compared to the Virial result in Figure \ref{PisIKForce}.
 Still focussing on the central $1/3$ of the fluid, there is a good correspondence between the two derivatives and the interfacial peak occurs both across the same spatial region and with the same maximum value.
 The most significant difference occurs directly at the interface, where there is a sharp reduction in the derivative of the Irving--Kirkwood stress.
 This is probably a result of the reduction in density at the interface affecting the Virial stress--tensor more than the Irving--Kirkwood stress--tensor.
@@ -179,7 +179,7 @@ Before calculating the Marangoni force from the stress profile, this shift was r
 \caption{The Virial stress tensor components for the combined fluid periodic in all dimensions $T^{*} = 0.8$ and $T^{*} = 0.9$ were time--averaged over $10 \times 10^{6}$ timesteps of length $0.001\ \tau$.
 Both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
 There is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
-This peak has a similar form that seen in Figure \ref{PisVirStress} and its temperature dependence provides the origin of the Marangoni effect.
+This peak has a similar form to that seen in Figure \ref{PisVirStress}, and its temperature dependence provides the origin of the Marangoni effect.
 There is also a change in the normal component at the interface, resulting from the dependence of the Virial stress on density deviations.
 }
 \label{Period10VirStress}
@@ -220,7 +220,7 @@ Furthermore, these derivatives are not precise enough to be useful for calculati
 \end{figure}
 The derivative profile shows a similar interfacial peak to Figure \ref{PisIKForce}. 
 The maximum values are similar, suggesting that fixing the total force to zero correctly adjusts the derivatives to give a physically meaningful Marangoni force.
-Again there is a reasonably good correspondence between the derivatives calculated from the Irving--Kirkwood and Virial stress tensors, and the magnitude of the Irving--Kirkwood peak is reduced directly at the interface.
+Again, there is a reasonably good correspondence between the derivatives calculated from the Irving--Kirkwood and Virial stress tensors, and the magnitude of the Irving--Kirkwood peak is reduced directly at the interface.
 In the bulk fluid, the derivative opposes the interfacial peak, generating the back force which balances the Marangoni force.
 However, the profile as a whole shows too much noise for the fine--structure to be determined and is not of sufficient quality to be used in calculating an artificial body--force.
 
@@ -306,8 +306,8 @@ A piston barostat and Nos\'{e}--Hoover thermostat were used and each system was 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=1.0]{SurfRho}
-\caption{The number density for the confined binary--mixture with a non--ionic surfactant fraction of $0.0194$ and at $T^{*}=0.8$ was time--averaged over $30 \times 10^{6}$ timesteps of length $0.001\ \tau$. 
-There is a uniform density in the bulk and an interface represented by a sharp change in the densities of Fluid A and Fluid B.
+\caption{The number density for the confined binary--mixture with a non--ionic surfactant fraction of $0.0194$, pressure of $P^{*}=0.1$ and at $T^{*}=0.8$ was time--averaged over $30 \times 10^{6}$ timesteps of length $0.001\ \tau$. 
+There is a uniform density in the bulk, and an interface represented by a sharp change in the densities of Fluid A and Fluid B.
 The surfactant particles are localised at the interface with a low solubility.
 They show the correct orientation, with `Head' particles interacting most strongly with Fluid A and `Tail' particles with Fluid B.
 }
@@ -371,7 +371,7 @@ This may be the result of the secondary peaks that emerge in Figure \ref{SurfFor
 The interfacial velocity can be taken as the peak of the flow shown in Figure \ref{SurfFlow}.
 Comparing these values against the surfactant fraction shows a reduction in the magnitude of this peak value as the surfactant fraction increases, as shown in Figure \ref{InterVel}.
 Above a fraction of $0.025$ it appears the Marangoni effect has been removed completely.
-This retardation has been observed experimentally by Barton and Subramanian and is discussed in their study on the relation between droplet size and upward motion under a vertical temperature gradient.\cite{BartonSubramanian} 
+This retardation has been observed experimentally by Barton and Subramanian, and is discussed in their study on the relation between droplet size and upward motion under a vertical temperature gradient.\cite{BartonSubramanian} 
 They note that droplets actually sink on the addition of a nonionic surfactant, indicating the eradication of the Marangoni force and the dominance of gravity.
 
 \FloatBarrier

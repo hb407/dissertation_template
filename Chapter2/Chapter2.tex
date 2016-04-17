@@ -82,7 +82,7 @@ The Marangoni force occurs due to temperature gradients and $f_{x}(z)$ can be ca
 f_{x}(z) = - \left( \frac{\partial \sigma_{xx}(z,x)}{\partial T} \right) \left( \frac{\partial T}{\partial x} \right).
 \end{equation}
 
-\subsection{The Finite Difference Approach}
+\subsection{The finite difference approach}
 Equation \ref{ForceStressTemp} demonstrates that the Marangoni force can be inferred from the temperature dependence of the stress tensor. 
 To a first order approximation, the temperature gradient of the stress tensor can be estimated from a finite difference as
 \begin{equation}
@@ -126,8 +126,9 @@ For a planar system with an interface in the $(x,y)$ plane, the pressure tensor 
 \label{IKpressureN}
 P_{\mathrm{N}}^{\mathrm{IK}}(z) &= \rho(z)k_{\mathrm{B}}T-\frac{1}{2A} \left< \sum_{i \neq j} \frac{|z_{ij}|}{r_{ij}} U'(r_{ij}) \Theta \left( \frac{z-z_{i}}{z_{ij}}\right) \Theta \left( \frac{z_{j} - z}{z_{ij}} \right) \right>,\\
 \label{IKpressureT}
-P_{\mathrm{T}}^{\mathrm{IK}}(z) &= \rho(z)k_{\mathrm{B}}T-\frac{1}{4A} \left< \sum_{i \neq j} \frac{x^{2}_{ij} + y^{2}_{ij}}{r_{ij}} \frac{U'(r_{ij})}{|z_{ij}|} \Theta \left( \frac{z-z_{i}}{z_{ij}}\right) \Theta \left( \frac{z_{j} - z}{z_{ij}} \right) \right>.
+P_{\mathrm{T}}^{\mathrm{IK}}(z) &= \rho(z)k_{\mathrm{B}}T-\frac{1}{4A} \left< \sum_{i \neq j} \frac{x^{2}_{ij} + y^{2}_{ij}}{r_{ij}} \frac{U'(r_{ij})}{|z_{ij}|} \Theta \left( \frac{z-z_{i}}{z_{ij}}\right) \Theta \left( \frac{z_{j} - z}{z_{ij}} \right) \right>,
 \end{align}
+where $\Theta{x}$ is the Heaviside step function.
 
 For studying confined systems, the Irving--Kirkwood stress has many advantages.
 In particular it yields a normal component independent of local fluctuations in the number density.

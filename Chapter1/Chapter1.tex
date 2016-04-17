@@ -6,11 +6,11 @@ Subsequently, many scientific studies have focused on temperature induced Marang
 Through the works of Derjaguin et al.\cite{SurfaceForces} and Levich\cite{Levich}, a thorough macroscopic description has been developed.
 Anderson summarises these results in the context of phoresis.\cite{Anderson}
 
-The Marangoni effect can be described as resulting from an interfacial tension gradient.
+Fundamentally, the Marangoni effect can be described as resulting from an interfacial tension gradient.
 Experimental studies indicate hot fluids have a lower surface tension than cold fluids,\cite{Ficalbi1972,Kayser1975} inducing motion in the opposite direction to a temperature gradient.
 However, this analysis does not progress far since the temperature dependence of surface tension is not rigorously understood.
 
-Levich used hydrodynamics to derive the fluid velocity across a shallow pan in terms of $\partial \gamma / \partial T$.\cite{Levich}
+Levich used hydrodynamics to derive the fluid velocity across a shallow pan in terms of the surface tension gradient, $\partial \gamma / \partial T$.\cite{Levich}
 He achieved this using a continuity equation setting the total flow to zero.
 This implied that any interfacial flows are accompanied by an opposing flow in the bulk fluid.
 
@@ -21,8 +21,6 @@ However, these theories are founded upon a thermodynamic backbone which relies o
 Marangoni flows are a microscopic phenomenon, localised at fluid interfaces, and cannot be faithfully described using thermodynamics.
 Instead, a microscopic theory using interparticle interactions is required.
 No such theory currently exists, and there has been limited research in this area.\cite{HolgerBoppHampe}
-
-By studying the microscopic properties of a liquid--liquid interface, this report aims to model the Maragnoni effect and investigate the link between microscopic fluid properties and its macroscopic motion.
 
 \subsection{Experimental studies}
 Despite the lack of a microscopic theory, there has been substantial experimental research into the Marangoni effect.
@@ -47,7 +45,7 @@ With many potential applications, the search for a microscopic description is be
 Marangoni flows are dynamic and can be studied using a time--dependent method such as molecular dynamics.
 Modelling the behaviour of a partially miscible binary--mixture under the effect of a temperature gradient might appear trivial; create a temperature gradient in a system and measure the subsequent particle velocities.
 Hampe et al. used this non-equilibrium approach in their study of the Marangoni effect.\cite{HolgerBoppHampe}
-Despite positive results, this method is complicated by periodic boundary conditions that require the simulation box to have two temperature gradients, creating a periodic temperature gradient.
+Despite positive results, this method is complicated by periodic boundary conditions that require the simulation box to have two temperature gradients, creating a periodic temperature profile.
 Any induced flow then generates an opposing concentration gradient, and an equilibrium state is reached.
 
 In the present study, we investigate the use of equilibrium molecular dynamics simulations for modelling the Marangoni effect.
@@ -58,6 +56,6 @@ By measuring the velocity profile in this final simulation, Marangoni flows can 
 Using this equilibrium method, we show that a Marangoni force at a liquid--liquid interface can be calculated from the transverse stress tensor and used to generate a Marangoni flow.
 The effect of surfactants on the magnitude of this flow is then investigated.
 
-A theoretical description of the Marangoni effect is described in Section 2, whilst Section 3 outlines the computational methods used.
-The simulation results are discussed in Section 4.
-Section 5 summarises the conclusions and proposes directions for future studies.
+%A theoretical description of the Marangoni effect is described in Section 2, whilst Section 3 outlines the computational methods used.
+%The simulation results are discussed in Section 4.
+%Section 5 summarises the conclusions and proposes directions for future studies.

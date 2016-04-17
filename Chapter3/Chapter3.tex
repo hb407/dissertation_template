@@ -24,7 +24,7 @@ In the confined fluid, the walls are used to create a piston and an external for
 	\label{SetUp}
 \end{figure}
 
-\subsection{Interaction Model}\label{InteractionModel}
+\subsection{Interaction model}\label{InteractionModel}
 The fluids were modelled using spherical particles and their interaction was tuned to a pair--wise truncated Lennard--Jones potential:
 \begin{equation}
 V \left( \mathbf{r}^{\mathrm{N}} \right) = \frac{1}{2} \sum_{i\neq j} \phi \left( r_{ij} \right)
@@ -47,7 +47,7 @@ The values chosen were:
 in agreement with previous studies on Lennard--Jones binary--mixtures.\cite{MorenzoRazo,Blas,HolgerBoppHampe}
 The cutoff for the potential was $r_{c} = 4\ \sigma$.
 
-\subsection{Reduced Units}\label{ReducedUnits}
+\subsection{Reduced units}\label{ReducedUnits}
 Physical quantities including distances and energies are expressed in terms of reduced units.
 For a Lennard--Jones system, the basic units are $\sigma$ for length, $\epsilon$ for energy and $m$ for mass, from which all other units may be derived.\cite{FrenkelSmit}
 Physical quantities become dimensionless when expressed in terms of these units, for example $r^{*} \equiv r / \sigma$.
@@ -76,7 +76,7 @@ The interface must be sufficiently far from the walls such that this can be igno
 
 Alternatively a Nos\'{e}--Hoover barostat regulates the pressure by adjusting the simulation box dimensions and altering the equations of motion accordingly. \cite{NoseHoover1, NoseHoover2, NoseHoover3}
 When studying surface effects, the box size must only be changed in the direction perpendicular to the interface.
-A change parallel to the interface its area and create an error in the thermodynamic pressure,
+A change parallel to the interface adjusts its area and creates an error in the thermodynamic pressure,
 \begin{equation}
 P = - \left( \frac{\partial F}{\partial V} \right)_{T} + \gamma \left( \frac{\partial A}{\partial V} \right)_{T}.
 \end{equation}

@@ -25,14 +25,14 @@ Structural layering of the fluid creates oscillations in the density close to th
 Both the normal and tangential stress show bulk values equal to $-P_{ext}$, representing the hydrostatic pressure.
 There is a peak in the tangential stress at the interface due to the anisotropy of the interparticle forces in this region.
 This can be related to the surface tension and its temperature dependence is the driving force for the Marangoni effect.
-There is also a change in the normal component at the interface, resulting from the dependence of the virial stress on density deviations.
+There is also a change in the normal component at the interface, resulting from the dependence of the virial stress on the local density.
 Towards the wall there are temperature dependent oscillations in both components, providing the origin of the thermophoretic force.
 }
 \label{PisVirStress}
 \end{figure*}
 
 Both the density and stress profiles show the characteristics expected of a binary--mixture. 
-The bulk density is uniform density and there is an interfacial region of where the density of one species falls sharply and the density of the other increases.
+The bulk density is uniform and there is an interfacial region of where the density of one species falls sharply and the density of the other increases.
 Close to the walls, there are density oscillations resulting from structural layering of the fluid.
 
 The bulk values for the normal and tangential stress components are equal to $-P_{\mathrm{ext}}$, corresponding to the hydrostatic fluid pressure as expected.
@@ -51,7 +51,7 @@ This can be interpreted as a thermophoretic force and is henceforth ignored.
 \caption{The derivate of the tangential component of the virial stress with respect to temperature was calculated using the finite difference approximation.
 This shows a negative peak in the interfacial region.
 When combined with a specified temperature gradient, a force in the opposite direction to a temperature gradient is generated, imitating the Marangoni force.
-The oscillations at the liquid--solid surface create the thermophoretic force and are subsequently ignored.}
+The oscillations at the liquid--solid surface create a thermophoretic force and are subsequently ignored.}
 \label{PisVirForce}
 \end{figure*}
 \FloatBarrier
@@ -66,7 +66,7 @@ The momenta of the walls in the $x,y$ plane were fixed to provide a stationary r
 \includegraphics[scale=1.0]{PisVirFlow}
 \caption{The velocity profile of a confined fluid at $T^{*}=0.85$ with an applied force calculated from Figure \ref{PisVirForce} was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
 A steady state negative interfacial peak emerges, corresponding to a Marangoni flow in the opposite direction to the temperature gradient.
-The magnitude of the peak velocity is approximately 0.16 and this decays linearly to zero at the surface of the bounding walls, corresponding to a Couette flow.}
+This peak decays linearly to zero at the surface of the bounding walls, corresponding to a Couette flow.}
 \label{PisVirFlow}
 \end{figure*}
 The velocity profile is shown in Figure \ref{PisVirFlow}. 
@@ -271,20 +271,19 @@ The time--averaged velocity $v^{*}_x(z')$ was computed to give the profile plott
 \caption{The velocity profile of an infinite binary--mixture at $T^{*}=0.85$, with an applied force calculated using Figure \ref{Period30VirForce} and temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$, was time--averaged over $40 \times 10^{6}$ timesteps of length $0.001\ \tau$.
 A non--equilibrium emerges with a non--zero average velocity (indicated by the hashed line), despite the average derivative being fixed to zero.
 It is unlikely this could be removed without artificially fixing the centre--of--mass.
-Despite this, the fluid velocity relative to this centre--of--mass motion suggests a Marangoni flow at the interfaces with an opposing flow in the bulk regions, as predicted by Levich.\cite{Levich}
+Despite this, the fluid velocity relative to this centre--of--mass motion may suggest a Marangoni flow at the interfaces with an opposing flow in the bulk regions, as predicted by Levich.\cite{Levich}
 }
 \label{Period30VirFlow}
 \end{figure}
 
-% Need to decide how to discuss this figure, possibly waiting on results from current simulations.
-Despite the simulation being run for a long timescale, the velocity profile still retains a lot of statistical noise.
-It would be difficult practically to reduce this noise further.
-Moreover, the average velocity (indicated by the hashed line) is non--zero, indicating centre--of--mass motion during the simulation.
-This motion occurs even though the stress derivative has been adjusted to give no net force overall.
-It is likely that in the absence of a momentum sink for a system like this, it would be very difficult to completely remove this net flow without artificially fixing the centre--of--mass throughout the simulation.
+Despite the stress derivative being adjusted to remove any net force, the velocity profile shows a net centre--of--mass motion (indicated by the hashed line).
+It is possible that this motion could arise from errors due to the linear approximation used to calculate the Marangoni force.
+This may be due to the use of too large a temperature difference.
+Repeating the simulations using temperatures of $T^{*}=0.7$ and $T^{*}=0.9$ produced an even larger centre--of--mass motion, supporting this explanation.
+It is unlikely that in the absence of a momentum sink for a system like this, the net flow could be removed without artificially fixing the centre--of--mass throughout the simulation.
 
-Despite this, the relative motion across the fluid can still be considered, and there does appear to be a velocity peak at the interface (with $v < v_{\mathrm{COM}}$), corresponding to a Marangoni flow, with a back flow in the bulk fluid (with $v > v_{\mathrm{COM}}$) as predicted.
-This result is, however, somewhat ambiguous and there was insufficient time to improve this simulation further.
+Despite this, it may be possible to consider the relative motion across the fluid, and this does appear to show a negative Marangoni flow at the interfaces (with $v < v_{\mathrm{COM}}$) and a back flow in the bulk fluid (with $v > v_{\mathrm{COM}}$) as expected. 
+This conclusion is, however, somewhat ambitious and there was insufficient time to improve the simulation further.
 
 \subsection{The effect of surfactants}\label{SurfResult}
 Surfactant molecules decrease surface tension as they have a favourable interaction with both fluids and bridge the interfacial plane.
@@ -330,7 +329,7 @@ This probably results from an increase in the number density in this region, due
 \label{SurfForce}
 \end{figure}
 
-The virial stress was computed used to compute the temperature derivative of the tangential stress for each surfactant fraction.
+The virial stress used to compute the temperature derivative of the tangential stress for each surfactant fraction.
 These results, plotted in Figure \ref{SurfForce}, show a reduction in the magnitude of the interfacial peak as the surfactant fraction increases, corresponding to a reduction in the Marangoni force.
 
 Two smaller positive peaks on either side of the centre also develop for higher surfactant fractions.

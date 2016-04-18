@@ -58,8 +58,8 @@ The oscillations at the liquid--solid surface create a thermophoretic force and 
 
 Using the central $1/3$ of the derivative profile and a temperature gradient of $\partial T^{*} / \partial x^{*} = 0.001$, an artificial Marangoni force was computed through Equation \ref{ForceStressTemp}.
 This force was applied to an identical system prepared at $T^{*} = 0.85$.
-An equilibrium simulation was then run for $40 \times 10^{6}$ timesteps, and the time--average of the x--component of the fluid velocity $v^{*}_{x}(z')$ was computed.
-The momenta of the walls in the $x,y$ plane were fixed to provide a stationary reference point, creating a momentum sink.
+An equilibrium simulation was then run for $40 \times 10^{6}$ timesteps, and the time--average of the x--component of the fluid velocity $v_{x}(z')$ was computed.
+The momenta of the walls in the $\left( x,y \right)$ plane were fixed to provide a stationary reference point, creating a momentum sink.
 
 \begin{figure*}[h!]
 \centering
@@ -277,10 +277,11 @@ Despite this, the fluid velocity relative to this centre--of--mass motion may su
 \end{figure}
 
 Despite the stress derivative being adjusted to remove any net force, the velocity profile shows a net centre--of--mass motion (indicated by the hashed line).
-It is possible that this motion could arise from errors due to the linear approximation used to calculate the Marangoni force.
-This may be due to the use of too large a temperature difference.
-Repeating the simulations using temperatures of $T^{*}=0.7$ and $T^{*}=0.9$ produced an even larger centre--of--mass motion, supporting this explanation.
-In the absence of a momentum sink for a system like this, it is unlikely that the net flow could be removed without artificially fixing the centre--of--mass throughout the simulation.
+This motion could arise from errors due to the linear approximation used to calculate the Marangoni force.
+For example, the temperature difference may be too large and the linear approximation may not be valid.
+However, repeating the simulations using temperatures of $T^{*}=0.7$ and $T^{*}=0.9$ produced a smaller centre--of--mass motion of $v_{x}(z') = 0.006$.
+It is possible that instead the larger temperature difference creates a less noisy derivative profile, reducing the centre--of--mass motion.
+This suggests that longer simulations aimed at reducing statistical noise could improve the simulation results.
 
 Despite this, it may be possible to consider the relative motion across the fluid, and this does appear to show a negative Marangoni flow at the interfaces (with $v < v_{\mathrm{COM}}$) and a back flow in the bulk fluid (with $v > v_{\mathrm{COM}}$) as expected. 
 This conclusion is, however, somewhat ambitious and there was insufficient time to improve the simulation further.

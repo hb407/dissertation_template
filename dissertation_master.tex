@@ -1,13 +1,12 @@
 \documentclass[a4paper,12pt,openright,oneside]{article}
 %\usepackage[hmarginratio=3:2,vmarginratio=1:1]{geometry}
 \usepackage[top=4cm,bottom=4cm,left=3cm,right=3cm]{geometry}
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage{placeins}
 \usepackage[font=footnotesize,labelfont={bf}]{caption}
 \usepackage[font=footnotesize]{subcaption}
 \usepackage{emptypage}
 \usepackage{subdepth}
-\usepackage{amssymb}
 \usepackage{mathrsfs}
 \usepackage[sort&compress]{natbib}
 \usepackage{graphics}
@@ -19,7 +18,9 @@
 \usepackage{multirow}
 \usepackage[LGR,T1]{fontenc} % notice LGRx instead of LGR
 \usepackage[utf8]{inputenc}   % utf8 is required
-%\usepackage{textgreek}
+\usepackage{textgreek}
+%turn off this command to have continued numebring throughout.
+\makeatletter\@addtoreset{section}{part}\makeatother%
 
 \newcommand{\textgreek}[1]{\begingroup\fontencoding{LGR}\selectfont#1\endgroup}
 \let\tmp\oddsidemargin
@@ -44,15 +45,15 @@
 \section*{Declaration}
 \addcontentsline{toc}{section}{Declaration}
 
-This dissertation is submitted in partial fulfilment of the requirements for Part III Chemistry. It describes work carried out in the Department of Chemistry in the Michaelmas Term 2015 and the Lent Term 2016. Unless otherwise indicated, the research described is my own and not the product of collaboration.
+This dissertation is submitted in fulfilment of the requirements for a First Year Report in Chemistry. It describes work carried out in the Department of Chemistry between October 2016 and June 2017. Unless otherwise indicated, the research described is my own and not the product of collaboration.
 \\
 \\
 \\
 \\
 \\
 \\
-NAME\\
-\textit{DATE}
+Hugh G. A. Burton\\
+\textit{\today}
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 %acknowledgements go here
@@ -77,7 +78,9 @@ NAME\\
 
 \newpage
 \cleardoublepage
+% set page numbering styles
 \pagenumbering{arabic}
+\renewcommand\thepart{\arabic{part}}
 \fancyhead{}
 \rhead{\thepage}
 \lhead{\leftmark}
@@ -87,7 +90,7 @@ NAME\\
 \fancypagestyle{plain}{
     \fancyhf{} % clear all header and footer fields
     \fancyhead{} % except the right top corner
-    \renewcommand{\headrulewidth}{0pt} % remove line between header and main text
+    \renewcommand{\headrulewidth}{0.1cm} % remove line between header and main text
 }
 \pagestyle{fancy}
 %\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
@@ -105,14 +108,22 @@ NAME\\
 
 %list chapters    
 \newpage
-\input{Chapter1/Chapter1.tex}
+\input{introduction.tex}
+\thispagestyle{plain}
+\section{Formulating Holomorphic Hartree--Fock Theory}
+\input{Part1/Section1.tex}
+\input{Part1/Section2.tex}
 \newpage
-\input{Chapter2/Chapter2.tex}
+\input{Part2/Part2.tex}
+\newpage
+\input{Part3/Part3.tex}
+
 
 
 
 \newpage
-\addcontentsline{toc}{section}{Bibliography}
+\thispagestyle{plain}
+\addcontentsline{toc}{section}{References}
 \bibliography{dissertation_master}
 %\thispagestyle{empty}
 \newpage

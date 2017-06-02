@@ -1,12 +1,22 @@
 \documentclass[a4paper,12pt,openright,oneside]{article}
 %\usepackage[hmarginratio=3:2,vmarginratio=1:1]{geometry}
 \usepackage[top=4cm,bottom=4cm,left=3cm,right=3cm]{geometry}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsfonts,amsmath,amsbsy,amsthm,color}
 \usepackage{placeins}
 \usepackage[font=footnotesize,labelfont={bf}]{caption}
 \usepackage[font=footnotesize]{subcaption}
 \usepackage{emptypage}
 \usepackage{subdepth}
+\usepackage[version=3]{mhchem}
+\newtheorem{theorem}{Theorem}
+\usepackage{multirow,booktabs}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollary}
+\usepackage{chemfig}
+\usepackage{siunitx}
 \usepackage{mathrsfs}
 \usepackage[sort&compress]{natbib}
 \usepackage{graphics}
@@ -18,9 +28,64 @@
 \usepackage{multirow}
 \usepackage[LGR,T1]{fontenc} % notice LGRx instead of LGR
 \usepackage[utf8]{inputenc}   % utf8 is required
+\usepackage{libertine}
 \usepackage{textgreek}
+\usepackage[toc,page]{appendix}
+
+% Some stuff for figures and tables
+\usepackage{caption} % Allow width of caption to be controlled
+\usepackage{float} % Allow H to be used to force figure location
+
+%reset equation counter in each section
+\numberwithin{equation}{subsection}
+
+% Better handling of citations (after punctuation etc)
+\usepackage{natmove}
+
+% Command to force a citation out of superscript
+\newcommand*{\citen}[1]{%
+  \begingroup
+    \romannumeral-`\x % remove space at the beginning of \setcitestyle
+    \setcitestyle{numbers}%
+    [\cite{#1}]%
+  \endgroup   
+}
+
+% Make better tables
+\usepackage{siunitx,booktabs}
+\usepackage{tabularx}
+\usepackage{hhline}
+\usepackage{dcolumn}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% use symbols for footnotes, reset every page
+\usepackage[symbol,perpage]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+
+%Hugh's helpful commands
+\usepackage{mathtools}
+\newcommand{\I }{\mathrm{i}} % imaginary 
+\newcommand{\e }{\mathrm{e}} % imaginary 
+\newcommand{\CC }{\mathrm{\mathbb{C}}} % complex domain
+\newcommand{\RR }{\mathrm{\mathbb{R}}} % real domain
+\newcommand{\T}{\mathrm{T}} % transpose
+\newcommand{\hE}{\tilde{E}} % holomorphic energy
+\newcommand{\etal}{\textit{et al.}\ } %et al.
+
+%Alex's useful maths commands
+%\newcommand{\braket}[3] {{\langle #1 | #2 | #3 \rangle}}
+\newcommand{\brakett}[3] {{\{ #1 | #2 | #3 \}}}
+\newcommand{\brket}[2] {{\langle #1 | #2  \rangle}}
+\newcommand{\brkett}[2] {{\{ #1 | #2  \}}}
+\newcommand{\bket}[1] {{\langle #1  \rangle}}
+\newcommand{\D}[1] {D_{\bf #1}}
+%\newcommand{\ket}[1] {{| #1 \rangle}}
+\def\bfr{{\bf r}}
+\newcommand{\up}[2] {{^{#1\ }\!#2}}
+
+
 %turn off this command to have continued numebring throughout.
-\makeatletter\@addtoreset{section}{part}\makeatother%
+%\makeatletter\@addtoreset{section}{part}\makeatother%
 
 \newcommand{\textgreek}[1]{\begingroup\fontencoding{LGR}\selectfont#1\endgroup}
 \let\tmp\oddsidemargin
@@ -32,7 +97,6 @@
 \linespread{1.2}
 
 \newcommand*{\LargerCdot}{\raisebox{-0.25ex}{\scalebox{1.2}{$\cdot$}}}
-
 \begin{document}
 \cleardoublepage
 \input{./title.tex}
@@ -45,7 +109,7 @@
 \section*{Declaration}
 \addcontentsline{toc}{section}{Declaration}
 
-This dissertation is submitted in fulfilment of the requirements for a First Year Report in Chemistry. It describes work carried out in the Department of Chemistry between October 2016 and June 2017. Unless otherwise indicated, the research described is my own and not the product of collaboration.
+This dissertation is submitted in fulfilment of the requirements for a First--Year Report in Chemistry. It describes work carried out in the Department of Chemistry between October 2016 and June 2017. Unless otherwise indicated, the research described is my own and not the product of collaboration.
 \\
 \\
 \\
@@ -62,15 +126,12 @@ Hugh G. A. Burton\\
 
 \cleardoublepage
 \input{abstract.tex}
-%\begin{abstract}
-%The abstract goes here.
-%\end{abstract}
 \newpage
 
 \tableofcontents
 %\cleardoublepage
 %\listoffigures
-%\addcontentsline{toc}{chapter}{List of Figures}
+%\addcontentsline{toc}{section}{List of Figures}
 %\cleardoublepage
 %\listoftables
 %\addcontentsline{toc}{chapter}{List of Tables}
@@ -109,22 +170,27 @@ Hugh G. A. Burton\\
 %list chapters    
 \newpage
 \input{introduction.tex}
-\thispagestyle{plain}
-\section{Formulating Holomorphic Hartree--Fock Theory}
-\input{Part1/Section1.tex}
-\input{Part1/Section2.tex}
 \newpage
-\input{Part2/Part2.tex}
+%\renewcommand\thesection{\arabic{part}.\arabic{section}}
+\thispagestyle{plain}
+\input{Part1/Mathematical_Foundations.tex}
+\input{Part1/Holo_SCF.tex}
+\input{Part2/EnumeratingHF.tex}
+\input{Part2/NOCI.tex}
+\input{Part2/NOCI_DMC.tex}
 \newpage
 \input{Part3/Part3.tex}
-
+\newpage
+\begin{appendices}
+\input{appendix.tex}
+\end{appendices}
 
 
 
 \newpage
 \thispagestyle{plain}
 \addcontentsline{toc}{section}{References}
-\bibliography{dissertation_master}
+\bibliography{central_bib}
 %\thispagestyle{empty}
 \newpage
 \cleardoublepage
